@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg data-dict.xsd" author="A146714" category="data-dict" create-date="2017-01-09 19:15:34" version="6.1.0">
+  <data-dict data-type-id="string_type" id="sessionId" name="当前会话ID">
+    <description>当前会话ID</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="globalSeqNo" name="全局序列号">
+    <description>全局序列号</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="msgId" name="消息标识">
+    <description>消息标识</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_transTime" name="交易时间">
+    <description>交易时间</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="channelSource" name="渠道来源">
+    <description>渠道来源</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="consumerId" name="消费者标识">
+    <description>消费者标识</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="serviceName" name="服务名">
+    <description>服务名</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_version" name="版本号">
+    <description>版本号</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_requestGuid" name="请求Guid">
+    <description>请求Guid</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_multiTarget" name="查询项">
+    <description>查询项</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_localtion" name="查询范围">
+    <description>查询范围</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_name" name="姓名">
+    <description>姓名</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_idType" name="证件类型">
+    <description>证件类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_idValue" name="证件号码">
+    <description>证件号码</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_reason" name="查询原因">
+    <description>查询原因</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_systemId" name="系统ID">
+    <description>系统ID</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_addtionPara" name="附加参数">
+    <description>附加参数</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_bak1" name="备用字段1">
+    <description>备用字段1</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_bak2" name="备用字段2">
+    <description>备用字段2</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_bak3" name="备用字段3">
+    <description>备用字段3</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_bak4" name="备用字段4">
+    <description>备用字段4</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_responseType" name="响应类型">
+    <description>响应类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_responseCode" name="响应码">
+    <description>响应码</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_responseXml" name="响应报文">
+    <description>响应报文</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="version" name="版本">
+    <description>版本</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="returnCode" name="后台返回码">
+    <description>后台返回码</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="returnMsg" name="返回信息">
+    <description>返回信息</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="S_esbField" name="用来定义那些ESB中与业务无关的通讯字段">
+    <description>用来定义那些ESB中与业务无关的通讯字段</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="userName" name="用户姓名">
+    <description>用户姓名</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certNo" name="证件号码">
+    <description>证件号码</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certType" name="证件类型">
+    <description>证件类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="channel" name="调用渠道">
+    <description>调用渠道</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="similarity" name="相似度">
+    <description>相似度</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="big_decimal_type" id="threshold" name="阈值">
+    <description>阈值</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="crtTime" name="创建时间">
+    <description>创建时间</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="lstUpdTime" name="最后更新时间">
+    <description>最后更新时间</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="lstUpdDate" name="最后更新日期">
+    <description>最后更新日期</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="lstUpdUser" name="最后更新用户">
+    <description>最后更新用户</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42747.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="closeImg" name="个人近照">
+    <description>个人近照</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certImg" name="证件照">
+    <description>证件照</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="businessType" name="业务场景">
+    <description>业务场景</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="userType" name="用户类型">
+    <description>用户类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="status" name="状态">
+    <description>状态</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certHeadImg" name="证件头像照">
+    <description>证件头像照</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="ID" name="ID编号">
+    <description>ID编号</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="validResult" name="校验结果">
+    <description>校验结果</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="checkType" name="校验类型">
+    <description>校验类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="score" name="得分">
+    <description>得分</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="imgA" name="照片A">
+    <description>照片A</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="imgB" name="照片B">
+    <description>照片B</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42752.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="imgTypeA" name="照片类型A">
+    <description>照片类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42779.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="imgTypeB" name="照片类型B">
+    <description>照片类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42779.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="video" name="视屏">
+    <description>视屏</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42779.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="startDate" name="开始日期">
+    <description>开始时间</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="endDate" name="结束日期">
+    <description>开始时间</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="channelSeqNo" name="渠道流水号">
+    <description>渠道流水号</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42793.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="transDate" name="交易日期">
+    <description>交易日期</description>
+  </data-dict>
+  <data-dict data-type-id="time_type" id="transTime" name="交易时间">
+    <description>交易时间</description>
+    <ext-property>
+      <entry description="(格式)" key="FORMATTER" value="yyyy-MM-dd HH:mm:ss"/>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42793.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="transRequestMsg" name="请求报文">
+    <description>请求报文</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42793.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="transResponseMsg" name="响应报文">
+    <description>响应报文</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42793.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="int_type" id="totalNum" name="总数">
+    <description>总数</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42794.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="int_type" id="pageBeginNo" name="页初始序列">
+    <description>页初始序列</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42794.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="int_type" id="pageNO" name="页记录数">
+    <description>页记录数</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42794.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="isCountNum" name="是否计算总数">
+    <description>是否计算总数</description>
+    <ext-property>
+      <entry description="(格式)" key="FORMATTER" value="true/false"/>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42794.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certFaceImg" name="证件正面照">
+    <description>证件正面照</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42796.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certBackImg" name="证件反面照">
+    <description>证件反面照</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42796.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="userUniqueId" name="用户唯一标识">
+    <description>用户唯一标识</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42808.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="similarity1" name="相似度1">
+    <description>相似度1</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42811.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="big_decimal_type" id="threshold1" name="阈值1">
+    <description>阈值1</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42811.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="similarity2" name="相似度2">
+    <description>相似度2</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42811.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="big_decimal_type" id="threshold2" name="阈值2">
+    <description>阈值2</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42811.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="transCode" name="交易码">
+    <description>交易码</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="周剑川"/>
+      <entry description="申请时间" key="申请时间" value="42843.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="getFaceFlag" name="是否获取人脸标志">
+    <description>是否获取人脸标志</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certSide" name="证件正反面">
+    <description>证件正反面</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="certShootType" name="身份证拍摄类型">
+    <description>身份证拍摄类型</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="address" name="地址">
+    <description>地址</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="folk" name="民族">
+    <description>民族</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="birthday" name="生日">
+    <description>生日</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="sex" name="性别">
+    <description>性别</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="province" name="省(市)">
+    <description>省(市)</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="city" name="市(区)">
+    <description>市(区)</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="validStartDate" name="有效期起始日期">
+    <description>有效期起始日期</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="validEndDate" name="有效期截止日期">
+    <description>有效期截止日期</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="袁涛"/>
+      <entry description="申请时间" key="申请时间" value="42852.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="authority" name="签发机关">
+    <description>签发机关</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="param" name="SDK采集参数">
+    <description>SDK采集参数</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="周剑川"/>
+      <entry description="申请时间" key="申请时间" value="42888.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="compareResult" name="比对结果(success/fail)">
+    <description>比对结果(success/fail)</description>
+    <ext-property>
+      <entry description="申请人" key="申请人" value="周剑川"/>
+      <entry description="申请时间" key="申请时间" value="42901.0"/>
+      <entry description="关联TF" key="关联TF" value="BAMS"/>
+    </ext-property>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="closeAudio" name="closeAudio">
+    <description>个人最近的声纹</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="registerStatus" name="registerStatus">
+    <description>交易执行阶段</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioType" name="audioType">
+    <description>声纹类型</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioA" name="audioA">
+    <description>音频A</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioB" name="audioB">
+    <description>音频B</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioFormat" name="audioFormat">
+    <description>音频格式</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="closeAudioFormat" name="closeAudioFormat">
+    <description>声纹传递形式（path/base64)</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="text" name="text">
+    <description>待转化的文本</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioDuration" name="音频时长">
+    <description>音频时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="samplingRate" name="采样率">
+    <description>采样率</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="bitRate" name="比特率">
+    <description>比特率</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="soundTrack" name="声道">
+    <description>声道</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="codeRate" name="码率">
+    <description>码率</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="encodingFormat" name="编码格式">
+    <description>编码格式</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="extName" name="文件扩展名">
+    <description>文件扩展名</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioPath" name="语音存储路径">
+    <description>语音存储路径</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioId" name="语音id">
+    <description>语音id</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="fsAudioTotalDuration" name="fsAudioTotalDuration">
+    <description>自由说音频总时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="isFsRegistered" name="isFsRegistered">
+    <description>是否已经注册自由说声纹</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="crtDate" name="crtDate">
+    <description>创建日期</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="crtChannel" name="crtChannel">
+    <description>创建渠道</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="riskFlag" name="riskFlag">
+    <description>风险标识</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="mAudioDuration" name="mAudioDuration">
+    <description>中风险等级语音时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="hAudioDuration" name="hAudioDuration">
+    <description>高风险等级语音时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="shAudioDuration" name="shAudioDuration">
+    <description>超高风险等级语音时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioIds" name="audioIds">
+    <description>注册使用的音频ID</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="riskLevel" name="riskLevel">
+    <description>风险等级</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="phoneNo" name="phoneNo">
+    <description>手机号码</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="spAudioDuration" name="spAudioDuration">
+    <description>特殊风险语音时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="lAudioDuration" name="lAudioDuration">
+    <description>低风险语音时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="closeAudioName" name="closeAudioName">
+    <description>音频名称</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="batchTime" name="batchTime">
+    <description>批量时间</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioSamplingRate" name="audioSamplingRate">
+    <description>音频文件采样率</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioEncodeFormat" name="audioEncodeFormat">
+    <description>音频文件编码格式</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="audioTimelength" name="audioTimelength">
+    <description>音频文件时长</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="nosieTest" name="nosieTest">
+    <description>噪音标识</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="recodeWay" name="recodeWay">
+    <description>录音方式</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="processResult" name="processResult">
+    <description>语音处理结果</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="isStore" name="isStore">
+    <description>是否存储</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="isDesc" name="isDesc">
+    <description>是否倒叙</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="regRiskLevel" name="regRiskLevel">
+    <description>注册风险等级</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="maxRiskLevel" name="maxRiskLevel">
+    <description>最高风险等级</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="isValid" name="isValid">
+    <description>音频有效标识</description>
+  </data-dict>
+  <data-dict data-type-id="string_type" id="callId" name="callId">
+    <description>座机ID</description>
+  </data-dict>
+</configuration>

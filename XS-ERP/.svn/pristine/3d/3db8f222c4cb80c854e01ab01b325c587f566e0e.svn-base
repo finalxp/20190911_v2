@@ -1,0 +1,21 @@
+package cn.xs.erp.service;
+
+import cn.xs.erp.model.DoorItem;
+import cn.xs.erp.model.PageInfo;
+
+public interface IDoorService {
+
+	DoorItem getDoorItemById(int Id);
+
+	int addDoor(DoorItem door);
+	
+	int editDoor(DoorItem doorItem);
+	
+	int deleteDoor(int id);
+	
+	PageInfo<DoorItem> selectDoorByPage(int page,int pagesize);
+
+	PageInfo<DoorItem> selectDoorByPage(Integer page, Integer rows,String doorNo, String doorName);
+	
+	
+}

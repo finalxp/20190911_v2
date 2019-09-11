@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/header">
+<th:block layout:fragment="bodyAssets">
+	<div class="htmleaf-container">
+		<div class="wrapper">
+			<div class="container">
+				<h1>Welcome</h1>
+				   <form id="ff" action="/login/login" method="post" enctype="multipart/form-data">
+					<div>
+						<input type="text" name = "empNo" class="f1 easyui-textbox" placeholder="ÇëÊäÈëÔ±¹¤±àºÅ" />
+						<span style="font-size: 16px; color: red; font-weight: bold" aria-describedby="basic-addon0"></span>
+					</div>
+					<div>
+						<input type="password" name ="pwd" class="f1 easyui-textbox"></span>
+					</div>
+					<button type="submit" id="login-button">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		if(self.location != top.location){
+			top.location = '/login';
+		}
+        $(function(){
+            $('#ff').form({
+                success:function(data){
+                	var retData = $.parseJSON(data);
+                	if(retData.retCode === '0'){
+                		window.location = '/';
+                	}else{
+                		alert(retData.retMsg);
+                	}
+                }
+            });
+        });
+    </script>
+</th:block>
+</html>

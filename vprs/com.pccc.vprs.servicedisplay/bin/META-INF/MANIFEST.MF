@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Require-Bundle: com.primeton.btp.wscommon.businessmodel,com.primeton.b
+ tp.wscommon.wsservice,com.primeton.eos.richweb,com.eos.foundation,com
+ .pccc.vprs.architecture,com.pccc.vprs.businessmodel
+Bundle-Vendor: A146901
+eos-webCtxPath: servicedisplay
+Bundle-Version: 1.0.0
+Contribution-Type: btp.servicedisplay
+Bundle-Name: EOS构件包
+Bundle-Description: 
+Bundle-SymbolicName: com.pccc.vprs.servicedisplay
+

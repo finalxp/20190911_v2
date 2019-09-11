@@ -1,0 +1,81 @@
+package cn.xs.erp.config.filter;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.dao.IEmployeeDao;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.util.StringUtils;
+//@WebFilter(filterName="test",urlPatterns="/*")
+public class SecurityFilter implements Filter{
+	
+	@Autowired
+	private IEmployeeDao employeeDao;
+	private Set<String> GreenUrlSet = new HashSet<String>();
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		GreenUrlSet.add("/login");
+		GreenUrlSet.add("/index");
+		
+	}
+	@Override
+	public void doFilter(ServletRequest srequest, ServletResponse sresponse,
+			FilterChain filterChain) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest) srequest;
+		String url = request.getRequestURI();
+		if (request.getSession().getAttribute(Const.LOGIN_SESSION_KEY)==null) {
+			Cookie[] cookies =request.getCookies();
+			if (GreenUrlSet.contains(url)) {
+				filterChain.doFilter(srequest, sresponse);
+				return;
+			}else if (cookies!=null) {
+				for (Cookie cookie:cookies) {
+					if(cookie.getName().equals(Const.LOGIN_SESSION_KEY)){
+						if (StringUtils.isEmpty(cookie.getValue())) {
+							break;
+						}
+						String empNo= cookie.getValue();
+						if (employeeDao==null) {
+							BeanFactory beanFactory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
+							employeeDao= (IEmployeeDao) beanFactory.getBean("IEmployeeDao");
+						}
+						EmployeeItem employeeItem = employeeDao.getEmployeeByNo(empNo);
+						String htmlString ="";
+						if (employeeItem==null) {
+							htmlString = "<script type=\"text/javascript\">window.location.href=\"_BP_login\"</script>";
+						}else {
+							request.getSession().setAttribute(Const.LOGIN_SESSION_KEY, empNo);
+							htmlString="<script type=\"text/javascript\">window.location.href=\"_BP_index\"</script>";
+						}
+						htmlString=htmlString.replace("_BP_", Const.BASE_PATH);
+						sresponse.getWriter().write(htmlString);
+					}
+				}
+			}
+		}else {
+			filterChain.doFilter(srequest, sresponse);
+		}
+	}
+	
+	@Override
+	public void destroy() {
+		Filter.super.destroy();
+	}
+
+}

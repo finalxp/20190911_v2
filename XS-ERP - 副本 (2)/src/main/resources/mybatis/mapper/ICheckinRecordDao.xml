@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.ICheckinRecordDao">
+  <resultMap id="BaseResultMap" type="cn.xs.erp.model.CheckinRecordItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="checkin_time" jdbcType="TIMESTAMP" property="checkinTime" />
+    <result column="checkin_category" jdbcType="SMALLINT" property="checkinCategory" />
+    <result column="is_enable" jdbcType="SMALLINT" property="isEnable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="audit_by" jdbcType="INTEGER" property="auditBy" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, emp_id, checkin_time, checkin_category, is_enable, create_time, audit_by, audit_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_checkin_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_checkin_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xs.erp.model.CheckinRecordItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_checkin_record (emp_id, checkin_time, checkin_category, 
+      is_enable, create_time, audit_by, 
+      audit_time)
+    values (#{empId,jdbcType=INTEGER}, #{checkinTime,jdbcType=TIMESTAMP}, #{checkinCategory,jdbcType=SMALLINT}, 
+      #{isEnable,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{auditBy,jdbcType=INTEGER}, 
+      #{auditTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xs.erp.model.CheckinRecordItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_checkin_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="checkinTime != null">
+        checkin_time,
+      </if>
+      <if test="checkinCategory != null">
+        checkin_category,
+      </if>
+      <if test="isEnable != null">
+        is_enable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="auditBy != null">
+        audit_by,
+      </if>
+      <if test="auditTime != null">
+        audit_time,
+      </if>
+      <if test="comments != null">
+        comments,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="checkinTime != null">
+        #{checkinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkinCategory != null">
+        #{checkinCategory,jdbcType=SMALLINT},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditBy != null">
+        #{auditBy,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null">
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xs.erp.model.CheckinRecordItem">
+    update t_checkin_record
+    <set>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="checkinTime != null">
+        checkin_time = #{checkinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkinCategory != null">
+        checkin_category = #{checkinCategory,jdbcType=SMALLINT},
+      </if>
+      <if test="isEnable != null">
+        is_enable = #{isEnable,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditBy != null">
+        audit_by = #{auditBy,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null">
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xs.erp.model.CheckinRecordItem">
+    update t_checkin_record
+    set emp_id = #{empId,jdbcType=INTEGER},
+      checkin_time = #{checkinTime,jdbcType=TIMESTAMP},
+      checkin_category = #{checkinCategory,jdbcType=SMALLINT},
+      is_enable = #{isEnable,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      audit_by = #{auditBy,jdbcType=INTEGER},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

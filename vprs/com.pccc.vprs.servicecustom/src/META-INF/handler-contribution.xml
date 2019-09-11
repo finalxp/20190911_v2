@@ -1,0 +1,4 @@
+<handlers>
+	<handler handle-class="com.pccc.vprs.servicecustom.interceptor.HandlerLaunch"/>
+	<handler handle-class="com.pccc.vprs.servicecustom.listener.TransFlowDataListerer"/>
+</handlers>

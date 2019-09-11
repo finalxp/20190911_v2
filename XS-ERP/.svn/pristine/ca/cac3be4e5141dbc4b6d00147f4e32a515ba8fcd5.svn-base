@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IVoiceprintDao">
+  <resultMap id="BaseResultMap" type="cn.xs.erp.model.VoiceprintItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="voiceprint_mode" jdbcType="VARCHAR" property="voiceprintMode" />
+    <result column="engine_vision" jdbcType="VARCHAR" property="engineVision" />
+    <result column="update_number" jdbcType="INTEGER" property="updateNumber" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.xs.erp.model.VoiceprintItem">
+    <result column="voiceprint_feature" jdbcType="LONGVARBINARY" property="voiceprintFeature" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, emp_id, voiceprint_mode, engine_vision, update_number, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    voiceprint_feature
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_voiceprint
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_voiceprint
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xs.erp.model.VoiceprintItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_voiceprint (emp_id, voiceprint_mode, engine_vision, 
+      update_number, update_time, create_time, 
+      voiceprint_feature)
+    values (#{empId,jdbcType=INTEGER}, #{voiceprintMode,jdbcType=VARCHAR}, #{engineVision,jdbcType=VARCHAR}, 
+      #{updateNumber,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{voiceprintFeature,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xs.erp.model.VoiceprintItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_voiceprint
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="voiceprintMode != null">
+        voiceprint_mode,
+      </if>
+      <if test="engineVision != null">
+        engine_vision,
+      </if>
+      <if test="updateNumber != null">
+        update_number,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="voiceprintFeature != null">
+        voiceprint_feature,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="voiceprintMode != null">
+        #{voiceprintMode,jdbcType=VARCHAR},
+      </if>
+      <if test="engineVision != null">
+        #{engineVision,jdbcType=VARCHAR},
+      </if>
+      <if test="updateNumber != null">
+        #{updateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voiceprintFeature != null">
+        #{voiceprintFeature,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xs.erp.model.VoiceprintItem">
+    update t_voiceprint
+    <set>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="voiceprintMode != null">
+        voiceprint_mode = #{voiceprintMode,jdbcType=VARCHAR},
+      </if>
+      <if test="engineVision != null">
+        engine_vision = #{engineVision,jdbcType=VARCHAR},
+      </if>
+      <if test="updateNumber != null">
+        update_number = #{updateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voiceprintFeature != null">
+        voiceprint_feature = #{voiceprintFeature,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xs.erp.model.VoiceprintItem">
+    update t_voiceprint
+    set emp_id = #{empId,jdbcType=INTEGER},
+      voiceprint_mode = #{voiceprintMode,jdbcType=VARCHAR},
+      engine_vision = #{engineVision,jdbcType=VARCHAR},
+      update_number = #{updateNumber,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      voiceprint_feature = #{voiceprintFeature,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xs.erp.model.VoiceprintItem">
+    update t_voiceprint
+    set emp_id = #{empId,jdbcType=INTEGER},
+      voiceprint_mode = #{voiceprintMode,jdbcType=VARCHAR},
+      engine_vision = #{engineVision,jdbcType=VARCHAR},
+      update_number = #{updateNumber,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

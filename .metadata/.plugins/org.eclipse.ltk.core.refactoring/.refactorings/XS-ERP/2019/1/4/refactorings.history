@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;XS-ERP/src/main/resources/mybatis/mapper/DepartmentDao.xml&apos; to &apos;IDepartmentDao.xml&apos;" description="Rename resource &apos;DepartmentDao.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/mybatis/mapper/DepartmentDao.xml" name="IDepartmentDao.xml" stamp="1548062241253" updateReferences="true"/>
+</session>

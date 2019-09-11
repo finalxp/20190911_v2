@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;cn.xs.erp.core&apos; to &apos;telecomenrolapp2/src/main/java/com.validsoft&apos;&#x0D;&#x0A;- Original project: &apos;XS-ERP&apos;&#x0D;&#x0A;- Destination element: &apos;telecomenrolapp2/src/main/java/com.validsoft&apos;&#x0D;&#x0A;- Original element: &apos;XS-ERP/src/main/java/cn.xs.erp.core&apos;" description="Copy package" destination="=telecomenrolapp2/src\/main\/java&lt;com.validsoft" element1="/src\/main\/java&lt;cn.xs.erp.core" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1562927398008" version="1.0"/>
+</session>

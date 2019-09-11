@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+  <head>
+  <meta charset="UTF-8">
+<!--   <link rel="stylesheet" type="text/css" href="js/zTree/metroStyle.css">
+  <script type="text/javascript" src="js/zTree/jquery.ztree.all.min.js"></script>
+  <script type="text/javascript" src="js/zTree/jquery.ztree.core.js"></script>
+  <script type="text/javascript" src="js/zTree/jquery.ztree.excheck.js"></script>
+  <script type="text/javascript" src="js/zTree/jquery.ztree.exedit.js"></script> -->
+  
+  	<script type="text/javascript">
+		function convert(rows){
+			function exists(rows, parentId){
+				for(var i=0; i<rows.length; i++){
+					if (rows[i].id == parentId) 
+						return true;
+				}
+				return false;
+			}
+			
+			var nodes = [];
+			// get the top level nodes
+			for(var i=0; i<rows.length; i++){
+				var row = rows[i];
+				if (!exists(rows, row.parentId)){
+					nodes.push({
+						id:row.id,
+						text:row.name
+					});
+				}
+			}
+			
+			var toDo = [];
+			for(var i=0; i<nodes.length; i++){
+				toDo.push(nodes[i]);
+			}
+			while(toDo.length){
+				var node = toDo.shift();	// the parent node
+				// get the children nodes
+				for(var i=0; i<rows.length; i++){
+					var row = rows[i];
+					if (row.parentId == node.id){
+						var child = {id:row.id,text:row.name};
+						if (node.children){
+							node.children.push(child);
+						} else {
+							node.children = [child];
+						}
+						toDo.push(child);
+					}
+				}
+			}
+			return nodes;
+		}
+		
+		$(function(){
+			$('#tt').tree({
+				url: '/allMenus',
+				loadFilter: function(rows){
+					alert(rows);
+					return convert(rows);
+				}
+			});
+		});
+	</script>
+  </head>
+<body>
+	<div title="系统管理" data-options="region:'west'" style="width: 13%; padding: 10px;" >
+		<div class="list" style="margin-left:1mm;">
+			<!-- <ul class="yiji" th:each="menu:${allMenus}" >
+				<li><a th:name="${menu.menuPath}" th:text="${menu.menuName}" th:id="${menu.id}"
+						th:onclick= "|addTabs(${menu.id})|"></a></li>
+						th:onclick= "|addTabs(this,${menu.id},'${menu.menuName}')|"></a></li>
+						th:href="@{{path}(path=${menu.menuPath})}"
+		</ul> -->
+		
+		
+			  <ul id="tt"></ul>
+ 
+		</div>
+	</div>
+</body>
+</html>

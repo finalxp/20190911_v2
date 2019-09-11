@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.ICheckinRecordDao">
+	<select id="selectLoginUser" resultMap="BaseResultMap" parameterType="Integer">
+		SELECT a.id,a.emp_id,b.emp_no as empNo,b.emp_name as empName,a.checkin_time,MAX(a.checkin_time) AS timeOut,MIN(a.checkin_time) AS timeIn,
+			a.checkin_category,a.audit_by,a.audit_time,a.is_enable
+		FROM
+			t_checkin_record a
+		LEFT JOIN
+			t_employee b
+		ON
+			a.emp_id=b.id
+		WHERE
+			DATE_FORMAT(checkin_time, '%Y-%m')= DATE_FORMAT(CURRENT_DATE(), '%Y-%m') AND 
+			a.is_enable=1 AND emp_id=#{id,jdbcType=INTEGER}
+		GROUP BY
+			a.emp_id,DATE_FORMAT(a.checkin_time, '%Y-%m-%d')
+	</select>
+	<select id="selectCRToolbarList" resultMap="BaseResultMap" parameterType="hashmap">
+		SELECT a.id,a.emp_id,b.emp_no as empNo,b.emp_name as empName,a.checkin_time,MAX(a.checkin_time) AS timeOut,MIN(a.checkin_time) AS timeIn,
+			a.checkin_category,a.audit_by,a.audit_time,a.is_enable
+		FROM
+			t_checkin_record a
+		LEFT JOIN
+			t_employee b
+		ON
+			a.emp_id=b.id
+		WHERE
+			a.is_enable=1 AND emp_id=#{id} 
+			AND DATE_FORMAT(checkin_time, '%Y-%m')= DATE_FORMAT(CURRENT_DATE(), '%Y-%m')
+			<![CDATA[AND checkin_time>=STR_TO_DATE(#{startTime},'%Y-%m-%d')]]>
+			<![CDATA[AND checkin_time<=STR_TO_DATE(#{endTime},'%Y-%m-%d')]]>
+		GROUP BY
+			a.emp_id,DATE_FORMAT(a.checkin_time, '%Y-%m-%d')
+	</select>
+	<select id="selectToolbarAppplyList" resultMap="BaseResultMap" parameterType="hashmap">
+		SELECT a.id,a.emp_id,b.emp_no as empNo,b.emp_name as empName,a.checkin_time,MAX(a.checkin_time) AS timeOut,MIN(a.checkin_time) AS timeIn,
+			a.checkin_category,a.audit_by,a.audit_time,a.is_enable
+		FROM
+			t_checkin_record a
+		LEFT JOIN
+			t_employee b
+		ON
+			a.emp_id=b.id
+		WHERE
+			a.is_enable=1 AND emp_id=#{id} AND checkin_category=2
+			AND DATE_FORMAT(checkin_time, '%Y-%m')= DATE_FORMAT(CURRENT_DATE(), '%Y-%m')
+			<![CDATA[AND checkin_time>=STR_TO_DATE(#{startTime},'%Y-%m-%d')]]>
+			<![CDATA[AND checkin_time<=STR_TO_DATE(#{endTime},'%Y-%m-%d')]]>
+		GROUP BY
+			a.emp_id,DATE_FORMAT(a.checkin_time, '%Y-%m-%d')
+	</select>
+</mapper>

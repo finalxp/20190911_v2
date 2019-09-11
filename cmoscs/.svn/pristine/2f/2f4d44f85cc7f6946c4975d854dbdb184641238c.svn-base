@@ -1,0 +1,127 @@
+package cn.productivetech.cmos.zhongbao.utils;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+/**
+ * 发送URL请求工具类
+ * @author: Administrator
+ * @created:2019-04-11
+ */
+public class SendUrlUtils {
+	
+	/**
+	 * 发送get请求
+	 * @param url   请求地址
+	 * @param param	请求参数eg:"id=9"
+	 * @return
+	 */
+	public static String sendGet(String url, String param){
+		String result ="";
+		BufferedReader in = null;
+		
+		//get请求拼接url和请求参数
+		String urlName = url + "?" + param;
+		URL realUrl;
+		try {
+			realUrl = new URL(urlName);
+			
+			//打开和URL之间的连接
+			URLConnection conn = realUrl.openConnection();
+			
+			//设置通用请求属性
+			conn.setRequestProperty("accept", "*");
+			
+			//定义BufferedReader输入流来读取url的响应，输入结果编码形式为“UTF-8”
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			
+			//定义返回结果
+			String line = in.readLine();
+			while (line != null) {
+				result = line;
+			}
+			return result;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				//如果连接不为空，则关闭连接
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * 发送post请求
+	 * @param url   请求地址
+	 * @param param	请求参数eg:"id=9"
+	 * @return
+	 */
+	public static String sendPost(String url, String param){
+		String result ="";
+		BufferedReader in = null;
+		PrintWriter out = null;
+		
+		try {
+			URL realURL = new URL(url);
+			
+			//打开和url之间的连接
+			URLConnection conn =realURL.openConnection();
+			
+			//设置通用参数
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+			
+			//发送post请求必须设置如下两行
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			
+			//获取URLConnection对象对应的输出流
+			out = new PrintWriter(conn.getOutputStream());
+			
+			//发送请求参数
+			out.print(param);
+			
+			//刷新输出流的缓存
+			out.flush();
+			
+			//定义BufferedReader输入流来读取url的响应，输入结果编码形式为“UTF-8”
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			String line = in.readLine();
+			while (line != null) {
+				result = line + "\n";
+			}
+			return result;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+}

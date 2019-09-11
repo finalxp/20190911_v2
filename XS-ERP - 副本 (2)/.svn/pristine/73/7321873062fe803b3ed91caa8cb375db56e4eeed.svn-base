@@ -1,0 +1,9 @@
+package cn.xs.erp.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import cn.xs.erp.model.EmployeeDepartmentItem;
+@Mapper
+public interface IEmployeeDepartmentDao extends IBaseDao<EmployeeDepartmentItem, Integer> {
+	
+}

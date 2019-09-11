@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		var saveInsert,saveUpdate;
+		if(saveOrEdit=="null"){
+			$("#createByTR").hide(); 
+			$("#updateByTR").hide(); 
+			$("#progressBar").hide(); 
+		}else{
+			$("#progressBar").hide();
+		}
+		$('#depID').combobox({
+			editable:false,
+		    url:'/department/comboboxList',
+		   	valueField:'id',
+		   	textField:'depName',
+            multiple:true,
+            panelHeight:'50%',
+            onLoadSuccess: function(data){
+			if(json !=''){
+				for(var p in json){
+		        	$('#depID').combobox('setValue', json);
+		        }
+			}
+			var opts = $(this).combobox('options');
+		                var target = this;
+		                var values = $(target).combobox('getValues');//获取选中的值的values
+		                $.map(values, function (value) {
+		                    var el = opts.finder.getEl(target, value);
+		                    el.find('input.combobox-checkbox')._propAttr('checked', true); 
+		                })
+			},
+			onSelect:function(row){
+				var opts = $(this).combobox('options');
+				$('#depID').val($(this).combobox('getValues'));
+				var el = opts.finder.getEl(this, row[opts.valueField]);
+			             			el.find('input.combobox-checkbox')._propAttr('checked', true);
+			},
+			onUnselect:function(row){
+				var opts = $(this).combobox('options');
+			                $('#depID').val($(this).combobox('getValues'));
+			                var el = opts.finder.getEl(this, row[opts.valueField]);
+			                el.find('input.combobox-checkbox')._propAttr('checked', false);
+			},
+			formatter:function(row){
+				var opts = $(this).combobox('options');
+			             			return '<input type=\'checkbox\' class=\'combobox-checkbox\'>' + row[opts.textField];
+			}
+		});
+	});
+	var saveOrEdit=[[${eItem.id}]]+"";
+	function checkeInput(){
+		var no=new RegExp(/^[0-9]*$/);
+		var phone = new RegExp(/^d{3}-d{8}|d{4}-d{7}|[1][0-9]{10}$/);
+		var empNo=$("#empNo").val();
+		var phoneNo =$("#phoneNo").val();
+		var sex=$("#sex option:selected").val();
+		var hiredate=$("#hiredate").val();
+		var birthday=$("#birthday").val();
+		var avatarUrl=$("#avatarUrl").val();
+		if(phone.test(phoneNo) && no.test(empNo) && sex!="" && photoShow!="" && avatarUrl!=""){
+			return true;
+		}else if(!phone.test(phoneNo)){
+			$.messager.alert("提示","请输入正确的手机号码！");
+			return false;
+		}else if(!no.test(empNo)){
+			$.messager.alert("提示","员工编号只能为0-9的纯数字！");
+			return false;
+		}else if(sex==""){
+			$.messager.alert("提示","员工性别不能为空！");
+			return false;
+		}else if(avatarUrl==""){
+			$.messager.alert("提示","必须添加员工头像！");
+			return false;
+		}
+	}
+	if(saveOrEdit=="null"){
+		saveInsert = function(){
+			if(checkeInput()){
+				doSave('/employee/insert');
+			}
+		};
+	}else{
+		saveUpdate = function(){
+			if(checkeInput()){
+				doSave('/employee/update');
+			}
+		};
+		var json =JSON.parse([[${listDepItem}]]);
+	}
+	function setImagePreview(obj, imgObjPreview) {
+		var f=$(obj).val();
+		$("#progressBar").show();
+		$("#percentage").empty();
+	    if(f == null || f ==undefined || f == ''){
+	        return false;
+	    }else{
+	    	if(!/\.(?:png|jpg|bmp|gif|PNG|JPG|BMP|GIF)$/.test(f)){
+		        $.messager.alert("类型必须是图片(.png|jpg|bmp|gif|PNG|JPG|BMP|GIF)");
+		        $(obj).val('');
+		        return false;
+		    }
+	        var form = new FormData(); // FormData 对象
+		    var fileObj = $(obj)[0].files[0]; //获取文件对象
+		    if(fileObj.size/1024 > 1025) { //大于1M，进行压缩上传
+                photoCompress(fileObj, {quality: 0.2}, function(base64Codes){
+                    var base64File = convertBase64UrlToBlob(base64Codes);
+					form.append("file", base64File, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+					$.ajax({
+		            	type: "POST",
+				        url:"/employee/uploadImg",
+				        data: form,
+				        cache: false,
+				        contentType: false,
+				        processData: false,
+				        dataType:"text",
+				        xhr : function(){
+				        	return setProcessBar()
+				        },
+				        success: function(data) {
+				            successFunction(data);
+				        },
+				        error: function() {
+				            alert("上传失败，请检查网络后重试");
+				        }
+	                });
+                });
+            }else{ //小于等于1M 原图上传
+                form.append("file", fileObj); // 文件对象
+                $.ajax({
+	            	type: "POST",
+			        url:"/employee/uploadImg",
+			        data: form,
+			        cache: false,
+			        contentType: false,
+			        processData: false,
+			        dataType:"text",
+			        xhr:function(){
+			        	return setProcessBar()
+				    },
+			        success: function(data) {
+			            successFunction(data);
+			        },
+			        error: function() {
+			            alert("上传失败，请检查网络后重试");
+			        }
+                });
+            }
+	    }
+    }
+    function setProcessBar(){
+　　　　var xhr = $.ajaxSettings.xhr();
+　　　　if (xhr.upload) {
+　　　　　　xhr.upload.onprogress = function(progress) {
+                if (progress.lengthComputable) {
+                    progressBar.max = progress.total;
+                    progressBar.value = progress.loaded;
+           		}
+            };
+            xhr.upload.onloadstart = function() {
+            };
+ 		}
+        return xhr;
+    }
+    function successFunction(data){
+    	$("#percentage").empty();
+    	$("#percentage").append("上传完成！");
+    	var jsonData = new Function("return" + data)();
+    	if(jsonData.retCode==0){
+             $("#avatarUrl").val(jsonData.retMsg);//将地址存储好
+             $("#preview").css('display','block');
+             $("#preview").css('width','100px');
+             $("#preview").css('height','100px');
+             $("#preview").attr("src", jsonData.retMsg);
+        }else{
+            $("#photoShow").val('');
+            $.messager.alert("提示",jsonData.retMsg);
+        }
+    }
+    function photoCompress(file,w,objDiv){
+       var ready=new FileReader();
+       /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,
+       	  如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串
+       	  以表示所读取文件的内容.*/
+       ready.readAsDataURL(file);
+       ready.onload=function(){
+           var re=this.result;
+           canvasDataURL(re,w,objDiv)
+       }
+    }
+    function convertBase64UrlToBlob(urlData){
+        var arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {type:mime});
+	}
+    function canvasDataURL(path, obj, callback){
+        var img = new Image();
+        img.src = path;
+        img.onload = function(){
+            var that = this;
+            // 默认按比例压缩
+            var w = that.width,
+                h = that.height,
+                scale = w / h;
+            w = obj.width || w;
+            h = obj.height || (w / scale);
+            var quality = 0.7;  // 默认图片质量为0.7
+            //生成canvas
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            // 创建属性节点
+            var anw = document.createAttribute("width");
+            anw.nodeValue = w;
+            var anh = document.createAttribute("height");
+            anh.nodeValue = h;
+            canvas.setAttributeNode(anw);
+            canvas.setAttributeNode(anh);
+            ctx.drawImage(that, 0, 0, w, h);
+            // 图像质量
+            if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+                quality = obj.quality;
+            }
+            // quality值越小，所绘制出的图像越模糊
+            var base64 = canvas.toDataURL('image/jpeg', quality);
+            // 回调函数返回base64的值
+            callback(base64);
+        }
+    }
+    //将base64转换为文件对象
+	function dataURLtoFile(dataurl, filename) {
+		var arr = dataurl.split(',');
+		var mime = arr[0].match(/:(.*?);/)[1];
+		var bstr = atob(arr[1]);
+		var n = bstr.length; 
+		var u8arr = new Uint8Array(n);
+		while(n--){
+		    u8arr[n] = bstr.charCodeAt(n);
+		}
+		//转换成file对象
+		return new File([u8arr], filename, {type:mime});
+		//转换成成blob对象
+		//return new Blob([u8arr],{type:mime});
+	}
+</script>
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post">
+		<table style="border-collapse:separate; border-spacing:0px 20px;width:95%;">
+			<tr style="border-spacing:0px 0px;">
+				<td><input id="id" name="id" th:value="${eItem.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>员工编号：</td>
+				<td><input class="easyui-textbox" id="empNo" name="empNo" th:value="${eItem.empNo}" 
+							style="width:100%" data-options="required:true"></td>
+				<td>部门：</td>
+				<td colspan=3>
+					<input class="easyui-combobox" id="depID" name="depID" style="width:95%">
+				</td>
+			</tr>
+			<tr>
+				<td>员工姓名：</td>
+				<td><input class="easyui-textbox" id="empName" name="empName" th:value="${eItem.empName}" 
+							style="width:100%" data-options="required:true"></td>
+				<td>性别：</td>
+				<td>
+					<select id="sex" class="easyui-combobox" name="sex" style="width:100%" data-options="panelHeight:'auto'" >
+						<option th:selected="${eItem.sex==''}" value="">请选择:</option>
+						<option th:selected="${eItem.sex=='M'}" value="M">男</option>
+						<option th:selected="${eItem.sex=='F'}" value="F">女</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>入职时间：</td>
+				<td><input class="easyui-datebox" id="hiredate" name="hiredate" th:value="${#dates.format(eItem.hiredate,'yyyy-MM-dd')}" 
+						style="width:100%" data-options="required:true"></td>
+				<td>生日：</td>
+				<td colspan=3><input class="easyui-datebox" id="birthday" name="birthday" th:value="${#dates.format(eItem.birthday,'yyyy-MM-dd')}" 
+						style="width:100%" data-options="required:true"></td>
+			</tr>
+			<tr>
+				<td>电话：</td>
+				<td colspan=3><input class="easyui-textbox" id="phoneNo" name="phoneNo" th:value="${eItem.phoneNo}" 
+						style="width:100%" data-options="required:true"></td>
+			</tr>
+			<tr>
+				<td>昵称：</td>
+				<td><input class="easyui-textbox" id="nickname" name="nickname" th:value="${eItem.nickname}" 
+						style="width:100%"></td>
+				<td>头像：</td>
+				<td rowspan="2">
+					<div>
+						<input type="hidden" name="avatarUrl"  id="avatarUrl" th:value="${eItem.avatarUrl}"/>
+    					<input id="photoShow"  style="width:100%;" runat="server" onChange="javascript:setImagePreview(this,preview);" type="file" />
+						
+					</div>
+					<progress id="progressBar" value="0" max="100" style="width: 100%;"></progress>
+					<span id="percentage"></span>
+					<div id="localImag">
+					    <img id="preview" th:src="${eItem.avatarUrl}" width="100" height="100" /> 
+					</div>
+				</td>
+			</tr>
+			<tr><td>.</td></tr>
+			<tr id="createByTR">
+				<td>创建人：</td>
+				<td><input class="easyui-textbox" id="createBy" disabled="disabled" name="createBy" th:value="${eItem.createBy}" 
+							style="width:100%" data-options="required:true"></td>
+				<td>创建时间：</td>
+				<td><input type="datetime" id="createTime" disabled="disabled" name="createTime" th:value="${#dates.format(eItem.createTime,'yyyy-MM-dd HH:mm:ss')}" 
+						style="width:100%" data-options="required:true"></td>
+			</tr>
+			<tr id="updateByTR">
+				<td>修改人：</td>
+				<td><input class="easyui-textbox" id="updateBy" disabled="disabled" name="updateBy" th:value="${eItem.updateBy}" 
+							style="width:100%" data-options="required:true"></td>
+				<td>修改时间：</td>
+				<td><input type="datetime" id="updateTime" disabled="disabled" name="updateTime" th:value="${#dates.format(eItem.updateTime,'yyyy-MM-dd hh:mm:ss')}" 
+						style="width:100%" data-options="required:true"></td>
+			</tr>
+			
+		</table>
+	</form>
+</th:block>
+</html>

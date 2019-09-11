@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		var userEdit=[[${loginUserEdit}]];
+		if(userEdit=="false"){
+			$("#empOldPassword").hide();
+		}
+	
+	
+	});
+
+
+	function checkInput(){
+		if($("#queryempPassword").val()!=$("#empPassword").val()){
+			$.messager.alert('提示', '两次输入密码不一样');
+			return false;
+		}
+		return true;
+	}
+
+	var saveUpdate=function(){
+		if(checkInput()){
+			doSave("/employee/updatePwd");
+		}
+	}
+	function onsubmitFunction(){
+		var id =$("#id").val();
+		$('#edit_pwd_form').form('submit',{
+			url:'/employee/updatePwd?id='+id,
+			onSubmit:function(){
+			if($("#queryempPassword").val()!=$("#empPassword").val()){
+				$.messager.alert('提示', '两次输入密码不一样,请重新输入！');
+				return false;
+			}
+			return $(this).form('enableValidation').form('validate');
+	        },
+	        success:function(data){
+	        	var code = new Function("return" + data)().retCode;
+	        	var message = new Function("return" + data)().retMsg;
+	        	if(code=="0"){
+	        		$.messager.alert('提示', message,"info",function(){
+	        				closeEditPwdWindow();
+	        		});
+	       		}else{
+	       			$.messager.alert('提示', message,"error");
+	       		}
+	        },
+	        error:function(){
+	        	alert("网络有问题啦！");
+	        }
+   		});
+	}
+	  
+</script>
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post">
+	    <table style="border-collapse:separate; border-spacing:0px 10px;width:95%;">
+	    	<tr style="border-spacing:0px 0px;">
+				<td><input id="id" name="id" th:value="${editPwd.id}" type="hidden"></td>
+			</tr>
+           	<tr>
+           		<td><input class="easyui-textbox" id="empNo" name="empNo" required th:value="${editPwd.empNo}"
+					style="width:95%;" data-options="label:'员工编号：'"></td>
+          	</tr>
+	          	<tr>
+					<td><input class="easyui-textbox" id="empName" name="empName" th:value="${editPwd.empName}"
+					style="width:95%" data-options="label:'员工姓名：',required:true"></td>
+				</tr>
+              	<tr id="empOldPassword">
+              		<td><input class="easyui-passwordbox" id="empOldPassword" name="empOldPassword"
+						style="width:95%" data-options="label:'原密码：',required:true"></td>
+           		</tr>
+              	<tr>
+              		<td><input class="easyui-passwordbox" id="empPassword" name="empPassword"
+						style="width:95%" data-options="label:'新密码：',required:true"></td>
+           		</tr>
+	           	<tr>
+	           		<td><input class="easyui-passwordbox" id="queryempPassword" 
+						style="width:95%" required data-options="label:'确认密码：',required:true">
+					</td>
+        		</tr>
+	    	</table>
+
+       </form>
+</th:block>
+</html>

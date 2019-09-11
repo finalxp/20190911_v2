@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="VPRS.J_REQ_VPRS_001_0002" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="VPRS.J_REQ_VPRS_001_0002">
+    <xs:complexType name="J_REQ_VPRS_001_0002">
+        <xs:sequence>
+            <xs:any/>
+            <xs:element minOccurs="0" name="userType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="certType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="certNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userUniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="channel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="businessType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="closeAudio" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="closeAudioFormat" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="audioSamplingRate" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="audioEncodeFormat" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

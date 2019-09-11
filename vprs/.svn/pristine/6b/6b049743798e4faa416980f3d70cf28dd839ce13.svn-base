@@ -1,0 +1,39 @@
+touda.zk.address=182.180.115.33:2181,182.180.115.34:2181,182.180.115.35:2181
+
+touda.app.id=bams_vprs_service
+
+monitor.report.flag=false
+monitor_host=111.111.111.111
+monitor_connect_flag=2
+vprs_connect_flag=1
+EventThreadSize=200
+
+
+stream.topic=onesight-vprs-trans-input
+stream.ip=182.180.183.83:9092
+
+streamVprs.topic=onesight-vprs-vptrans-input
+##########
+#fastdfs
+##########
+fastdfs.connect_timeout_in_seconds=60
+fastdfs.network_timeout_in_seconds=60
+fastdfs.charset=UTF-8
+fastdfs.tracker_servers=182.180.198.6:22122,182.180.198.5:22122
+fastdfs.group=public01
+touda.file.direct=2
+touda.file.server.ip=182.180.198.3
+
+
+#ffmpeg
+audio.ffmpeg.path=/app/ToudaServerAlone/work/war/WEB-INF/lib/ffmpeg
+
+#temp folder to store audios
+tmp.audio.path=/app/ToudaServerAlone/work/war/WEB-INF/lib
+
+operUser=bams_vprs_service
+kafkaAppender.services = 182.180.115.73:9092,182.180.115.74:9092,182.180.115.75:9092,182.180.115.76:9092,182.180.115.77:9092,182.180.115.78:9092
+kafkaAppender.topic = uoms_pcf_03
+
+
+audioDurationThreshold=0

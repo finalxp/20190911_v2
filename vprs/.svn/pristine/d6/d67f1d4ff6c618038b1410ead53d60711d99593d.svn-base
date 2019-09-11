@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx.xsd  
+       http://www.springframework.org/schema/context   
+       http://www.springframework.org/schema/context/spring-context.xsd  
+       http://www.springframework.org/schema/aop  
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+   
+    <!-- 勿删   -->
+	<bean class="com.pccc.touda.common.util.PropertyConvertUtil">
+      <property name="locations" value="touda.properties"/>
+    </bean>
+   
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="100" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="30" />
+		<!-- 每次释放连接的最大数目 -->
+		<property name="numTestsPerEvictionRun" value="1024" />
+		<!-- 释放连接的扫描间隔（毫秒） -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!-- 连接最小空闲时间 -->
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+		<!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
+		<property name="softMinEvictableIdleTimeMillis" value="10000" />
+		<!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+		<property name="maxWaitMillis" value="1500" />
+		<!-- 在获取连接的时候检查有效性, 默认false -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 在空闲时检查有效性, 默认false -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
+		<property name="blockWhenExhausted" value="false" />
+	</bean>	
+	
+	<bean id="configPreProcess" class="com.pccc.touda.zookeeper.processor.ConfigProcessor"></bean>
+	
+	
+<bean id="serviceConfigManager" class="com.pccc.touda.common.ServiceConfigManager" init-method ="init">
+		<property name="map">
+			<map>
+				<entry key="J_MON_001_0001" value="${monitor_connect_flag},com.pccc.touda.monitor.servicecustom.J_MON_001_0001,http://${monitor_host}:8044/monitor/J_MON_001_0001?encoding=utf-8">
+				</entry>
+				<!-- validSoft注册接口 -->
+				<entry key="enrolSpeaker" value="${vprs_connect_flag},vprs_eg_enrolSpeaker,http://182.180.31.94:4567/stdBiometricLite/enrolSpeaker">
+				</entry>
+				<!-- validSoft验证接口 -->
+				<entry key="verifySpeaker" value="${vprs_connect_flag},vprs_eg_verifySpeaker,http://182.180.31.94:4567/stdBiometricLite/verifySpeaker">
+				</entry>
+				<!-- validSoft验证接口 -->
+				<entry key="CQVoiceVerifySpeaker" value="${monitor_connect_flag},vprs_eg_CQVoiceVerifySpeaker,http://182.180.116.159:8090/CQVoice/VerifySpeaker">
+				</entry>
+				<!-- validSoft更新接口 -->
+				<entry key="updateSpeaker" value="${vprs_connect_flag},vprs_eg_updateSpeaker,http://182.180.31.94:4567/stdBiometricLite/updateSpeaker">
+				</entry>
+				<!-- validSoft删除接口 -->
+				<entry key="deleteSpeaker" value="${vprs_connect_flag},vprs_eg_deleteSpeaker,http://182.180.31.94:8080/gateway/stdBiometricAdmin/deleteSpeaker">
+				</entry>
+				<!-- 北京远鉴注册接口 -->
+				<entry key="call_ivr_register" value="2,call_ivr_register,http://127.0.0.1:8080/call_ivr_register">
+				</entry>
+				
+            </map>
+		</property>
+	</bean>
+	
+	
+ 	<bean id="monitorService" class="com.pccc.touda.common.MonitorServiceReg" >
+		<property name="map">
+			<map>
+				<entry key="fs" value="com.pccc.touda.monitor.fs.FsService">
+				</entry>
+				<entry key="jvm" value="com.pccc.touda.monitor.jvm.JvmService">
+				</entry>
+				<entry key="os" value="com.pccc.touda.monitor.os.OsService">
+				</entry>
+				<entry key="threadpool" value="com.pccc.touda.monitor.threadpool.ThreadPoolService">
+				</entry>
+				<entry key="service" value="com.pccc.touda.monitor.invokeService.ServiceInvokeMonitorService">
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	<bean id="monitorFilter" class="com.pccc.touda.common.MonitorStatsFilter" >
+		<property name="map">
+			<map>
+				<entry key="jvm" value="bufferPools,classes"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="failFast" class="com.pccc.touda.proxy.fail.FailFastEvent" scope="prototype">
+	</bean>
+	
+	<bean id="failOver" class="com.pccc.touda.proxy.fail.FailOverEvent" scope="prototype">
+	</bean>
+	
+	<bean id="roundRobinLoadBalance" class="com.pccc.touda.common.loadbalance.RoundRobinLoadBalance">
+	</bean>
+
+	<bean id="failStrategyManager" class="com.pccc.touda.proxy.fail.FailStrategyManager">
+		<property name="map">
+			<map>
+				<entry key="failOver" value-ref="failOver">
+				</entry>
+				<entry key="failFast" value-ref="failFast">
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="headMapping" class="com.pccc.touda.proxy.ext.HeadMapping">
+		<property name="map">
+			<map>
+				<entry key="source" value-ref="sourceMapping">
+				</entry>
+				<entry key="accessType" value-ref="accessTypeMapping">
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="sourceMapping" class="com.pccc.touda.proxy.ext.ServiceMapping" >
+		<property name="map">
+			<map>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="accessTypeMapping" class="com.pccc.touda.proxy.ext.ServiceMapping" >
+		<property name="map">
+			<map>
+				<entry key="query"  value=""></entry>
+				
+				<entry key="insert" value=""></entry>
+				
+				<entry key="delete" value=""></entry>
+				
+				<entry key="update" value=""></entry>
+				
+				
+			</map>
+		</property>
+	</bean>
+</beans>

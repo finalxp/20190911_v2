@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IEmployeeDao">
+  <resultMap id="BaseResultMap" type="cn.xs.erp.model.EmployeeItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="emp_password" jdbcType="VARCHAR" property="empPassword" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="hiredate" jdbcType="TIMESTAMP" property="hiredate" />
+    <result column="resignation_time" jdbcType="TIMESTAMP" property="resignationTime" />
+    <result column="is_enable" jdbcType="SMALLINT" property="isEnable" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, emp_no, emp_password, salt, emp_name, birthday, sex, phone_no, avatar_url, nickname, 
+    hiredate, resignation_time, is_enable, create_by, create_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_employee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_employee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xs.erp.model.EmployeeItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_employee (emp_no, emp_password, salt, 
+      emp_name, birthday, sex, 
+      phone_no, avatar_url, nickname, 
+      hiredate, resignation_time, is_enable, 
+      create_by, create_time, update_by, 
+      update_time)
+    values (#{empNo,jdbcType=VARCHAR}, #{empPassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{empName,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR}, 
+      #{phoneNo,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{hiredate,jdbcType=TIMESTAMP}, #{resignationTime,jdbcType=TIMESTAMP}, #{isEnable,jdbcType=SMALLINT}, 
+      #{createBy,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xs.erp.model.EmployeeItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        emp_no,
+      </if>
+      <if test="empPassword != null">
+        emp_password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phoneNo != null">
+        phone_no,
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="hiredate != null">
+        hiredate,
+      </if>
+      <if test="resignationTime != null">
+        resignation_time,
+      </if>
+      <if test="isEnable != null">
+        is_enable,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredate != null">
+        #{hiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resignationTime != null">
+        #{resignationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=SMALLINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xs.erp.model.EmployeeItem">
+    update t_employee
+    <set>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        emp_password = #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredate != null">
+        hiredate = #{hiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resignationTime != null">
+        resignation_time = #{resignationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnable != null">
+        is_enable = #{isEnable,jdbcType=SMALLINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xs.erp.model.EmployeeItem">
+    update t_employee
+    set emp_no = #{empNo,jdbcType=VARCHAR},
+      emp_password = #{empPassword,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      hiredate = #{hiredate,jdbcType=TIMESTAMP},
+      resignation_time = #{resignationTime,jdbcType=TIMESTAMP},
+      is_enable = #{isEnable,jdbcType=SMALLINT},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

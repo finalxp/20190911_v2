@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.pccc.vprs.servicecustom.sql.AudioDetect">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    <!--查询用户信息 -->
+    <select id="queryUserInfo" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.UserInfo" resultClass="com.pccc.vprs.servicedisplay.vprs.model.UserInfo"> 
+  	    SELECT 
+				id                		     id,
+				user_name        		     userName,
+				cert_type       		     certType,
+				cert_no          		     certNo,
+				hasFSModel                   hasFSModel,
+				hasTDModel                   hasTDModel,
+				closeAudio_fs                closeAudioFs,
+				closeAudio_td1               closeAudioTd1,
+				closeAudio_td2               closeAudioTd2,
+				closeAudio_td3               closeAudioTd3,
+				fsStatus                     fsStatus,
+				tdStatus                     tdStatus,
+				userStatus                   userStatus,
+				crt_time      			     crtTime,
+				crt_channel    				 crtChannel,
+				lst_upd_time     			 lstUpdTime,
+				lst_upd_date     			 lstUpdDate,
+				lst_upd_user     			 lstUpdUser,								
+				scr_level        			 scrLevel,
+				reserve_coulumn1  			 reserveCoulumn1,
+				reserve_coulumn2 			 reserveCoulumn2,
+				reserve_coulumn3 			 reserveCoulumn3,
+				reserve_coulumn4 			 reserveCoulumn4,
+				reserve_coulumn5 			 reserveCoulumn5
+		FROM  TBL_VPRS_USER_INFO 
+		WHERE 1=1
+		<isNotEmpty prepend="and" property="certType">cert_type=#certType#</isNotEmpty>
+        <isNotEmpty prepend="and" property="certNo">cert_no=#certNo#</isNotEmpty>
+        <isNotEmpty prepend="and" property="userName">user_name=#userName#</isNotEmpty>
+    </select>
+    <!--添加用户信息  -->
+    <insert id="insertUserInfo" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.UserInfo"> 
+  		
+    	INSERT INTO TBL_VPRS_USER_INFO  
+    	(
+    		CRT_TIME,
+   			<isNotEmpty property="userName">user_name,</isNotEmpty>
+        <isNotEmpty property="riskLevel">risk_level,</isNotEmpty>
+        <isNotEmpty property="certType">cert_type,</isNotEmpty>
+        <isNotEmpty property="certNo">cert_no,</isNotEmpty>
+        <isNotEmpty property="hasTDModel">hasTDModel,</isNotEmpty>
+        <isNotEmpty property="hasFSModel">hasFSModel,</isNotEmpty>
+        <isNotEmpty property="closeAudioFs">closeAudio_fs,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd1">closeAudio_td1,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd2">closeAudio_td2,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd3">closeAudio_td3,</isNotEmpty>
+        <isNotEmpty property="tdStatus">tdStatus,</isNotEmpty>
+        <isNotEmpty property="fsStatus">fsStatus,</isNotEmpty>
+        <isNotEmpty property="userStatus">userStatus,</isNotEmpty>
+        <isNotEmpty property="crtChannel">crt_channel,</isNotEmpty>
+        <isNotEmpty property="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+        <isNotEmpty property="scrLevel">SCR_LEVEL,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn1">reserve_coulumn1,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn2">reserve_coulumn2,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn3">reserve_coulumn3,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn4">reserve_coulumn4,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn5">reserve_coulumn5,</isNotEmpty>	
+			LST_UPD_TIME,
+			LST_UPD_DATE
+    	) VALUES 
+		(	current timestamp,
+   			<isNotEmpty property="userName">#userName#,</isNotEmpty>
+        <isNotEmpty property="riskLevel">#riskLevel#,</isNotEmpty>
+        <isNotEmpty property="certType">#certType#,</isNotEmpty>
+        <isNotEmpty property="certNo">#certNo#,</isNotEmpty>
+        <isNotEmpty property="hasTDModel">#hasTDModel#,</isNotEmpty>
+        <isNotEmpty property="hasFSModel">#hasFSModel#,</isNotEmpty>
+        <isNotEmpty property="closeAudioFs">#closeAudioFs#,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd1">#closeAudioTd1#,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd2">#closeAudioTd2#,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd3">#closeAudioTd3#,</isNotEmpty>
+        <isNotEmpty property="tdStatus">#tdStatus#,</isNotEmpty>
+        <isNotEmpty property="fsStatus">#fsStatus#,</isNotEmpty>
+        <isNotEmpty property="userStatus">#userStatus#,</isNotEmpty>
+        <isNotEmpty property="crtChannel">#crtChannel#,</isNotEmpty>
+        <isNotEmpty property="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+        <isNotEmpty property="scrLevel">#scrLevel#,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn1">#reserve_coulumn1#,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn2">#reserve_Coulumn2#,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn3">#reserve_Coulumn3#,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn4">#reserve_Coulumn4#,</isNotEmpty>
+        <isNotEmpty property="reserveCoulumn5">#reserve_Coulumn5#,</isNotEmpty>
+			current timestamp,
+			current date
+		 )
+    </insert>
+    <!--更新用户信息表 （主要TD/FS合在一张信息表里）-->
+    <update id="updateUserInfo" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.UserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_INFO 
+		SET
+		    <isNotEmpty property="closeAudioFs">closeAudio_fs = #closeAudioFs# ,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd1">closeAudio_td1 = #closeAudioTd1# ,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd2">closeAudio_td2 = #closeAudioTd2# ,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd3">closeAudio_td3 = #closeAudioTd3# ,</isNotEmpty>
+        <isNotEmpty property="hasTDModel">hasTDModel = #hasTDModel# ,</isNotEmpty>
+        <isNotEmpty property="hasFSModel">hasFSModel = #hasFSModel# ,</isNotEmpty>
+        <isNotEmpty property="lstUpdUser">lst_upd_user = #lstUpdUser#,</isNotEmpty>
+        <isNotEmpty property="riskLevel">risk_level = #riskLevel#,</isNotEmpty>
+        <isNotEmpty property="crtChannel">crt_channel = #crtChannel#,</isNotEmpty>
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend="and" property="certType">cert_type=#certType#</isNotEmpty>
+        <isNotEmpty prepend="and" property="certNo">cert_no=#certNo#</isNotEmpty>
+        <isNotEmpty prepend="and" property="userName">user_name=#userName#</isNotEmpty>
+    </update>
+    <!-- 更新情况下  当随意说模型存在时，固定文本模型不为1时，每次只更新hasTDModel为2  固定文本模型为1时，更新数据库字段 
+ 	     更新情况下   当固定文本模型存在时，更新hasFSModel字段及数据库字段-->
+    <!-- 当随意说更新时，更新随意说路径及模型标识-->
+    <update id="updateUserInfoIndependent" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.UserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_INFO 
+		SET
+		    <isNotEmpty property="closeAudioFs">closeAudio_fs = #closeAudioFs# ,</isNotEmpty>
+        <isNotEmpty property="hasTDModel">hasTDModel = #hasTDModel# ,</isNotEmpty>
+        <isNotEmpty property="hasFSModel">hasFSModel = #hasFSModel# ,</isNotEmpty>
+        <isNotEmpty property="lstUpdUser">lst_upd_user = #lstUpdUser#,</isNotEmpty>
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend="and" property="certType">cert_type=#certType#</isNotEmpty>
+        <isNotEmpty prepend="and" property="certNo">cert_no=#certNo#</isNotEmpty>
+        <isNotEmpty prepend="and" property="userName">user_name=#userName#</isNotEmpty>
+    </update>
+    <!-- 当固定文本更新时，更新固定文本路径及模型标识-->
+    <update id="updateUserInfoDependent" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.UserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_INFO 
+		SET
+		    <isNotEmpty property="closeAudioTd1">closeAudio_td1 = #closeAudioTd1# ,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd2">closeAudio_td2 = #closeAudioTd2# ,</isNotEmpty>
+        <isNotEmpty property="closeAudioTd3">closeAudio_td3 = #closeAudioTd3# ,</isNotEmpty>
+        <isNotEmpty property="hasTDModel">hasTDModel = #hasTDModel# ,</isNotEmpty>
+        <isNotEmpty property="hasFSModel">hasFSModel = #hasFSModel# ,</isNotEmpty>
+        <isNotEmpty property="lstUpdUser">lst_upd_user = #lstUpdUser#,</isNotEmpty>
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend="and" property="certType">cert_type=#certType#</isNotEmpty>
+        <isNotEmpty prepend="and" property="certNo">cert_no=#certNo#</isNotEmpty>
+        <isNotEmpty prepend="and" property="userName">user_name=#userName#</isNotEmpty>
+    </update>
+</sqlMap>

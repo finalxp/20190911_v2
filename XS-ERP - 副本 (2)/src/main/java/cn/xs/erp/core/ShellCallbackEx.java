@@ -1,0 +1,27 @@
+package cn.xs.erp.core;
+
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
+
+import java.io.File;
+
+import org.mybatis.generator.exception.ShellException;
+import org.mybatis.generator.internal.DefaultShellCallback;
+
+public class ShellCallbackEx extends DefaultShellCallback {
+
+	public ShellCallbackEx(boolean overwrite) {
+		super(overwrite);
+	}
+
+	@Override
+	public File getDirectory(String targetProject, String targetPackage) throws ShellException {
+
+		File project = new File(targetProject);
+		if (!project.isDirectory()) {
+			throw new ShellException(getString("Warning.9", //$NON-NLS-1$
+					targetProject));
+		}
+		return project;
+	}
+
+}

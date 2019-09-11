@@ -1,0 +1,80 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.mapper.QueryDepartmentTreeMapper;
+import com.example.model.Department;
+import com.example.model.User;
+import com.example.service.IQueryDepartmentTree;
+
+@Service
+public class QueryDepartmentTree implements IQueryDepartmentTree {
+
+	@Autowired
+	QueryDepartmentTreeMapper queryDepartmentTreeMapper;
+
+	
+	@Override
+	public String queryDepartmentTree(String userId) {
+		
+		String subDepMapper = null;
+		
+		System.out.println(userId);
+		
+		String queryDepartmentIdByUserId = queryDepartmentTreeMapper.queryDepartmentIdByUserId(userId);
+		
+		System.out.println(queryDepartmentIdByUserId);
+		
+		/*for (User user : queryDepartmentIdByUserId) {
+			String user_dep_id = user.getUser_dep_id();
+			
+			String queryDepartmentTreeMapper2 = queryDepartmentTreeMapper.queryDepartmentTreeMapper(user_dep_id);
+			
+			System.out.println(queryDepartmentTreeMapper2);
+			
+			subDepMapper = queryDepartmentTreeMapper.getSubDepMapper(queryDepartmentTreeMapper2);
+			
+			return subDepMapper;
+		}*/
+		
+		
+		
+		
+		String queryDepartmentTreeMapper2 = queryDepartmentTreeMapper.queryDepartmentTreeMapper(queryDepartmentIdByUserId);
+		
+		System.out.println(queryDepartmentTreeMapper2);
+		
+		subDepMapper = queryDepartmentTreeMapper.getSubDepMapper(queryDepartmentTreeMapper2);
+		
+		return subDepMapper;
+	
+		
+		
+		
+		
+	}
+
+
+	@Override
+	public List<Department> queryDepartmentTree2(String userId) {
+		String supDepMapper = null;
+
+		System.out.println(userId);
+
+		String queryDepartmentIdByUserId = queryDepartmentTreeMapper.queryDepartmentIdByUserId(userId);
+		
+		do {
+			supDepMapper = queryDepartmentTreeMapper.getSupDepMapper(queryDepartmentIdByUserId);
+		} while (supDepMapper == "0" || "1");
+		
+		
+		
+		
+		
+		return null;
+	}
+
+}

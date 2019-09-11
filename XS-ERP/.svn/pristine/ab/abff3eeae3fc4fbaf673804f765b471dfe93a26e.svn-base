@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IDoorDao">
+  <resultMap id="BaseResultMap" type="cn.xs.erp.model.DoorItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="door_no" jdbcType="VARCHAR" property="doorNo" />
+    <result column="door_name" jdbcType="VARCHAR" property="doorName" />
+    <result column="door_mac_addr" jdbcType="VARCHAR" property="doorMacAddr" />
+    <result column="is_use_password" jdbcType="SMALLINT" property="usePassword" />
+    <result column="pwd_begin_time" jdbcType="VARCHAR" property="pwdBeginTime" />
+    <result column="pwd_end_time" jdbcType="VARCHAR" property="pwdEndTime" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, door_no, door_name, door_mac_addr, is_use_password, pwd_begin_time, pwd_end_time, 
+    create_by, create_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_door
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_door
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xs.erp.model.DoorItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_door (door_no, door_name, door_mac_addr, 
+      is_use_password, pwd_begin_time, pwd_end_time, 
+      create_by, create_time, update_by, 
+      update_time)
+    values (#{doorNo,jdbcType=VARCHAR}, #{doorName,jdbcType=VARCHAR}, #{doorMacAddr,jdbcType=VARCHAR}, 
+      #{usePassword,jdbcType=SMALLINT}, #{pwdBeginTime,jdbcType=VARCHAR}, #{pwdEndTime,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xs.erp.model.DoorItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_door
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doorNo != null">
+        door_no,
+      </if>
+      <if test="doorName != null">
+        door_name,
+      </if>
+      <if test="doorMacAddr != null">
+        door_mac_addr,
+      </if>
+      <if test="usePassword != null">
+        is_use_password,
+      </if>
+      <if test="pwdBeginTime != null">
+        pwd_begin_time,
+      </if>
+      <if test="pwdEndTime != null">
+        pwd_end_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doorNo != null">
+        #{doorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doorName != null">
+        #{doorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doorMacAddr != null">
+        #{doorMacAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="usePassword != null">
+        #{usePassword,jdbcType=SMALLINT},
+      </if>
+      <if test="pwdBeginTime != null">
+        #{pwdBeginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdEndTime != null">
+        #{pwdEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xs.erp.model.DoorItem">
+    update t_door
+    <set>
+      <if test="doorNo != null">
+        door_no = #{doorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doorName != null">
+        door_name = #{doorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doorMacAddr != null">
+        door_mac_addr = #{doorMacAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="usePassword != null">
+        is_use_password = #{usePassword,jdbcType=SMALLINT},
+      </if>
+      <if test="pwdBeginTime != null">
+        pwd_begin_time = #{pwdBeginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdEndTime != null">
+        pwd_end_time = #{pwdEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xs.erp.model.DoorItem">
+    update t_door
+    set door_no = #{doorNo,jdbcType=VARCHAR},
+      door_name = #{doorName,jdbcType=VARCHAR},
+      door_mac_addr = #{doorMacAddr,jdbcType=VARCHAR},
+      is_use_password = #{usePassword,jdbcType=SMALLINT},
+      pwd_begin_time = #{pwdBeginTime,jdbcType=VARCHAR},
+      pwd_end_time = #{pwdEndTime,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+<div>
+	<label>部门: </label>
+	<input class="easyui-combobox" id="depInfo" style="width: 100px;height:28px;"
+				data-options="valueField:'id', textField:'text', panelHeight:'auto'">
+	<a class="easyui-linkbutton" iconCls="icon-search" onclick="findDepartment();" style="width:80px;height:30px;margin-left:5px;">查询</a>
+</div>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '部门列表';
+	  var wWidth = 50;
+	  var wHeight = 60;
+	  var dataurl = '/department/list';
+	  var addurl = '/department/add';
+	  var editurl = '/department/edit';
+	  var deleteurl ='/department/delete';
+	  var dbClickFunction=function(){
+			onEdit();
+	  }
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "depName",width : 520,title : "部门名称",align:"center"},
+		            {field : "parentName",width : 600,title : "上级部门名称",align:"center"}
+	  ]];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd"); //扩展的Date的format方法
+	  }
+<<<<<<< .mine
+	  
+	  function onDelete(){
+	  	var row = $('#dg').datagrid('getSelected');
+		var deleteRow,deleteurl;
+		if (row){
+			$.messager.confirm("提示", "是否确认删除"+row.id+"?",function(r){
+				if(r){
+					$.ajax({
+						url : '/department/deleteDepartment',
+						dataType : 'JSON',
+						data : {
+							_method : "POST",
+							"id" : row.id
+						},
+						type : 'POST',
+						success : function(data) {
+							$.messager.alert("操作提示", "删除成功！", "info", function() {
+								var i = true;
+								if (i) {
+									reload();
+								}
+							});
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							$.messager.alert("提示", "删除失败！！");
+							alert(XMLHttpRequest.status);
+							alert(XMLHttpRequest.readyState);
+							alert(textStatus);
+						}
+					});
+				}
+			});
+		}else{
+			alt('请选中要编辑的行!');
+		}
+	  }
+	  
+=======
+>>>>>>> .r142
+	  //加载部门下拉框
+	  $(function(){
+	  	$('#depInfo').combobox({
+		    url:'/department/comboboxList',
+		    valueField:'id',
+		    textField:'depName'
+		});
+	  })
+	  //根据部门或员工ID或入职时间段筛选员工
+	  function findDepartment(){
+	  	var depInfo = $("#depInfo").val();
+	  	refresh({
+	  		depInfo:depInfo
+	  	});	  	
+	  }
+    </script>
+</th:block>
+</html>

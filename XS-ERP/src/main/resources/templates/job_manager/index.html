@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<table>
+		<tr>
+			<td><label style="font-size: 14px;font-color:#666;">职位等级范围: </label></td>
+			<td><input class="easyui-textbox" id="rankFrom" style="width: 60%;height: 28px;"
+			data-options="valueField:'id', textField:'text', panelHeight:18"></td>
+			<td>~</td>
+			<td><input class="easyui-textbox" id="rankTo" style="width: 60%;height: 28px;"
+			data-options="valueField:'id', textField:'text', panelHeight:18"></td>
+			<td><label style="margin-left: 5px;font-size: 14px;font-color:#666;">职位名称: </label></td>
+			<td><input id="jobName" class="easyui-textbox" style="width:60%;height: 28px;"/> </td>
+			<td><a class="easyui-linkbutton" iconCls="icon-search" onclick="findJobItem()" style="width:80px;height:30px;margin-left: 5px;">查询</a></td>
+		</tr>
+	</table>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '职位列表';
+	  var wWidth = 50;
+	  var wHeight = 65;
+	  var dataurl = '/job_manager/list';
+	  var addurl = '/job_manager/add';
+	  var editurl = '/job_manager/edit';
+	  var deleteurl ='/job_manager/delete';
+	  var dbClickFunction=function(){
+	  	onEdit();
+	  }
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "jobRank",width : 130,title : "职位等级",align:"center"},
+		            {field : "jobName",width : 180,title : "职位名称",align:"left"},
+		            {field : "jobDescri",width : 245,title : "职位描述",align:"left"},
+		            {field : "createBy",width : 100,title : "创建人",align:"center"},
+		            {field : "createTime",width : 180,title : "创建时间",formatter:formatDatebox,align:"left"},
+		            {field : "updateBy",width : 100,title : "修改人",align:"center"},
+		            {field : "updateTime",width : 180,title : "修改时间",formatter:formatDatebox,align:"left"}
+	  ]];
+	  var rowStyler = function(index,row){
+	  
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法
+	  }
+
+	  function findJobItem(){
+	  	var rankFrom = $("#rankFrom").val();
+	  	var rankTo = $("#rankTo").val();
+	  	var jobName =$("#jobName").val();
+	  	refresh({  		
+			    rankFrom:rankFrom,
+			    rankTo:rankTo,
+			    jobName:jobName
+			});
+	  }
+	  
+    </script>
+</th:block>
+</html>

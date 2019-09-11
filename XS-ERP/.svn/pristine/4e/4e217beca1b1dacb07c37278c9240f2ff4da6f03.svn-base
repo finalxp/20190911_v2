@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Page Title</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table td, table th {
+	padding: 3px 5px;
+}
+
+table th {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+	<div style="width: 100%; height: 100%; float: left;">
+		<div style="margin-top: 20px; margin-right: 10px; float: right;">
+			<iframe frameborder="0" allowtransparency="true"
+				src="http://i.tianqi.com/index.php?c=code&id=36&icon=5&num=1"></iframe>
+		</div>
+		<h1
+			style="margin: 0px 0px 20px; padding: 0px 4px 0px 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体,&amp; quot; Arial Narrow&amp;quot; HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;">
+			<span
+				style="margin: 0px; padding: 0px; outline: 0px; color: rgb(192, 80, 77); font-size: 20px;">
+				项目部简介 </span>
+		</h1>
+		<h3
+			style="margin: 0px; padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体,&amp; quot; Arial Narrow&amp;quot; , HELVETICA; white-space: normal; background-color: rgb(255, 255, 255);">
+			<span class=" "
+				style="margin: 0px; padding: 0px; outline: 0px; font-family: 幼圆;">部门简介</span>
+		</h3>
+		<p
+			style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体,&amp; quot; Arial Narrow&amp;quot; , HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;">
+			对于“插入”选项卡上的库，在设计时都充分考虑了其中的项与文档整体外观的协调性。</p>
+		<h3
+			style="margin: 0px; padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体,&amp; quot; Arial Narrow&amp;quot; , HELVETICA; white-space: normal; background-color: rgb(255, 255, 255);">
+			<span class=" "
+				style="margin: 0px; padding: 0px; outline: 0px; font-family: 幼圆;">项目部职责</span>
+		</h3>
+		<p
+			style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体,&amp; quot; Arial Narrow&amp;quot; , HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;">
+			在“开始”选项卡上，通过从快速样式库中为所选文本选择一种外观，您可以方便地更改文档中所选文本的格式。</p>
+		<p
+			style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体,&amp; quot; Arial Narrow&amp;quot; , HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;">
+			在resources文件夹下建立public文件夹（或与resources并列的文件夹下建立public文件夹）,在public文件夹下
+			的html文件可以通过浏览器中输入localhost:8080+文件+后缀名的方式直接访问的（例如：localhost:8080/1.html
+			）.   <br />
+		</p>
+	</div>
+
+	<div
+		style="background-color: rgb(236, 226, 226); width: 100%; height: 100%; float: left;">
+		<div
+			style="margin: 5px; width: 49%; height: 400px; float: left; background-color: rgb(255, 255, 255)">
+			<p style="border-bottom: 2px solid rgb(204, 204, 204);">部门公告</p>
+			<table border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td>测试1111111111</td>
+						<td>1</td>
+						<td>12:11</td>
+					</tr>
+					<tr>
+						<td>测试2222222222</td>
+						<td>1</td>
+						<td>12:11</td>
+					</tr>
+					<tr>
+						<td>测试3333333333</td>
+						<td>1</td>
+						<td>12:11</td>
+					</tr>
+					<tr>
+						<td>测试44444</td>
+						<td>1</td>
+						<td>12:11</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+
+		<div
+			style="width: 48%; height: 400px; float: left; padding-left: 5px; margin: 5px; background-color: rgb(255, 255, 255);">
+			<p style="border-bottom: 2px solid rgb(204, 204, 204);">部门资料</p>
+
+		</div>
+	</div>
+</body>
+
+</html>

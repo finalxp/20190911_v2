@@ -1,0 +1,206 @@
+package cn.xs.erp.model;
+
+import java.util.Date;
+import java.util.List;
+
+public class EmployeeItem {
+	
+    private Integer id;
+
+    private String empNo;
+
+    private String empPassword;
+
+    private String salt;
+
+    private String empName;
+
+    private Date birthday;
+
+    private String sex;
+
+    private String phoneNo;
+
+    private String avatarUrl;
+
+    private String nickname;
+
+    private Date hiredate;
+
+    private Date resignationTime;
+
+    private Short isEnable;
+
+    private Integer createBy;
+
+    private Date createTime;
+
+    private Integer updateBy;
+
+    private Date updateTime;
+
+    private String enrolled;
+    private List<DoorItem> doorPermission;
+    private List<MenuItem> menuPermission;
+    
+    
+    public List<MenuItem> getMenuPermission() {
+		return menuPermission;
+	}
+
+	public void setMenuPermission(List<MenuItem> menuPermission) {
+		this.menuPermission = menuPermission;
+	}
+
+	public List<DoorItem> getDoorPermission() {
+		return doorPermission;
+	}
+
+	public void setDoorPermission(List<DoorItem> doorPermission) {
+		this.doorPermission = doorPermission;
+	}
+
+	public String getEnrolled() {
+		return enrolled;
+	}
+
+	public void setEnrolled(String enrolled) {
+		this.enrolled = enrolled;
+	}
+
+	public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getEmpNo() {
+        return empNo;
+    }
+
+    public void setEmpNo(String empNo) {
+        this.empNo = empNo == null ? null : empNo.trim();
+    }
+
+    public String getEmpPassword() {
+        return empPassword;
+    }
+
+    public void setEmpPassword(String empPassword) {
+        this.empPassword = empPassword == null ? null : empPassword.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName == null ? null : empName.trim();
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo == null ? null : phoneNo.trim();
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Date getHiredate() {
+        return hiredate;
+    }
+
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
+    }
+
+    public Date getResignationTime() {
+        return resignationTime;
+    }
+
+    public void setResignationTime(Date resignationTime) {
+        this.resignationTime = resignationTime;
+    }
+
+    public Short getIsEnable() {
+        return isEnable;
+    }
+
+    public void setIsEnable(Short isEnable) {
+        this.isEnable = isEnable;
+    }
+
+    public Integer getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+}

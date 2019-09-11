@@ -1,0 +1,140 @@
+package cn.xs.erp.config.filter;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.dao.IEmployeeDao;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.util.StringUtils;
+
+/**
+ * 过滤器
+ * @author kenny create on 2019/1/17
+ *
+ */
+@WebFilter(filterName="test",urlPatterns = "*")
+public class SecurityFilter implements Filter{
+	
+	@Autowired
+	private IEmployeeDao employeeDao;
+	private Set<String> GreenUrlSet = new HashSet<String>();
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		GreenUrlSet.add("/login");
+		System.out.println("----------------------->过滤器被创建");
+	}
+	
+	@Override
+	public void doFilter(ServletRequest srequest, ServletResponse sresponse,
+			FilterChain filterChain) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest) srequest;
+		String url = request.getRequestURI();
+		System.out.println("--------------------->过滤器：请求地址"+url);
+//		System.out.println("1---------request------"+"1111111111111111"+(request.getSession().getAttribute(Const.LOGIN_SESSION_KEY)==null));
+		if (request.getSession().getAttribute(Const.LOGIN_SESSION_KEY)==null) {
+			Cookie[] cookies =request.getCookies();
+//			System.out.println("2---GreenUrlSet.contains(url)----"+GreenUrlSet.contains(url));
+//			System.out.println("2---GreenUrlSet.contains(url)----"+containsKey(url));
+//			System.out.println("3--------cookies!=null----------"+"333333333"+(cookies!=null));
+			if (GreenUrlSet.contains(url)||containsSuffix(url)||containsKey(url)) {
+//				System.out.println(url+"==========================");
+				filterChain.doFilter(srequest, sresponse);
+//				return;
+			}else if (cookies!=null) {
+				String htmlString ="";
+				for (Cookie cookie:cookies) {
+//					System.out.println("4-----------"+(cookie.getName().equals(Const.LOGIN_SESSION_KEY)));
+					if(cookie.getName().equals(Const.LOGIN_SESSION_KEY)){
+						if (StringUtils.isEmpty(cookie.getValue())) {
+							htmlString = "<script type=\"text/javascript\">window.location.href=\"_BP_login\"</script>";
+						}else{
+							String empNo= cookie.getValue();
+							if (employeeDao==null) {
+								BeanFactory beanFactory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
+								employeeDao= (IEmployeeDao) beanFactory.getBean("IEmployeeDao");
+							}
+							EmployeeItem employeeItem = employeeDao.getEmployeeByNo(empNo);
+							if (employeeItem==null) {
+								htmlString = "<script type=\"text/javascript\">window.location.href=\"_BP_login\"</script>";
+							}else {
+								request.getSession().setAttribute(Const.LOGIN_SESSION_KEY, empNo);
+								htmlString="<script type=\"text/javascript\">window.location.href=\"_BP_index\"</script>";
+							}
+						}
+//						System.out.println("5----------htmlString---"+htmlString);
+						htmlString=htmlString.replace("_BP_", Const.BASE_PATH);
+						sresponse.getWriter().write(htmlString);
+					}
+				}
+				htmlString = "<script type=\"text/javascript\">window.location.href=\"_BP_login\"</script>";
+				htmlString=htmlString.replace("_BP_", Const.BASE_PATH);
+				sresponse.getWriter().write(htmlString);
+			}else {
+//				System.out.println("7end-------------");
+				filterChain.doFilter(srequest, sresponse);
+			}
+		}else {
+//			System.out.println("end-------------");
+			filterChain.doFilter(srequest, sresponse);
+		}
+	}
+	
+	@Override
+	public void destroy() {
+		Filter.super.destroy();
+		System.out.println("----------------------->过滤器被销毁");
+	}
+
+	/**
+	 * 过滤掉不需要过滤的图片，css属性等内容
+	 * @param url
+	 * @return
+	 */
+	private boolean containsSuffix(String url) {
+		if (url.endsWith(".js")
+				|| url.endsWith(".css")
+				|| url.endsWith(".jpg")
+				|| url.endsWith(".gif")
+				|| url.endsWith(".png")
+				|| url.endsWith(".html")
+				|| url.endsWith(".eot")
+				|| url.endsWith(".svg")
+				|| url.endsWith(".ttf")
+				|| url.endsWith(".woff")
+				|| url.endsWith(".ico")
+				|| url.endsWith(".woff2")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * 去掉不需要过滤的url
+	 * @param url
+	 * @return
+	 */
+	private boolean containsKey(String url) {
+
+		if (url.contains("/login")|| url.contains("/register")|| url.startsWith("/index")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}

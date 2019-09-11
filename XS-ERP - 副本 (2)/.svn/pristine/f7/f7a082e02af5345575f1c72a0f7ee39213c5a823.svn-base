@@ -1,0 +1,20 @@
+package cn.xs.erp.model;
+
+import java.util.Date;
+
+public class DepartmentItem {
+	private Integer id;
+
+	private String depName;
+
+	private String depParentId;
+
+	private Integer createBy;
+
+    private Date createTime;
+
+    private Integer updateBy;
+
+    private Date updateTime;
+
+}

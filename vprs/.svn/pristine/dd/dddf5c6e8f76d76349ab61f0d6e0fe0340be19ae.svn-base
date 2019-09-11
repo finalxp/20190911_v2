@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="pccc" category="jsonmsg" create-date="2018-10-24 15:09:02" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_004_0004" message-encoding="UTF-8" name="J_REQ_VPRS_004_0004" namespace="VPRS.J_REQ_VPRS_004_0004">
+    <description></description>
+    <data-field dict-id="audioId" display-name="audioId" is-required="true" name="audioId" exist-style="" is-repeated="false" xpath="root.data.audioId">
+      <description>音频Id</description>
+    </data-field>
+    <data-field dict-id="isValid" display-name="isValid" is-required="true" name="isValid" exist-style="" is-repeated="false" xpath="root.data.isValid">
+      <description>音频有效标识</description>
+    </data-field>
+    <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="root.data.certNo">
+      <description>证件号</description>
+    </data-field>
+    <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="root.data.certType">
+        <description>证件类型</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

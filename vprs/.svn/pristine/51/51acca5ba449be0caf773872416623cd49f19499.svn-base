@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:A144550 -->
+<sqlMap>
+   
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+   
+   <!--添加语音信息 -->
+    <insert id="insertAudioInfo" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfo"> 
+    	INSERT INTO $tableName$
+    	(
+   			<isNotEmpty property="userName">user_name,</isNotEmpty>
+   			<isNotEmpty property="userType">user_type,</isNotEmpty>
+   			<isNotEmpty property="phoneNo">phone_no,</isNotEmpty>
+    		<isNotEmpty property="certType">cert_type,</isNotEmpty>
+			<isNotEmpty property="certNo">cert_no,</isNotEmpty>
+			<isNotEmpty property="channel">channel,</isNotEmpty>
+			<isNotEmpty property="businessType">business_type,</isNotEmpty>
+			<isNotEmpty property="userUniqueId">user_unique_id,</isNotEmpty>
+			
+			<isNotEmpty property="audioPath">audio_path,</isNotEmpty>
+			<isNotEmpty property="audioId">audio_id,</isNotEmpty>
+			<isNotEmpty property="audioDuration">audio_duration,</isNotEmpty>
+			<isNotEmpty property="samplingRate">sampling_rate,</isNotEmpty>
+			<isNotEmpty property="bitRate">bit_rate,</isNotEmpty>
+			<isNotEmpty property="soundTrack">sound_track,</isNotEmpty>
+			<isNotEmpty property="codeRate">code_rate,</isNotEmpty>
+			<isNotEmpty property="encodingFormat">encoding_format,</isNotEmpty>
+			<isNotEmpty property="extName">ext_name,</isNotEmpty>
+			<isNotEmpty property="closeAudioFormat">close_audio_format,</isNotEmpty>
+			<isNotEmpty property="riskLevel">risk_level,</isNotEmpty>
+			
+			<isNotEmpty property="scrLevel">SCR_LEVEL,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">reserve_coulumn1,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">reserve_coulumn2,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">reserve_coulumn3,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">reserve_coulumn4,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">reserve_coulumn5,</isNotEmpty>	
+			<isNotEmpty property="processResult">process_result,</isNotEmpty>	
+			crt_time,
+			crt_date
+    	) VALUES 
+		(	
+   			<isNotEmpty property="userName">#userName#,</isNotEmpty>
+   			<isNotEmpty property="userType">#userType#,</isNotEmpty>
+   			<isNotEmpty property="phoneNo">#phoneNo#,</isNotEmpty>
+    		<isNotEmpty property="certType">#certType#,</isNotEmpty>
+			<isNotEmpty property="certNo">#certNo#,</isNotEmpty>
+			<isNotEmpty property="channel">#channel#,</isNotEmpty>
+			<isNotEmpty property="businessType">#businessType#,</isNotEmpty>
+			<isNotEmpty property="userUniqueId">#userUniqueId#,</isNotEmpty>
+			
+			<isNotEmpty property="audioPath">#audioPath#,</isNotEmpty>
+			<isNotEmpty property="audioId">#audioId#,</isNotEmpty>
+			<isNotEmpty property="audioDuration">#audioDuration#,</isNotEmpty>
+			<isNotEmpty property="samplingRate">#samplingRate#,</isNotEmpty>
+			<isNotEmpty property="bitRate">#bitRate#,</isNotEmpty>
+			<isNotEmpty property="soundTrack">#soundTrack#,</isNotEmpty>
+			<isNotEmpty property="codeRate">#codeRate#,</isNotEmpty>
+			<isNotEmpty property="encodingFormat">#encodingFormat#,</isNotEmpty>
+			<isNotEmpty property="extName">#extName#,</isNotEmpty>
+			<isNotEmpty property="closeAudioFormat">#closeAudioFormat#,</isNotEmpty>
+			<isNotEmpty property="riskLevel">#riskLevel#,</isNotEmpty>
+			
+			<isNotEmpty property="scrLevel">#scrLevel#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>
+			<isNotEmpty property="processResult">#processResult#,</isNotEmpty>	
+			current timestamp,
+			current date
+		 )
+    </insert>
+    
+    
+      <!--查询该用户的所有语音 -->
+	<select id="queryUserAudioInfo" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfoVO" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfo"> 
+  	    SELECT 
+				user_name        		     userName,
+				user_type					 userType,
+				phone_no					 phoneNo,
+				cert_type       		     certType,
+				user_unique_id       		 userUniqueId,
+				cert_no          		     certNo,
+				channel						 channel,
+				business_type				 businessType,
+				risk_level	                 riskLevel,
+				audio_path					 audioPath,
+				audio_id					 audioId,
+				audio_duration				 audioDuration,
+				sampling_rate				 samplingRate,
+				bit_rate					 bitRate,
+				sound_track					 soundTrack,
+				code_rate					 codeRate,
+				encoding_format				 encodingFormat,
+				ext_name					 extName,
+				close_audio_format			 closeAudioFormat,
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate
+				
+		FROM  $tableName$
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">   CHANNEL=#channel#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="businessType">   BUSINESS_TYPE=#businessType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="closeAudioFormat">   CLOSE_AUDIO_FORMAT=#closeAudioFormat#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">   USER_NAME=#userName#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="riskLevel">   risk_level=#riskLevel#  </isNotEmpty>
+		<isNotEmpty prepend = "and" property="reserveCoulumn1">   RESERVE_COULUMN1=#reserveCoulumn1#  </isNotEmpty>  
+		<isNotEmpty prepend = "and" property="startDate">
+    		<![CDATA[ 
+				crt_time   >=  #startDate#
+			]]>
+		</isNotEmpty>
+		
+		<isNotEmpty prepend = "and" property="endDate">
+			<![CDATA[ 
+				crt_time   <=  #endDate#
+			]]>
+		</isNotEmpty>	
+		
+		ORDER BY CRT_TIME DESC fetch first 100 rows only
+    </select>
+    
+    
+    
+      <!--查询该用户语音是否存在 -->
+	<select id="queryUserAudioInfoByAudioName" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfo" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfo"> 
+  	    SELECT 
+				*
+		FROM  $tableName$
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">   CHANNEL=#channel#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="businessType">   BUSINESS_TYPE=#businessType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="closeAudioFormat">   CLOSE_AUDIO_FORMAT=#closeAudioFormat#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="reserveCoulumn1">   RESERVE_COULUMN1=#reserveCoulumn1#  </isNotEmpty>  
+		<isNotEmpty prepend = "and" property="reserveCoulumn2">   RESERVE_COULUMN2=#reserveCoulumn2#  </isNotEmpty>  
+    </select>
+    
+    
+     <!--查询用户信息 -->
+	<select id="queryUserInfo" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo"> 
+  	    SELECT 
+				id                		     id,
+				user_name        		     userName,
+				cert_type       		     certType,
+				cert_no          		     certNo,
+				user_type					 userType,
+				phone_no					 phoneNo,
+				l_audio_duration			 lowDuration,
+				m_audio_duration			 middleDuration,
+				h_audio_duration			 highDuration,
+				sh_audio_duration			 superHighDuration,
+				sp_audio_duration			 specialDuraion,
+				audio_ids					 audioIds,
+				is_fs_registered			 isFsRegistered,
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate,
+				crt_channel    				 crtChannel,
+				lst_upd_time     			 lstUpdTime,
+				lst_upd_date     			 lstUpdDate,
+				lst_upd_user     			 lstUpdUser,								
+				scr_level        			 scrLevel,
+				reserve_coulumn1  			 reserveCoulumn1,
+				reserve_coulumn2 			 reserveCoulumn2,
+				reserve_coulumn3 			 reserveCoulumn3,
+				reserve_coulumn4 			 reserveCoulumn4,
+				reserve_coulumn5 			 reserveCoulumn5,
+				max_risk_level	             maxRiskLevel
+		FROM  TBL_VPRS_USER_AUDIO_INFO 
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">   user_name=#userName#  </isNotEmpty>
+    </select>
+    
+    
+    
+     <!--添加用户 -->
+    <insert id="insertUserInfo" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo"> 
+  		
+    	INSERT INTO TBL_VPRS_USER_AUDIO_INFO 
+    	(
+   			<isNotEmpty property="userName">user_name,</isNotEmpty>
+   			<isNotEmpty property="userType">user_type,</isNotEmpty>
+   			<isNotEmpty property="phoneNo">phone_no,</isNotEmpty>
+    		<isNotEmpty property="certType">cert_type,</isNotEmpty>
+			<isNotEmpty property="certNo">cert_no,</isNotEmpty>
+			<isNotEmpty property="crtChannel">crt_channel,</isNotEmpty>
+			<isNotEmpty property="lowDuration">l_audio_duration,</isNotEmpty>
+			<isNotEmpty property="middleDuration">m_audio_duration,</isNotEmpty>
+			<isNotEmpty property="highDuration">h_audio_duration,</isNotEmpty>
+			<isNotEmpty property="superHighDuration">sh_audio_duration,</isNotEmpty>
+			<isNotEmpty property="specialDuraion">sp_audio_duration,</isNotEmpty>
+			<isNotEmpty property="pdaDuration">pda_audio_duration,</isNotEmpty>
+			<isNotEmpty property="facetimeDuration">facetime_audio_duration,</isNotEmpty>
+			<isNotEmpty property="audioIds">audio_ids,</isNotEmpty>
+			<isNotEmpty property="isFsRegistered">is_fs_registered,</isNotEmpty>
+			<isNotEmpty property="scrLevel">SCR_LEVEL,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">reserve_coulumn1,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">reserve_coulumn2,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">reserve_coulumn3,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">reserve_coulumn4,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">reserve_coulumn5,</isNotEmpty>	
+			<isNotEmpty property="maxRiskLevel">max_risk_level,</isNotEmpty>	
+			crt_date,
+			crt_time,
+			lst_upd_date,    
+			lst_upd_time
+
+    	) VALUES 
+		(	
+   			<isNotEmpty property="userName">#userName#,</isNotEmpty>
+   			<isNotEmpty property="userType">#userType#,</isNotEmpty>
+   			<isNotEmpty property="phoneNo">#phoneNo#,</isNotEmpty>
+    		<isNotEmpty property="certType">#certType#,</isNotEmpty>
+			<isNotEmpty property="certNo">#certNo#,</isNotEmpty>
+			<isNotEmpty property="crtChannel">#crtChannel#,</isNotEmpty>
+			<isNotEmpty property="lowDuration">#lowDuration#,</isNotEmpty>
+			<isNotEmpty property="middleDuration">#middleDuration#,</isNotEmpty>
+			<isNotEmpty property="highDuration">#highDuration#,</isNotEmpty>
+			<isNotEmpty property="superHighDuration">#superHighDuration#,</isNotEmpty>
+			<isNotEmpty property="specialDuraion">#specialDuraion#,</isNotEmpty>
+			<isNotEmpty property="pdaDuration">#pdaDuration#,</isNotEmpty>
+			<isNotEmpty property="facetimeDuration">#facetimeDuration#,</isNotEmpty>
+			<isNotEmpty property="audioIds">#audioIds#,</isNotEmpty>
+			<isNotEmpty property="isFsRegistered">#isFsRegistered#,</isNotEmpty>
+			<isNotEmpty property="scrLevel">#scrLevel#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">#reserve_coulumn1#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">#reserve_Coulumn2#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">#reserve_Coulumn3#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">#reserve_Coulumn4#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">#reserve_Coulumn5#,</isNotEmpty>
+			<isNotEmpty property="maxRiskLevel">#maxRiskLevel#,</isNotEmpty>
+			current date,
+			current timestamp,
+			current date,
+			current timestamp
+		 )
+    </insert>
+    
+    
+    <!--更新用户信息表 -->
+	<update id="updateUserInfo" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_AUDIO_INFO
+		SET
+			<isNotEmpty property="userType">user_type = #userType#,</isNotEmpty>
+			<isNotEmpty property="phoneNo">phone_no = #phoneNo#,</isNotEmpty>
+			<isNotEmpty property="lowDuration">l_audio_duration = #lowDuration#,</isNotEmpty>
+			<isNotEmpty property="middleDuration">m_audio_duration = #middleDuration#,</isNotEmpty>
+			<isNotEmpty property="highDuration">h_audio_duration = #highDuration#,</isNotEmpty>
+			<isNotEmpty property="superHighDuration">sh_audio_duration = #superHighDuration#,</isNotEmpty>
+			<isNotEmpty property="specialDuraion">sp_audio_duration = #specialDuraion#,</isNotEmpty>
+			<isNotEmpty property="pdaDuration">pda_audio_duration = #pdaDuration#,</isNotEmpty>
+			<isNotEmpty property="facetimeDuration">facetime_audio_duration = #facetimeDuration#,</isNotEmpty>
+			<isNotEmpty property="lstUpdUser">lst_upd_user = #lstUpdUser#,</isNotEmpty>
+			<isNotEmpty property="maxRiskLevel">max_risk_level = #maxRiskLevel#,</isNotEmpty>
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="userName">   user_name=#userName#  </isNotEmpty>
+ 
+ 	</update> 
+    
+    
+     <!--查询未注册成功的用户信息  1000条记录-->
+	<select id="queryUserInfoBatch" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo"> 
+  	    SELECT 
+				id                		     id,
+				user_name        		     userName,
+				cert_type       		     certType,
+				cert_no          		     certNo,
+				user_type					 userType,
+				phone_no					 phoneNo,
+				l_audio_duration			 lowDuration,
+				m_audio_duration			 middleDuration,
+				h_audio_duration			 highDuration,
+				sh_audio_duration			 superHighDuration,
+				sp_audio_duration			 specialDuraion,
+				audio_ids					 audioIds,
+				is_fs_registered			 isFsRegistered,
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate,
+				crt_channel    				 crtChannel,
+				lst_upd_time     			 lstUpdTime,
+				lst_upd_date     			 lstUpdDate,
+				lst_upd_user     			 lstUpdUser,								
+				scr_level        			 scrLevel,
+				reserve_coulumn1  			 reserveCoulumn1,
+				reserve_coulumn2 			 reserveCoulumn2,
+				reserve_coulumn3 			 reserveCoulumn3,
+				reserve_coulumn4 			 reserveCoulumn4,
+				reserve_coulumn5 			 reserveCoulumn5
+		FROM  TBL_VPRS_USER_AUDIO_INFO 
+		WHERE is_fs_registered is null  
+		and (<![CDATA[l_audio_duration>30]]> or <![CDATA[ m_audio_duration>30 ]]> 
+		or <![CDATA[ h_audio_duration>30 ]]> or <![CDATA[ sh_audio_duration>30 ]]> or <![CDATA[ sp_audio_duration>30 ]]>)
+		ORDER BY id  fetch first 1000 rows only
+	<!--	or  ( is_fs_registered='2' and <![CDATA[ lst_upd_date< current date ]]>) -->
+			
+		
+    </select>
+    
+    
+      <!--查询注册失败的用户信息  1000条记录-->
+	<select id="queryUserInfoBatchRegisFail" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo"> 
+  	    SELECT 
+				id                		     id,
+				user_name        		     userName,
+				cert_type       		     certType,
+				cert_no          		     certNo,
+				user_type					 userType,
+				phone_no					 phoneNo,
+				l_audio_duration			 lowDuration,
+				m_audio_duration			 middleDuration,
+				h_audio_duration			 highDuration,
+				sh_audio_duration			 superHighDuration,
+				sp_audio_duration			 specialDuraion,
+				audio_ids					 audioIds,
+				is_fs_registered			 isFsRegistered,
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate,
+				crt_channel    				 crtChannel,
+				lst_upd_time     			 lstUpdTime,
+				lst_upd_date     			 lstUpdDate,
+				lst_upd_user     			 lstUpdUser,								
+				scr_level        			 scrLevel,
+				reserve_coulumn1  			 reserveCoulumn1,
+				reserve_coulumn2 			 reserveCoulumn2,
+				reserve_coulumn3 			 reserveCoulumn3,
+				reserve_coulumn4 			 reserveCoulumn4,
+				reserve_coulumn5 			 reserveCoulumn5
+		FROM  TBL_VPRS_USER_AUDIO_INFO 
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="isFsRegistered"> is_fs_registered=#isFsRegistered#  </isNotEmpty>  
+		and (<![CDATA[l_audio_duration>30]]> or <![CDATA[ m_audio_duration>30 ]]> 
+		or <![CDATA[ h_audio_duration>30 ]]> or <![CDATA[ sh_audio_duration>30 ]]> or <![CDATA[ sp_audio_duration>30 ]]>)
+		ORDER BY id  fetch first 1000 rows only
+				
+    </select>
+    
+     <!--查询注册成功的用户信息  1000条记录-->
+	<select id="queryUserInfoBatchRegisSuccess" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo"> 
+  	    SELECT 
+				id                		     id,
+				user_name        		     userName,
+				cert_type       		     certType,
+				cert_no          		     certNo,
+				user_type					 userType,
+				phone_no					 phoneNo,
+				l_audio_duration			 lowDuration,
+				m_audio_duration			 middleDuration,
+				h_audio_duration			 highDuration,
+				sh_audio_duration			 superHighDuration,
+				sp_audio_duration			 specialDuraion,
+				audio_ids					 audioIds,
+				is_fs_registered			 isFsRegistered,
+				reg_risk_level               regRiskLevel,
+				max_risk_level               maxRiskLevel,
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate,
+				crt_channel    				 crtChannel,
+				lst_upd_time     			 lstUpdTime,
+				lst_upd_date     			 lstUpdDate,
+				lst_upd_user     			 lstUpdUser,								
+				scr_level        			 scrLevel,
+				reserve_coulumn1  			 reserveCoulumn1,
+				reserve_coulumn2 			 reserveCoulumn2,
+				reserve_coulumn3 			 reserveCoulumn3,
+				reserve_coulumn4 			 reserveCoulumn4,
+				reserve_coulumn5 			 reserveCoulumn5
+		FROM  TBL_VPRS_USER_AUDIO_INFO 
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="isFsRegistered"> is_fs_registered=#isFsRegistered#  </isNotEmpty>  
+		and (<![CDATA[MAX_RISKLEVEL> REG_RISKLEVEL]]> )
+		ORDER BY id  fetch first 1000 rows only
+    </select>
+    
+    
+     <!--查询该用户的单条语音 -->
+	<select id="queryUserAudioInfoBatch" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfoVO" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfo"> 
+  	    SELECT 
+				user_name        		     userName,
+				user_type					 userType,
+	<!--			phone_no					 phoneNo,  -->
+				cert_type       		     certType,
+				user_unique_id       		 userUniqueId,
+				cert_no          		     certNo,
+				channel						 channel,
+				business_type				 businessType,
+				risk_level	                 riskLevel,
+				audio_path					 audioPath,
+				audio_id					 audioId,
+	<!--			audio_duration				 audioDuration, -->
+				sampling_rate				 samplingRate,
+    <!--				bit_rate					 bitRate,
+				sound_track					 soundTrack,
+				code_rate					 codeRate,   -->
+				encoding_format				 encodingFormat,
+	<!--			ext_name					 extName,
+				close_audio_format			 closeAudioFormat, -->
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate
+				
+		FROM  $tableName$
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">   CHANNEL=#channel#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="businessType">   BUSINESS_TYPE=#businessType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="closeAudioFormat">   CLOSE_AUDIO_FORMAT=#closeAudioFormat#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">   USER_NAME=#userName#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="riskLevel">   risk_level=#riskLevel#  </isNotEmpty>
+		<isNotEmpty prepend = "and" property="reserveCoulumn1">   RESERVE_COULUMN1=#reserveCoulumn1#  </isNotEmpty>  
+	    and is_valid is null 
+		ORDER BY CRT_TIME DESC fetch first 1 rows only
+    </select>
+    
+    
+    <!--查询该用户的所有语音 -->
+	<select id="queryUserAudioInfoBatchAll" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfoVO" resultClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfo"> 
+  	    SELECT 
+				user_name        		     userName,
+				user_type					 userType,
+	<!--			phone_no					 phoneNo,  -->
+				cert_type       		     certType,
+				user_unique_id       		 userUniqueId,
+				cert_no          		     certNo,
+				channel						 channel,
+				business_type				 businessType,
+				risk_level	                 riskLevel,
+				audio_path					 audioPath,
+				audio_id					 audioId,
+	<!--			audio_duration				 audioDuration, -->
+				sampling_rate				 samplingRate,
+    <!--				bit_rate					 bitRate,
+				sound_track					 soundTrack,
+				code_rate					 codeRate,   -->
+				encoding_format				 encodingFormat,
+	<!--			ext_name					 extName,
+				close_audio_format			 closeAudioFormat, -->
+				crt_time      			     crtTime,
+				crt_Date      			     crtDate
+				
+		FROM  $tableName$
+		WHERE 1=1
+		<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">   CHANNEL=#channel#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="businessType">   BUSINESS_TYPE=#businessType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="closeAudioFormat">   CLOSE_AUDIO_FORMAT=#closeAudioFormat#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">   USER_NAME=#userName#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="riskLevel">   risk_level=#riskLevel#  </isNotEmpty>
+		<isNotEmpty prepend = "and" property="reserveCoulumn1">   RESERVE_COULUMN1=#reserveCoulumn1#  </isNotEmpty>  
+	    and <![CDATA[ is_valid <> '2' ]]> 
+	<!--	ORDER BY CRT_TIME DESC fetch first 1 rows only  -->
+    </select>
+    
+    
+     <!--注册后更新用户信息表 -->
+	<update id="updateUserInfoBatch" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_AUDIO_INFO
+		SET
+			<isNotEmpty property="isFsRegistered">is_fs_registered = #isFsRegistered#,</isNotEmpty>
+		    <isNotEmpty property="regRiskLevel">reg_risk_level = #regRiskLevel#,</isNotEmpty> 
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="userName">   user_name=#userName#  </isNotEmpty>
+ 	</update> 
+ 	
+ 	<!--跑批更新成功后更新用户信息表 -->
+	<update id="updateUserInfoBatchWhenUpdateSuccess" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_AUDIO_INFO
+		SET
+		    <isNotEmpty property="regRiskLevel">reg_risk_level = #regRiskLevel#,</isNotEmpty> 
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="userName">   user_name=#userName#  </isNotEmpty>
+ 	</update> 
+ 	
+ 	<!--跑批更新全部失败后更新用户信息表 -->
+	<update id="updateUserInfoBatchWhenUpdateFailAll" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo">
+ 	    UPDATE 
+			TBL_VPRS_USER_AUDIO_INFO
+		SET
+		    max_risk_level = null ,
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="userName">   user_name=#userName#  </isNotEmpty>
+		    <isNotEmpty prepend = "and" property="maxRiskLevel">   max_risk_level=#maxRiskLevel#  </isNotEmpty>
+ 	</update> 
+ 	
+ 	
+ 	<!--更新音频信息表 -->
+	<update id="updateAudioInfoBatch" parameterClass="com.pccc.vprs.servicedisplay.bams.model.AudioInfoVO">
+ 	    UPDATE 
+			$tableName$ 
+		SET 
+			<isNotEmpty property="isValid">is_valid = #isValid#</isNotEmpty>			
+		WHERE 1=1 
+			<isNotEmpty prepend = "and" property="certType"> cert_type=#certType#  </isNotEmpty>
+			<isNotEmpty prepend = "and" property="audioId"> audio_id=#audioId#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="certNo">   cert_no=#certNo#  </isNotEmpty> 
+		    <isNotEmpty prepend = "and" property="userName">   user_name=#userName#  </isNotEmpty>
+ 	</update> 
+    
+</sqlMap>

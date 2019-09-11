@@ -1,0 +1,23 @@
+package cn.xs.erp.controller;
+
+import org.springframework.stereotype.Controller;
+
+
+@Controller
+public class SampController extends BaseController {
+	
+	
+	
+	
+/*	@RequestMapping("/employee")
+	public String employee(Model model) {
+		model.addAttribute("title", "welcome to emp page");
+		return "employee/index";
+	}*/
+	
+/*	@RequestMapping("/employee/list")
+	public String employeeList(Model model) {
+		model.addAttribute("title", "layout demo");
+		return "employee/list";
+	}*/
+}

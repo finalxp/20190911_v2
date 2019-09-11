@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+
+	<style>
+		.title{
+			font-size: 22px;
+		    font-weight: 600;
+		    margin-bottom: 0px;
+		    margin-left: 10px;
+		    margin-top:0px;
+		    color: #ffffff;
+	    }
+	    ul li a{
+	    	line-height: 40px;
+	    	font-size: 16px;
+	    	color: #ffffff;
+	    }
+	    .nav>li>a:hover, .nav>li>a:focus {
+		    text-decoration: none;
+		    background-color: dodgerblue;
+		    font-weight: bold;
+		    font-style: oblique;
+		}
+	</style>
+</head>
+<body class="easyui-layout">
+	<div id="north" data-options="region:'north'" style="height:63px;background:#00a9f4;border:0;line-height:60px">
+		<div class="navbar-header">
+			<img alt="效生软件科技" src="/images/logo.jpg" width="55px" height="55px" style="vertical-align: middle;">
+			<span class="title" style="vertical-align: middle;display: inline-block;height: 60px">效生ERP管理系统</span>
+		</div>
+		<div id="footer">
+			<ul id="headMenus" class="nav nav-pills  navbar-right" style="border: 0px solid red;">
+			</ul>
+		</div> 
+	</div>
+	<div id="west" style="width:210px;" data-options="region:'west',collapsible:true" title="导航菜单">
+	</div>
+	<div data-options="region:'center'">
+		<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+			<div class="aligncenter" id="about" align="center" title="系统主页">
+			<h1 class="aligncenter">
+			<span class="underline">关于效生</span></h1>
+			<h4 style="padding-top: 15px; line-height: 30px;">
+				世界领先的安保公司<br>
+				拥有世界领先的声纹识别技术经验丰富的团队——美国和英国都拥有研发部门和实验室产品是世界上为数不多的已经进入商用的企业
+			</h4>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<div style="margin-bottom: 8px">
+		部门：
+		<input id="depID" class="easyui-combobox" style="width:10%" data-options="panelHeight:'auto'"/>
+		员工编号：
+		<input id="empNo" class="easyui-textbox" style="width: 10%" data-options="panelHeight:'auto'"/>
+		系统权限名：
+		<input class="easyui-textbox" id="menuName" style="width: 12%"
+			data-options="valueField:'id', textField:'text', panelHeight:'auto'"/>
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findMenuPermission();" style="width:12%;">查询</a>
+	</div>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '系统菜单权限管理';
+	  var wWidth = 50;
+	  var wHeight = 95;
+	  var dataurl = '/menu_permission/list';
+	  var addurl = '/menu_permission/add';
+	  var editurl = '/menu_permission/edit';
+	  var deleteurl ='/menu_permission/delete';
+	  var columns = [[
+	      {field : "id",width : 100,hidden:"hidden"},
+	      {field : "empNo",width : 20,title : "员工编号",align:"center"},
+	      {field : "empName",width : 20,title : "员工名",align:"center"},
+	      {field : "menuList",width : 80,title : "系统菜单权限",align:"left",
+	      	formatter:function(value,rows,index){
+	      		var returnString="";
+	      		for (var i = 0; i < rows.menuPermission.length; i++) {
+		            returnString +="["+rows.menuPermission[i].menuName+"]，"
+		        }
+	      		return returnString;
+	      	}
+	      }
+	  ]];
+	  var toolbar = [{
+          text:'修改权限',
+          iconCls:'icon-edit',
+          handler:onEdit
+      }];
+	  
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+	  
+	  //加载部门下拉框
+	  $(function(){
+	  	$('#depID').combobox({
+		    url:'/department/comboboxList',
+		    valueField:'id',
+		    textField:'depName'
+		});
+	  })
+	  
+	  //根据条件段查询门信息
+	  function findMenuPermission(){
+	  	var depID = $("#depID").val();
+	  	var empNo= $("#empNo").val();
+	  	var menuName= $("#menuName").val();
+		refresh({
+			depID:depID,
+			empNo:empNo,
+			menuName:menuName,
+		});
+	  }
+    </script>
+</th:block>
+</html>

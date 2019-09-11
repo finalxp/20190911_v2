@@ -1,0 +1,10 @@
+package com.example.service;
+
+import java.util.List;
+
+import com.example.model.TreePoint;
+import com.example.model.User;
+
+public interface IQueryDepartmentTree {
+	public List<TreePoint> getSubDepUserService(String depId); 
+}

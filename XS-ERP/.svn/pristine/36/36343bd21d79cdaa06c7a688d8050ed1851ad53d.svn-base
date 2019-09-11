@@ -1,0 +1,44 @@
+package cn.xs.erp.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.DepartmentItem;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.MenuItem;
+import cn.xs.erp.model.MenuPermissionItem;
+import cn.xs.erp.service.IDepartmentService;
+import cn.xs.erp.service.IEmployeeService;
+import cn.xs.erp.service.IMenuPermissionService;
+import cn.xs.erp.service.IMenuService;
+
+@Controller
+@ComponentScan
+public class DepartmentController extends BaseController {
+	
+	@Autowired
+	private IDepartmentService departmentService;
+	
+	@RequestMapping("/department")
+	public String selectAllDepInfo(Model model){
+		List<DepartmentItem> allDepartments=departmentService.selectAllDepInfo();
+		
+		System.out.println(allDepartments.isEmpty()+"----------isEmpty----------");
+		model.addAttribute("departmentItem", new DepartmentItem());
+		model.addAttribute("allDepartments", allDepartments);
+		model.addAttribute("allMenus",getSession().getAttribute("allMenus"));
+		
+		return "department/index";
+	}
+}

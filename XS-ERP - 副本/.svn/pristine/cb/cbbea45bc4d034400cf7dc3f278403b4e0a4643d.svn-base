@@ -1,0 +1,27 @@
+package cn.xs.erp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class SampController extends BaseController {
+	
+	@RequestMapping("/")
+	public String home(Model model) {
+		model.addAttribute("title", "welcome use thymeleaf");
+		return "index";
+	}
+	
+	@RequestMapping("/employee")
+	public String employee(Model model) {
+		model.addAttribute("title", "welcome to emp page");
+		return "employee/index";
+	}
+	
+	@RequestMapping("/employee/list")
+	public String employeeList(Model model) {
+		model.addAttribute("title", "layout demo");
+		return "employee/list";
+	}
+}

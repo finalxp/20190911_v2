@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.pccc.vprs.servicecustom.sql.QueryThreshold">
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="QueryChannelThreshold" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.ChannelThreshold" resultClass="com.pccc.vprs.servicedisplay.vprs.model.ChannelThreshold">
+    
+        SELECT 
+				id                  id,
+				channel             channel,
+				business_type       businessType,
+				biometric_type      biometricType,
+				threshold_fs        thresholdFS,
+				threshold_td        thresholdTD,
+				lst_upd_user        lstUpdUser,
+				crt_time            crtTime,
+				lst_upd_time        lstUpdTime,
+				lst_upd_date        lstUpdDate,
+				SCR_LEVEL           scrLevel,
+				reserve_coulumn1  reserveCoulumn1,
+				reserve_coulumn2  reserveCoulumn2,
+				reserve_coulumn3  reserveCoulumn3,
+				reserve_coulumn4  reserveCoulumn4,
+				reserve_coulumn5  reserveCoulumn5
+		FROM  TBL_VPRS_CHANNEL_THRESHOLD
+		WHERE  channel=#channel#  
+		<isNotEmpty prepend="and" property="businessType">business_type=#businessType#</isNotEmpty>
+        <isNotEmpty prepend="and" property="biometricType">biometric_type=#biometricType#</isNotEmpty>
+    </select>
+</sqlMap>

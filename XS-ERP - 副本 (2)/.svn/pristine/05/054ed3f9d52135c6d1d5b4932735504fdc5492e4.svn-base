@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IEmployeeDao">
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT
+			a.id,a.emp_no, a.emp_name, a.birthday, a.sex, a.phone_no, a.avatar_url, a.nickname, a.hiredate,a.is_enable,
+			a.create_by,a.create_time,a.update_by,a.update_time
+		FROM 
+			t_employee a
+	</select>
+	<select id="selectAllEmpInfo" resultMap="BaseResultMap">
+		SELECT a.id,a.emp_no, a.emp_name, a.birthday, a.sex, a.phone_no, a.avatar_url, a.nickname,
+			   a.hiredate, b.emp_id AS enrolled
+		FROM 
+			t_employee a 
+		LEFT JOIN
+			t_voiceprint b
+		ON
+			a.id=b.emp_id
+		WHERE 
+			a.is_enable=1
+	</select>
+	<!-- 为什么返回的只能用resultMap="BaseResultMap" 而不能写成resultType="cn.xs.erp.model.EmployeeItem" -->
+	<select id="getEmployeeByNo" resultMap="BaseResultMap" parameterType="String">
+		SELECT id,emp_no,salt, emp_password FROM t_employee WHERE emp_no=#{empNo,jdbcType=VARCHAR} AND is_enable=1
+	</select>
+	<update id="updateEmployeeById" parameterType="hashmap">
+		 UPDATE t_employee
+			 <trim prefix="set" suffixOverrides=",">
+			 	<if test="empNo!=null">emp_no=#{empNo},</if>
+			 	<if test="empName!=null">emp_name=#{empName},</if>
+			 	<if test="sex!=null">sex=#{sex},</if>
+			 	<if test="phoneNo!=null">phone_no=#{phoneNo},</if>
+			 	<if test="birthday!=null">birthday=#{birthday},</if>
+			 	<if test="nickname!=null">nickname=#{nickname},</if>
+			 	update_by=CONVERT(#{updateBy}, UNSIGNED INTEGER),
+				update_time=NOW()
+			 </trim>
+		 WHERE 
+		 	id=#{id}
+	</update>
+	<select id="selectToolbarList" resultMap="BaseResultMap" parameterType="hashmap">
+		SELECT a.id,a.emp_no, a.emp_name, a.birthday, a.sex, a.phone_no, a.avatar_url, a.nickname,
+			   a.hiredate, b.emp_id AS enrolled,a.create_by,a.create_time,a.update_by,a.update_time
+		FROM 
+			t_employee a 
+		LEFT JOIN
+			t_voiceprint b
+		ON
+			a.id=b.emp_id
+		<where>
+			<if test="true">a.is_enable=1</if>
+			<if test="depID != null and depID != ''">AND a.id IN (SELECT emp_id FROM t_employee_department WHERE dep_id=#{depID})</if>
+			<if test="empNo !=null and empNo != ''">AND a.emp_no=#{empNo}</if>
+			<if test="startTime!=null and startTime!=''">
+				<![CDATA[AND a.hiredate >= STR_TO_DATE(#{startTime},'%Y-%m-%d')]]>
+			</if>
+			<if test="endTime!=null and endTime!=''">
+				<![CDATA[AND a.hiredate <= STR_TO_DATE(#{endTime},'%Y-%m-%d')]]>
+			</if>
+		</where>
+	</select>
+	<select id="selectEmpByEmpNoAndDepIdAndDoorNo" resultMap="BaseResultMap" parameterType="hashmap">
+		SELECT a.id,a.emp_no, a.emp_name, a.birthday, a.sex, a.phone_no, a.avatar_url, a.nickname,
+			   a.hiredate, a.create_by,a.create_time,a.update_by,a.update_time
+		FROM
+			t_employee a
+		WHERE
+			<if test="empNo != null and empNo !=''">
+				a.emp_no=#{empNo}
+			</if>
+			<if test="depID != null and depID != ''">
+				<choose>
+					<when test="empNo == null or empNo == ''">
+						a.id IN (SELECT emp_id FROM t_employee_department WHERE dep_id=#{depID})
+					</when>
+					<otherwise>
+						AND a.id IN (SELECT emp_id FROM t_employee_department WHERE dep_id=#{depID})
+					</otherwise>
+				</choose>
+			</if>
+			<if test="doorNo != null and doorNo != ''">
+				<choose>
+					<when test="(empNo == null or empNo == '') and ( depID == null or depID == '')">
+						a.id IN (SELECT emp_id FROM t_door_permission WHERE door_id=(SELECT id FROM t_door WHERE door_no=#{doorNo}))
+					</when>
+					<otherwise>
+						AND a.id IN (SELECT emp_id FROM t_door_permission WHERE door_id=(SELECT id FROM t_door WHERE door_no=#{doorNo}))
+					</otherwise>
+				</choose>
+			</if>
+		</select>
+	<select id="selectEmpByEmpNoAndDepIdAndmenuName" resultMap="BaseResultMap" parameterType="hashmap">
+		SELECT a.id,a.emp_no, a.emp_name, a.birthday, a.sex, a.phone_no, a.avatar_url, a.nickname,
+			   a.hiredate, a.create_by,a.create_time,a.update_by,a.update_time
+		FROM
+			t_employee a
+		WHERE
+			<if test="empNo != null and empNo !=''">
+				a.emp_no=#{empNo}
+			</if>
+			<if test="depID != null and depID != ''">
+				<choose>
+					<when test="empNo == null or empNo == ''">
+						a.id IN (SELECT emp_id FROM t_employee_department WHERE dep_id=#{depID})
+					</when>
+					<otherwise>
+						AND a.id IN (SELECT emp_id FROM t_employee_department WHERE dep_id=#{depID})
+					</otherwise>
+				</choose>
+			</if>
+			<if test="menuName != null and menuName != ''">
+				<choose>
+					<when test="(empNo == null or empNo == '') and ( depID == null or depID == '')">
+						a.id IN (SELECT emp_id FROM t_menu_permission WHERE menu_id IN (SELECT id FROM t_menu WHERE menu_name=#{menuName}))
+					</when>
+					<otherwise>
+						AND a.id IN (SELECT emp_id FROM t_menu_permission WHERE menu_id IN (SELECT id FROM t_menu WHERE menu_name=#{menuName}))
+					</otherwise>
+				</choose>
+			</if>
+		</select>
+	
+	
+	
+	
+</mapper>

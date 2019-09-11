@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="VPRS.J_RES_VPRS_003_0005" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="VPRS.J_RES_VPRS_003_0005">
+    <xs:complexType name="info">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="crtTime" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="phoneNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="certType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="certNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="crtChannel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="lAudioDuration" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="mAudioDuration" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="hAudioDuration" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="shAudioDuration" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="spAudioDuration" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="audioIds" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="isFsRegistered" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="crtDate" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="lstUpdTime" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="lstUpdDate" nillable="true" type="xs:string"/>
+            <xs:any/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="J_RES_VPRS_003_0005">
+        <xs:sequence>
+            <xs:any/>
+            <xs:element minOccurs="0" name="returnCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="returnMsg" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="totalNum" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="0" name="userUniqueId" nillable="true" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="info" nillable="true" type="info"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

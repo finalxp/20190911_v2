@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/cn/productivetech/cmos/zhongbao/model/EnrollAudioItem.java=UTF-8
+encoding//src/main/java/cn/productivetech/cmos/zhongbao/model/EnrollModelItem.java=UTF-8
+encoding//src/main/java/cn/productivetech/cmos/zhongbao/utils/FileListenerUtils.java=UTF-8
+encoding//src/main/java/cn/productivetech/cmos/zhongbao/utils/GetTxtInfoUtils.java=UTF-8
+encoding//src/main/java/cn/productivetech/cmos/zhongbao/utils/MP3ToWav.java=UTF-8
+encoding//src/main/java/cn/productivetech/cmos/zhongbao/utils/SendUrlUtils.java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/main/resources/application.properties=UTF-8
+encoding//src/test/java=UTF-8
+encoding/<project>=UTF-8

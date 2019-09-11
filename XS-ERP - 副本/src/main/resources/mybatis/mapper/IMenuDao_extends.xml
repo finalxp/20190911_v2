@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IMenuDao">
+
+	<select id="getFirstLevelMenus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_menu where parent_id=0
+	</select>
+	<select id="getTreeMenus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_menu WHERE parent_id&lt;&gt;0
+	</select>
+</mapper>

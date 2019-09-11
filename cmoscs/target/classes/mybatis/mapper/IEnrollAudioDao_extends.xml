@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.cmos.zhongbao.dao.IEnrollAudioDao">
+	
+	<!-- 批量添加注册声纹信息 -->
+	<insert id="insertList" parameterType="java.util.List">
+		INSERT INTO t_enroll_audio (agent_id,voice_location,create_date) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.agentId},
+				#{item.voiceLocation},
+				#{item.createDate}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 更新注册音频信息到下载状态到下载中 -->
+	<update id="updateDownloadingStatus" parameterType="java.util.List">
+		UPDATE t_enroll_audio SET
+			download_status = 1,create_date=NOW()
+		WHERE
+			agent_id in
+			<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+				#{item.agentId}
+			</foreach>		
+	</update>
+	
+	<!-- 更新注册音频信息到下载状态到下载完成 -->
+	<update id="updateDownloadedStatus" parameterType="java.util.List">
+		UPDATE t_enroll_audio SET
+			<foreach collection="list" item="item" index="index" open="download_status=case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.downloadStatus}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="download_date=case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.downloadDate}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="download_error=case" close="end,">
+					WHEN agent_id=#{item.agentId} then #{item.downloadError}
+			</foreach>
+			<trim suffixOverrides=",">
+			<foreach collection="list" item="item" index="index" open="upate_date=case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.upateDate}
+			</foreach>
+			</trim>
+		WHERE
+		agent_id in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item.agentId}
+		</foreach>	
+	</update>
+	
+	<!-- 批量更新声纹模型注册状态 -->
+	<update id="updateProcessStatus" parameterType="java.util.List">
+		UPDATE t_enroll_audio SET
+			<foreach collection="list" item="item" index="index" open="process_status =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processStatus}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="process_date =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processDate}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="process_result =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processResult}
+			</foreach>
+			<trim suffixOverrides=",">
+			<foreach collection="list" item="item" index="index" open="process_error =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processError}
+			</foreach>
+			</trim>
+		WHERE
+		agent_id in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item.agentId}
+		</foreach>
+	</update>
+	
+	<!-- 查询所有待处理的音频信息集合 -->
+	<select id="queryAudioItemsByUnHandle" resultMap="BaseResultMap">
+		SELECT agent_id,voice_location,create_by,create_date,download_status,download_error,download_date,update_date,
+			enroll_status,enroll_error,enroll_date
+		FROM
+		t_enroll_audio
+		WHERE
+		enroll_status=0 OR enroll_status IS NULL OR download_status<![CDATA[!=]]>2 OR download_status IS NULL
+	</select>
+
+</mapper>

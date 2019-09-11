@@ -1,0 +1,30 @@
+package cn.productivetech.cmos.zhongbao.core;
+
+import org.apache.commons.io.monitor.FileAlterationMonitor;
+import org.apache.commons.io.monitor.FileAlterationObserver;
+import org.springframework.stereotype.Service;
+
+import cn.productivetech.cmos.zhongbao.config.Const;
+//import cn.productivetech.cmos.zhongbao.utils.FileListenerUtils;
+
+@Service
+public class FileListenerCore {
+
+	/**
+	 * 监听文件夹文件变化
+	 * @param path			监控文件夹的目录
+	 */
+	public void fileListener(String path){
+		 
+	     FileAlterationObserver observer = new FileAlterationObserver(path, null, null); 
+	     //observer.addListener(new FileListenerUtils());   
+	     FileAlterationMonitor monitor = new FileAlterationMonitor(Const.INTERVAL,observer);
+	     
+	     // 开始监控
+	     try {
+			monitor.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

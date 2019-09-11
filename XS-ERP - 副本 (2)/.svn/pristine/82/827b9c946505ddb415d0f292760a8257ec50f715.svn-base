@@ -1,0 +1,7 @@
+package cn.xs.erp.service;
+
+import cn.xs.erp.model.EmployeeDepartmentItem;
+
+public interface IEmployeeDepartmentService {
+	int addEmployeeDepartment(EmployeeDepartmentItem employeeDepartmentItem);
+}

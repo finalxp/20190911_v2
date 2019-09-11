@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="cn.xs.log.bancom">
+	<Appenders>
+		<KafkaAppender name="Kafka" topic="bams_vprs"
+			services="aiops-kafka-01.pccctestOA.com:9092,aiops-kafka-02.pccctestOA.com:9092,aiops-kafka-03.pccctestOA.com:9092,aiops-kafka-04.pccctestOA.com:9092,aiops-kafka-05.pccctestOA.com:9092,aiops-kafka-06.pccctestOA.com:9092">
+			<PatternLayout>
+				<Pattern>%d %p %C:%L - %m%n</Pattern>
+			</PatternLayout>
+		</KafkaAppender>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %p %C:%L - %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console" level="info" />
+			<AppenderRef ref="Kafka" level="info" />
+		</Root>
+	</Loggers>
+</Configuration>

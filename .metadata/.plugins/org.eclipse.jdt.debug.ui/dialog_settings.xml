@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=XS-ERP/src\/main\/java&amp;lt;cn.xs.erp{XsErpApplication.java[XsErpApplication&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=SeparationAudio2/src&amp;lt;com.validsoft{UIApplication.java[UIApplication&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=telecomenrolapp2/src\/main\/java&amp;lt;com.validsoft.core{GenSQL.java[GenSQL&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=telecomenrolapp2/src\/main\/java&amp;lt;com.validsoft{demo2.java[demo2&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=qrdemo20190819/src\/main\/java&amp;lt;com.validsoft.qrdemo20190819{Qrdemo20190819Application.java[Qrdemo20190819Application&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=qrdemo20190819/C:\/Users\/leoli\/.m2\/repository\/net\/bytebuddy\/byte-buddy-agent\/1.9.16\/byte-buddy-agent-1.9.16.jar&amp;lt;net.bytebuddy.agent(Attacher.class[Attacher&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=LicenseTips/C:\/Users\/leoli\/.m2\/repository\/org\/apache\/poi\/poi\/3.17\/poi-3.17.jar&amp;lt;org.apache.poi.hssf.dev(BiffDrawingToXml.class[BiffDrawingToXml&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=demoTelecomApp_v2/src\/main\/java&amp;lt;com.example{DemoTelecomAppApplication.java[DemoTelecomAppApplication&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=LicenseTips/src\/main\/java&amp;lt;com.xskj.LicenseTips{LicenseTipsApplication.java[LicenseTipsApplication&lt;/infoNode&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="391" key="DIALOG_X_ORIGIN"/>
+			<item value="39" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

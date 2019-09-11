@@ -1,0 +1,15 @@
+package cn.productivetech.cmos.zhongbao.config;
+
+/**
+ * 静态常量工具类
+ * @author   kenny_peng
+ * @created  2019年4月25日
+ */
+public class Const {
+
+	//队列大小
+	public static int QUEUE_SIZE = 1000000;
+	
+	//每次批量更新大小
+	public static int UPDATE_SIZE_EVERY_TIME = 1000;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/header">
+<head>
+    <meta charset="utf-8"/>
+    <title>表格制作</title>
+</head>
+<body>
+
+<th:block layout:fragment="bodyAssets">
+        <table id="dg" title="技术部" class="easyui-datagrid" style="width:100%;height:550px"
+            toolbar="#toolbar" pagination="true" rownumbers="false" fitColumns="false" singleSelect="true">
+        <thead>
+            <tr>
+            	<th field="id" width="20" hidden="hidden" align="center"></th>
+                <th field="firstname" width="820" align="left">主题</th>
+                <th field="lastname" width="150" align="center">颁发人</th>
+                <th field="phone" width="150" align="center">颁发时间</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+        		<td></td>
+        		<td><a href="#">技术部1技术部1技术部1技术部1技术部1技术部1</a></td>
+        		<td>1</td>
+        		<td>2018-09-10</td>
+        	</tr>
+        	<tr>
+        		<td></td>
+        		<td><a href="#">技术部技术部技术部</a></td>
+        		<td>1</td>
+        		<td>2018-09-10</td>
+        	</tr>
+        	<tr>
+        		<td></td>
+        		<td><a href="#">技术部技术部技术部</a></td>
+        		<td>1</td>
+        		<td>2018-09-10</td>
+        	</tr>
+        	<tr>
+        		<td></td>
+        		<td><a href="#">技术部技术部技术部</a></td>
+        		<td>1</td>
+        		<td>2018-09-10</td>
+        	</tr>
+        </tbody>
+    </table>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" threshold="ALL">
+
+   <appender class="com.primeton.ext.common.logging.AppConsoleAppender" name="CONSOLE">
+      	<param name="Target" value="System.out"/>
+      	<layout class="org.apache.log4j.PatternLayout">
+         	<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS}][%p][%C][Line:%L] %m%n"/>
+      	</layout>
+   </appender>
+
+   <appender class="com.primeton.ext.common.logging.AppRollingFileAppender" name="ROLLING_FILE">
+         <param name="File" value="/logs/btp-trace.log"/>
+         <param name="Append" value="true"/>
+         <param name="MaxFileSize" value="10MB"/>
+         <param name="MaxBackupIndex" value="10"/>
+         <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS}][%p][%C][Line:%L] %m%n"/>
+		 </layout>
+   </appender>
+
+	<!-- trace: endpoint -->
+    <logger additivity="false" name="com.primeton.btp.api.endpoint">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.endpoint">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.endpoint">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+	<!-- trace: transport -->
+    <logger additivity="false" name="com.primeton.btp.api.transport">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.transport">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.transport">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: message -->
+    <logger additivity="false" name="com.primeton.btp.api.message">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.message">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.message">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: route -->
+    <logger additivity="false" name="com.primeton.btp.api.route">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.route">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.route">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger additivity="false" name="com.primeton.btp.api.remote">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.remote">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.remote">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: trans -->
+    <logger additivity="false" name="com.primeton.btp.api.engine.trans">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.engine.trans">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.engine.trans">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: host trans -->
+    <logger additivity="false" name="com.primeton.btp.api.engine.hosttrans">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.engine.hosttrans">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.engine.hosttrans">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: event -->
+    <logger additivity="false" name="com.primeton.btp.api.engine.event">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.engine.event">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.engine.event">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: process flow -->
+    <logger additivity="false" name="com.primeton.btp.api.engine.processflow">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.engine.processflow">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.engine.processflow">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- trace: transportservice -->
+    <logger additivity="false" name="com.primeton.btp.api.transportservice">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.impl.transportservice">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.btp.spi.transportservice">
+        <level value="ERROR"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+   <!-- 根日志配置 -->
+   <root>
+  		<level value="all"/>
+   		<appender-ref ref="ROLLING_FILE"/>
+   		<appender-ref ref="CONSOLE"/>
+   </root>
+
+</log4j:configuration>

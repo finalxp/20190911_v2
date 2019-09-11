@@ -1,0 +1,23 @@
+-- VERSION_4
+-- START DISKCACHE_2
+C:\Projects\Java_Project\.metadata\.plugins\org.eclipse.core.resources\.projects\pythondemo\com.python.pydev.analysis\v2_indexcache
+python.__init__|1552559378397724000|C:\Projects\Java_Project\pythondemo\python\__init__.py
+-- END DISKCACHE
+-- START DICTIONARY
+1
+1=python.__init__
+-- END DICTIONARY
+-- START TREE 1
+8
+api|1|api!11@
+get|1|getSimpleSign!10@
+gmt|1|GMT_FORMAT!11@
+hea|1|headers!11@
+req|1|req!11@
+res|1|result!11@
+sec|2|SecretId!11@SecretKey!11@
+sou|1|Source!11@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

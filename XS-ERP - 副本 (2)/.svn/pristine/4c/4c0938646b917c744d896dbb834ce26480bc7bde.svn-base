@@ -1,0 +1,183 @@
+package cn.xs.erp.model;
+
+import java.util.Date;
+
+public class CheckinRecordItem {
+    private Integer id;
+
+    private Integer empId;
+
+    private String empNo;
+    
+    private String empName;
+    
+    private Date timeIn;
+    
+    private String timeInOut;
+    
+	private Date timeOut;
+    
+    private Date checkinTime;
+
+    private Short checkinCategory;
+    private Short inCate;
+    private Short outCate;
+    
+	private Integer auditBy;
+    private Short inIsEnable;
+    private Short outIsEnable;
+    
+    private Date auditTime;
+
+    private Short isEnable;
+
+    
+    private Date createTime;
+    
+    private String comments;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
+	public String getEmpNo() {
+		return empNo;
+	}
+
+	public void setEmpNo(String empNo) {
+		this.empNo = empNo;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public Date getTimeIn() {
+		return timeIn;
+	}
+
+	public void setTimeIn(Date timeIn) {
+		this.timeIn = timeIn;
+	}
+
+	public String getTimeInOut() {
+		return timeInOut;
+	}
+
+	public void setTimeInOut(String timeInOut) {
+		this.timeInOut = timeInOut;
+	}
+
+	public Date getTimeOut() {
+		return timeOut;
+	}
+
+	public void setTimeOut(Date timeOut) {
+		this.timeOut = timeOut;
+	}
+
+	public Date getCheckinTime() {
+		return checkinTime;
+	}
+
+	public void setCheckinTime(Date checkinTime) {
+		this.checkinTime = checkinTime;
+	}
+
+	public Short getCheckinCategory() {
+		return checkinCategory;
+	}
+
+	public void setCheckinCategory(Short checkinCategory) {
+		this.checkinCategory = checkinCategory;
+	}
+
+	public Short getInCate() {
+		return inCate;
+	}
+
+	public void setInCate(Short inCate) {
+		this.inCate = inCate;
+	}
+
+	public Short getOutCate() {
+		return outCate;
+	}
+
+	public void setOutCate(Short outCate) {
+		this.outCate = outCate;
+	}
+
+	public Integer getAuditBy() {
+		return auditBy;
+	}
+
+	public void setAuditBy(Integer auditBy) {
+		this.auditBy = auditBy;
+	}
+
+	public Date getAuditTime() {
+		return auditTime;
+	}
+
+	public void setAuditTime(Date auditTime) {
+		this.auditTime = auditTime;
+	}
+
+	public Short getIsEnable() {
+		return isEnable;
+	}
+
+	public void setIsEnable(Short isEnable) {
+		this.isEnable = isEnable;
+	}
+
+	public Short getInIsEnable() {
+		return inIsEnable;
+	}
+
+	public void setInIsEnable(Short inIsEnable) {
+		this.inIsEnable = inIsEnable;
+	}
+
+	public Short getOutIsEnable() {
+		return outIsEnable;
+	}
+
+	public void setOutIsEnable(Short outIsEnable) {
+		this.outIsEnable = outIsEnable;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	
+}

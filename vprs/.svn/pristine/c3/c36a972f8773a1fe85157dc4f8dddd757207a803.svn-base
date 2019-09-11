@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" threshold="ALL">
+
+   <appender class="com.primeton.ext.common.logging.AppRollingFileAppender" name="ROLLING_ENGINE_FILE">
+         <param name="File" value="/logs/btp-engine.log"/>
+         <param name="Append" value="true"/>
+         <param name="MaxFileSize" value="10MB"/>
+         <param name="MaxBackupIndex" value="10"/>
+         <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n"/>
+		 </layout>
+   </appender>
+
+
+   <logger additivity="false" name="TRANSPORT">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="TRANSPORT_SERVICE">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="TRANS_SERVICE">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="PROCESS_FLOW">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="HOST_TRANS">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="ENDPOINT">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="EVENT">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+   <logger additivity="false" name="ROUTE">
+        <level value="INFO"/>
+        <appender-ref ref="ROLLING_ENGINE_FILE"/>
+   </logger>
+
+</log4j:configuration>

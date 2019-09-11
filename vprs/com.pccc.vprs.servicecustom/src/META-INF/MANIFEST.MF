@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Require-Bundle: com.pccc.vprs.architecture,com.pccc.vprs.servicedispla
+ y,com.primeton.eos.richweb,com.primeton.btp.wscommon.wsservice,com.eo
+ s.foundation,com.pccc.vprs.businessmodel,com.primeton.btp.wscommon.bu
+ sinessmodel
+eos-webCtxPath: servicecustom
+Bundle-Vendor: A146901
+Contribution-Digest: 7fb824a3b4b175dc
+Bundle-Version: 1.0.0
+Contribution-Type: btp.servicecustom
+Bundle-Name: 服务定制
+Bundle-Description: 
+Bundle-SymbolicName: com.pccc.vprs.servicecustom
+

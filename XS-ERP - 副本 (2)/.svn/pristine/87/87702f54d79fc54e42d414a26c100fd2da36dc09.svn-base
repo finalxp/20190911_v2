@@ -1,0 +1,125 @@
+package cn.xs.erp.model;
+
+import java.util.Date;
+
+public class CheckinRecordItem {
+    private Integer id;
+
+    private Integer empId;
+
+    private String empNo;
+    
+    private String empName;
+    
+    private Date timeIn;
+    
+    private Date timeOut;
+    
+    private Date checkinTime;
+
+    private Short checkinCategory;
+
+    private Short isEnable;
+
+    private Date createTime;
+
+    public String getEmpNo() {
+		return empNo;
+	}
+
+	public void setEmpNo(String empNo) {
+		this.empNo = empNo;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public Date getTimeIn() {
+		return timeIn;
+	}
+
+	public void setTimeIn(Date timeIn) {
+		this.timeIn = timeIn;
+	}
+
+	public Date getTimeOut() {
+		return timeOut;
+	}
+
+	public void setTimeOut(Date timeOut) {
+		this.timeOut = timeOut;
+	}
+
+	private Integer auditBy;
+
+    private Date auditTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(Integer empId) {
+        this.empId = empId;
+    }
+
+    public Date getCheckinTime() {
+        return checkinTime;
+    }
+
+    public void setCheckinTime(Date checkinTime) {
+        this.checkinTime = checkinTime;
+    }
+
+    public Short getCheckinCategory() {
+        return checkinCategory;
+    }
+
+    public void setCheckinCategory(Short checkinCategory) {
+        this.checkinCategory = checkinCategory;
+    }
+
+    public Short getIsEnable() {
+        return isEnable;
+    }
+
+    public void setIsEnable(Short isEnable) {
+        this.isEnable = isEnable;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getAuditBy() {
+        return auditBy;
+    }
+
+    public void setAuditBy(Integer auditBy) {
+        this.auditBy = auditBy;
+    }
+
+    public Date getAuditTime() {
+        return auditTime;
+    }
+
+    public void setAuditTime(Date auditTime) {
+        this.auditTime = auditTime;
+    }
+}

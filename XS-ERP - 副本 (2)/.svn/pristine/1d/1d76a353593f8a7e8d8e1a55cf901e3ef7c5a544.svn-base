@@ -1,0 +1,22 @@
+package cn.xs.erp.service;
+
+import cn.xs.erp.dto.RspResultDto;
+import cn.xs.erp.model.DoorItem;
+import cn.xs.erp.model.PageInfo;
+
+public interface IDoorService {
+
+	DoorItem getDoorItemById(int Id);
+
+	RspResultDto addDoor(DoorItem door,int userID);
+	
+	RspResultDto editDoor(DoorItem doorItem,int userID);
+	
+	RspResultDto deleteDoor(int id);
+	
+	PageInfo<DoorItem> selectDoorByPage(int page,int pagesize);
+
+	PageInfo<DoorItem> selectDoorByPage(Integer page, Integer rows,String doorNo, String doorName);
+	
+	
+}

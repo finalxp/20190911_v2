@@ -1,0 +1,18 @@
+package cn.xs.erp.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@Controller
+public class BaseController {
+
+	@ExceptionHandler
+	public String exp(HttpServletRequest request, Exception ex) {
+
+		request.setAttribute("ex", ex);
+		ex.printStackTrace();
+		return "error";
+	}
+}

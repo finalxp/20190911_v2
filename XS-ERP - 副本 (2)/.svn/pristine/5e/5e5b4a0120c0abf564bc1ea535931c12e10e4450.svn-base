@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	
+	<style>
+		.underline {padding-bottom:5px; border-bottom:5px solid #cd7f30;}
+		.underline2 {padding-bottom:5px; border-bottom:5px solid #fff;}
+	</style>
+</head>
+<body>
+<div class="easyui-layout" style="height:550px;" layout:fragment="content">
+	<div th:replace="/layout/tree"></div>	
+	<div data-options="region:'center'" class="easyui-tabs" id="contents">
+		<div class="aligncenter" id="about" align="center" title="系统主页">
+			<h1 class="aligncenter">
+			<span class="underline">关于效生</span></h1>
+			<h4 style="padding-top: 15px; line-height: 30px;">
+				世界领先的安保公司<br>
+				拥有世界领先的声纹识别技术经验丰富的团队——美国和英国都拥有研发部门和实验室产品是世界上为数不多的已经进入商用的企业
+			</h4>
+		</div>
+	</div>
+</div>
+</body>
+</html>

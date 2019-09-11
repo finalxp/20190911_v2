@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <!-- xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout"> -->
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/themes/color.css">
+	<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/employee.js"></script>
+</head>
+<body id="body">
+<!-- 
+<div class="easyui-layout" style="height:650px;"> -->
+ 	<div  style="width:100%;hight:100%">
+		<table id="employee_table" title="员工管理" class="easyui-datagrid" 
+				pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+		</table>
+	
+		<div id="toolbar">
+			<div  style="margin-bottom:5px"> 
+				部门：<input class="easyui-combobox" id="rwlb" style="width:100px" data-options="valueField:'id', textField:'text', panelHeight:'auto'">
+				员工ID：<select class="easyui-combobox" panelHeight="auto" style="width:110px">
+				<option value="">All</option>
+				<option value="0">1</option>
+				<option value="1">2</option>
+				<option value="3">3</option>
+				</select>
+				开始时间：<input name="startdate" class="easyui-datebox" value="01/01/2019" style="width:110px;"/> 
+				结束时间：<input name="enddate" class="easyui-datebox" value="07/01/2019" style="width:110px;"/> 
+				&nbsp&nbsp<a class="easyui-linkbutton" iconCls="icon-search" onclick="findEmployee();">查询员工</a> 
+				&nbsp<a class="easyui-linkbutton" iconCls="icon-add" onclick="newUser();">添加员工</a>
+				&nbsp<a class="easyui-linkbutton" iconCls="icon-edit" onclick="editUser();">编辑员工</a>
+				&nbsp<a class="easyui-linkbutton" iconCls="icon-delete" onclick="destroyUser();">删除员工</a>
+			</div> 
+			<div style="margin-bottom:5px">
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

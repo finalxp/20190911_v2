@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<script type="text/javascript" src="/js/employee.js"></script>
+	
+</head>
+<body id="body">
+<div layout:fragment="content">
+<div class="easyui-layout" style="height:650px;">
+	<div th:replace="~{layout/tree}"></div>	
+	<div data-options="region:'center'">
+		<table id="employee_table" title="员工管理" class="easyui-datagrid" url="get_users.php" toolbar="#toolbar"
+				pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+			<thead>
+				<tr>
+					<th id="geiwohidden" align="center" field="id" hidden="hidden"></th>
+					<th align="center" field="empNo" width="50">员工编号</th>
+					<th align="center" field="empName" width="50">员工姓名</th>
+					<th align="center" field="sex" width="50">性别</th>
+					<th align="center" field="phoneNo" width="50">电话</th>
+					<th align="center" field="birthday" width="40">生日</th>
+					<th align="center" field="nickname" width="50">昵称</th>
+					<th align="center" field="avatarUrl" width="50">头像存放地址</th>
+					<th align="center" field="enrolled" width="50">声纹是否注册</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${#lists.isEmpty(allEmployees)}" class="btn-warning">
+					<td colspan="4" align="center">No employee Yet!!!</td>
+				</tr>
+				<tr th:each="emp:${allEmployees}">
+					<td th:text="${emp.id}"></td>
+					<td th:text="${emp.empNo}"></td>
+					<td th:text="${emp.empName}"></td>
+					<td th:text="${emp.sex}"></td>
+					<td th:text="${emp.phoneNo}"></td>
+					<td th:text="${#dates.format(emp.birthday,'yyyy-MM-dd')}"></td>
+					<td th:text="${emp.nickname}"></td>
+					<td th:text="${emp.avatarUrl}"></td>
+					<td th:text="${emp.enrolled}"></td>
+				</tr>
+			
+			
+			</tbody>
+		</table>
+		<div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+			<form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+				<h3>User Information</h3>
+				<div style="margin-bottom:10px">
+					<input name="firstname" class="easyui-textbox" required="true" label="First Name:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="lastname" class="easyui-textbox" required="true" label="Last Name:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="phone" class="easyui-textbox" required="true" label="Phone:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="email" class="easyui-textbox" required="true" validType="email" label="Email:" style="width:100%">
+				</div>
+			</form>
+		</div>
+		<div id="toolbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+		</div>
+		
+		<div id="dlg-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
+		</div>
+	</div>
+</div>
+<!-- 添加员工弹框begin -->
+<div id="w_addEmployee" class="easyui-window" data-options="modal:true,closed:true,iconCls:'icon-save'" 
+		style="width:300px;height:308px;padding:5px;">
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;">
+			
+			<form id="form_addEmployee" onsubmit="return checkAddReturn()" method="post" th:object="${employeeItem}" th:action="@{/employee/addEmployee}">
+				<table>
+					<tr>
+						<td><input class="id" type="hidden"></td>
+					</tr>
+					<tr>
+						<td>员工编号：</td>
+						<td>
+							<input class="empNo" name="empNo" type="text" th:field="*{empNo}" placeholder="请输入员工编号">
+							
+						</td>
+					</tr>
+					<tr id="addFiled">
+						<td th:if="${addEmployee eq 'unsuccess'}" clospan="2">
+							员工号存在
+						</td>
+					</tr>
+					<tr>
+						<td class="empPassword_text">初始密码：</td>
+						<td><input class="empPassword" name="empPassword" th:field="*{empPassword}" type="text" placeholder="请输入初始密码"/></td>
+					</tr>
+					<tr>
+						<td>员工姓名：</td>
+						<td><input class="empName" name="empName" th:field="*{empName}" type="text" placeholder="请输入员工姓名"></td>
+					</tr>
+					<tr>
+					
+					
+						<td>性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</td>
+						<td>
+							<select class="sex" name="sex" th:field="*{sex}" style="width:175px;height:25px;border:1px solid #ccc;" >
+								<option selected value="">请选择:</option>
+								<option value="M">男</option>
+								<option value="F">女</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话：</td>
+						<td><input class="phoneNo" name="phoneNo" th:field="*{phoneNo}" type="text" placeholder="请输入员工电话"></td>
+					</tr>
+					<tr>
+						<td>生&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日：</td>
+						<td><input class="birthday" name="birthday" th:field="*{birthday}" type="date" style="width:175px; "></td>
+					</tr>
+					<tr>
+						<td>昵&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp称：</td>
+						<td><input class="nickname" name="nickname" th:field="*{nickname}" type="text" placeholder="请输入用户昵称"></td>
+					</tr>
+				</table>
+				
+				<div data-options="region:'south', border:false" style="text-align:center; padding:5px 0 0;">
+					<button id="btn_addEmployee" class="easyui-linkbutton btnSave" data-options="iconCls:'icon-ok'" 
+						style="width:80px" type="submit">保存</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<a class="easyui-linkbutton btnSave" data-options="iconCls:'icon-cancel'" style="width:80px"
+						onclick="close_window()">取消</a>
+				</div>
+			</form>
+		</div>
+		
+	</div>
+</div>
+<!-- 添加员工弹框end -->
+<!-- 修改员工弹框begin -->
+<div id="w_editEmployee" class="easyui-window" data-options="modal:true,closed:true,iconCls:'icon-edit'" 
+		style="width:300px;height:288px;padding:5px;">
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;">
+			
+			<form id="form_editEmployee" onsubmit="return checkEditReturn()" method="post" th:object="${employeeItem}" th:action="@{/employee/editEmployee}">
+				<table>
+					<tr>
+						<td><input class="id" type="hidden" th:field="*{id}"></td>
+					</tr>
+					<tr>
+						<td>员工编号：</td>
+						<td><input class="empNo" type="text" th:field="*{empNo}" placeholder="请输入员工编号"></td>
+					</tr>
+					<tr>
+						<td>员工姓名：</td>
+						<td><input class="empName" type="text" th:field="*{empName}" placeholder="请输入员工姓名"></td>
+					</tr>
+					<tr>
+						<td>性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</td>
+						<td>
+							<select class="sex" th:field="*{sex}" style="width:175px;height:25px;border:1px solid #ccc;" >
+								<option selected value="">请选择:</option>
+								<option value="M">男</option>
+								<option value="F">女</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话：</td>
+						<td><input class="phoneNo" type="text" th:field="*{phoneNo}" placeholder="请输入员工电话"></td>
+					</tr>
+					<tr>
+						<td>生&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日：</td>
+						<td><input class="birthday" type="date" th:field="*{birthday}" style="width:175px; "></td>
+					</tr>
+					<tr>
+						<td>昵&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp称：</td>
+						<td><input class="nickname" type="text" th:field="*{nickname}" placeholder="请输入用户昵称"></td>
+					</tr>
+				</table>
+				
+				<div data-options="region:'south', border:false" style="text-align:center; padding:5px 0 0;">
+					<button id="btn_addEmployee" class="easyui-linkbutton btnSave" data-options="iconCls:'icon-ok'" 
+						style="width:80px" type="submit">保存</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<a class="easyui-linkbutton btnSave" data-options="iconCls:'icon-cancel'" style="width:80px"
+						onclick="close_window()">取消</a>
+				</div>
+			</form>
+		</div>
+		
+	</div>
+</div>
+<!-- 修改员工弹框end -->
+</div>
+</body>
+</html>

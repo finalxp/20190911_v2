@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/color.css}">
+<script type="text/javascript" th:src="@{/js/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+</head>
+<body>
+	<div>
+		<form id="fquery">
+			<th:block layout:fragment="bodyQuery">
+		
+			</th:block>
+		</form>
+	</div>
+	
+	<table id="dg" class="easyui-datagrid" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+	</table>
+	<script type="text/javascript">
+		var addurl,editurl,deleteurl;
+		var dataurl;
+		var title;
+		var wWidth,wHeight;
+		var columns = [];
+		var frozenColumns = [];
+		var queryParams = {};
+		
+		var onsuccess = function(data){
+		}
+		
+		var rowStyler = function(index,row){
+		}
+		var deleteRow = function(row){
+		}
+		function onAdd(){
+			parent.showW(wWidth,wHeight,addurl,'添加');
+		}
+	    function onEdit(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				parent.showW(wWidth,wHeight,editurl + '?id=' + row.id,'编辑');
+				
+			}else{
+				alt('请选中要编辑的行!');
+			}
+		}
+		
+		function doDelete(id){
+			$.ajax({
+					url : deleteurl,
+					dataType : 'json',
+					data : {
+						"id" : id
+					},
+					type : 'POST',
+					success : function(data) {
+						if(data.retCode === '0'){
+							reload();
+						}else{
+							alt(data.retMsg);
+						}
+					},
+					error : function() {
+						alt("操作失败！");
+					}
+			});
+		}
+		
+		function onDelete(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				cf('确认删除选中行?',function(){
+					doDelete(row.id);
+				});
+			}else{
+				alt('请选中要删除的行!');
+			}
+		}
+		
+		function add(title,w,h){
+			parent.showW(w,h,addurl,title);
+		}
+		function edit(title,w,h){
+			parent.showW(w,h,editurl,title);
+		}
+		function reload(){
+			$("#dg").datagrid('reload'); 
+		}
+		function refresh(queryParams){
+			$("#dg").datagrid({
+				queryParams:queryParams
+			}); 
+		}
+		function cf(text,ok){
+			$.messager.confirm('系统提示', text, function(r){
+                if (r){
+                    if(typeof ok === "function"){
+                   	 	ok();
+                    }
+                }
+            });
+		}
+		function alt(text){
+			$.messager.alert('系统提示',text,'info');
+		}
+		var toolbar = [{
+            text:'新增',
+            iconCls:'icon-add',
+            handler:onAdd
+        },{
+            text:'修改',
+            iconCls:'icon-edit',
+            handler:onEdit
+        },'-',{
+            text:'删除',
+            iconCls:'icon-delete',
+            handler:onDelete
+        }];
+        
+		$(function(){
+			$("#dg").datagrid({
+				title:title,
+				url:dataurl,
+				singleSelect:true,
+				toolbar:toolbar,
+				columns:columns,
+				nowrap:false,
+				onLoadSuccess:onsuccess,
+				rowStyler:rowStyler
+				
+			});
+		});
+		//格式化日期
+	  	Date.prototype.format = function (format) {
+		  	var o = {
+				"M+": this.getMonth() + 1, // month
+				"d+": this.getDate(), // day
+				"h+": this.getHours(), // hour
+		        "m+": this.getMinutes(), // minute
+		        "s+": this.getSeconds(), // second
+		        "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+		        "S": this.getMilliseconds()
+		    }
+		    if (/(y+)/.test(format)){
+		    	format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		    }
+		    for (var k in o){
+		        if (new RegExp("(" + k + ")").test(format)){
+		        	format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+		        }
+		    }
+		    return format;
+		}
+	</script>
+	<th:block layout:fragment="bodyAssets">
+
+	</th:block>
+</body>
+</html>

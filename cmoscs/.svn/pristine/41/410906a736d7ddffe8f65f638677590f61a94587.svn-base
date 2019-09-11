@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.cmos.zhongbao.dao.IModelLogDao">
+
+	<!-- 批量插入注册声纹模型信息 -->
+	<insert id="insertList" parameterType="java.util.List">
+		INSERT INTO t_model_log (enroll_id,enroll_date,create_by,engine_version,voice_location,update_type) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.enrollId},
+				#{item.enrollDate},
+				#{item.createBy},
+				#{item.engineVersion},
+				#{item.voiceLocation},
+				#{item.updateType}
+			)
+		</foreach>
+	</insert>
+
+</mapper>

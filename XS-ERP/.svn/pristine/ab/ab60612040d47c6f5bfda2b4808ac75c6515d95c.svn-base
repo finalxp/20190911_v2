@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		var saveInsert,saveUpdate;
+		if(saveOrEdit=="null"){
+			$("#createByTR").hide(); 
+			$("#updateByTR").hide(); 
+			$("#progressBar").hide(); 
+		}else{
+			$("#progressBar").hide();
+		}
+		
+	});
+	var saveOrEdit=[[${jobItem.id}]]+"";
+	function checkeInput(){
+		var rank=new RegExp(/^[0-9]*$/);
+		var jobRank =$("#jobRank").val();
+		if(rank.test(jobRank)){
+			return true;
+		}else{
+			$.messager.alert("提示","职位等级只能为0-9的纯数字！");
+			return false;
+		}
+	}
+	if(saveOrEdit=="null"){
+		saveInsert = function(){
+			if(checkeInput()){
+				doSave('/job_manager/insert');
+			}
+		};
+	}else{
+		saveUpdate = function(){
+			if(checkeInput()){
+				doSave('/job_manager/update');
+			}
+		};
+	}
+
+   
+</script>
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post">
+		<table style="border-collapse:separate; border-spacing:0px 20px;width:95%;">
+			<tr style="border-spacing:0px 0px;">
+				<td><input id="id" name="id" th:value="${jobItem.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>职位等级：</td>
+				<td colspan=3><input class="easyui-textbox" id="jobRank" name="jobRank" th:value="${jobItem.jobRank}" 
+							style="width:100%" data-options="required:true,prompt:'请输入职位级别'"></td>
+			</tr>
+			<tr>
+				<td>职位名称：</td>
+				<td colspan=3><input class="easyui-textbox" id="jobName" name="jobName" th:value="${jobItem.jobName}" 
+							style="width:100%" data-options="required:true,prompt:'请输入职位名称'"></td>
+			</tr>
+			<tr>
+				<td>职位描述：</td>
+				<td colspan=3><input class="easyui-textbox" id="jobDescri" name="jobDescri" th:value="${jobItem.jobDescri}" 
+						style="width:100%;height: 180px" multiline="true" data-options="prompt:'请输入职位描述',required:true"></td>
+			</tr>
+			<tr id="createByTR">
+				<td>创建人：</td>
+				<td><input class="easyui-textbox" id="createBy" disabled="disabled" name="createBy" th:value="${jobItem.createBy}" 
+							style="width:100%"></td>
+				<td>创建时间：</td>
+				<td><input class="easyui-datebox" id="createTime" disabled="disabled" name="createTime" th:value="${#dates.format(jobItem.createTime,'yyyy-MM-dd HH:mm:ss')}" 
+						style="width:100%"></td>
+			</tr>
+			<tr id="updateByTR">
+				<td>修改人：</td>
+				<td><input class="easyui-textbox" id="updateBy" disabled="disabled" name="updateBy" th:value="${jobItem.updateBy}" 
+							style="width:100%"></td>
+				<td>修改时间：</td>
+				<td><input class="easyui-datebox" id="updateTime" disabled="disabled" name="updateTime" th:value="${#dates.format(jobItem.updateTime,'yyyy-MM-dd hh:mm')}" 
+						style="width:100%"></td>
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>

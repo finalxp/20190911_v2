@@ -1,0 +1,40 @@
+package cn.xs.erp.controller;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.model.DepartmentItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IDepartmentService;
+
+@Controller
+@ComponentScan
+public class DepartmentController extends BaseController {
+
+	@Autowired
+	private IDepartmentService departmentService;
+
+	@RequestMapping("/department")
+	public String selectAllDepInfo(Model model){
+		return "department/index";
+	}
+	
+	@RequestMapping(value="/department/list", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<DepartmentItem> selectDepartementList(@RequestParam(value = "page", required = false) int page, @RequestParam(value = "rows", required = false) int rows){
+//		List<DepartmentItem> list =departmentService.selectAllDepInfo();
+//		for (DepartmentItem da : list) {
+//			System.out.println(da.getDepName());
+//		}
+		
+		return departmentService.selectAllDepInfo(page,rows);
+	}
+}

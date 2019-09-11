@@ -1,0 +1,64 @@
+package cn.xs.erp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.CheckinRecordItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.ICheckinRecordService;
+
+@Controller
+public class CheckinRecordController extends BaseController{
+
+	@Autowired
+	private ICheckinRecordService crService;
+	
+	@RequestMapping("/checkin_record")
+	public String checkinRecordHome(Model model){
+		return "/checkin_record/index";
+	}
+	
+	@RequestMapping("/checkin_record/add")
+	public String add(Model model){
+		return "/checkin_record/add";
+	}
+	
+	@RequestMapping("/checkin_record/edit")
+	public String edit(Model model,@RequestParam int id){
+		model.addAttribute("checkinRecordItem", crService.getCheckinRecordById(id));
+		return "/checkin_record/edit";
+	}
+	
+	@RequestMapping("/checkin_record/delete")
+	public String delete(Model model){
+		return "/checkin_record/delete";
+	}
+	
+	@RequestMapping(value="/checkin_record/list",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> listAll(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows) {
+		return crService.selectAllCheckinRecordByPage(page, rows,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	
+	@RequestMapping(value="/checkin_record/toolbarList",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> toolbarList(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows,
+			@RequestParam(value="startTime",required=false)String startTime,@RequestParam(value="endTime",required=false)String endTime) {
+		return crService.selectToolbarList(page,rows,startTime,endTime,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	@RequestMapping(value="/checkin_record/toolbarApplyList",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> toolbarApplyList(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows,
+			@RequestParam(value="startTime",required=false)String startTime,@RequestParam(value="endTime",required=false)String endTime) {
+		return crService.selectToolbarAppplyList(page,rows,startTime,endTime,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	
+	
+	
+}

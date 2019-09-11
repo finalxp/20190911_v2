@@ -1,0 +1,84 @@
+package cn.xs.erp.service.impl;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.xs.erp.dao.IDoorDao;
+import cn.xs.erp.dto.RspResultDto;
+import cn.xs.erp.dto.RspResultMessage;
+import cn.xs.erp.model.DoorItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IDoorService;
+
+import com.github.pagehelper.PageHelper;
+
+@Service
+public class DoorServiceImpl implements IDoorService {
+
+	@Autowired
+	private IDoorDao doorDao;
+
+	@Override
+	public DoorItem getDoorItemById(int Id) {
+		return doorDao.selectByPrimaryKey(Id);
+	}
+
+	@Override
+	public PageInfo<DoorItem> selectDoorByPage(int page, int pageSize) {
+		PageHelper.startPage(page, pageSize);
+		List<DoorItem> docs = doorDao.selectAll();
+		PageInfo<DoorItem> pageInfo = new PageInfo<>(docs);
+		return pageInfo;
+	}
+
+	@Override
+	public PageInfo<DoorItem> selectDoorByPage(Integer page, Integer rows,String doorNo, String doorName) {
+		PageHelper.startPage(page,rows);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("doorNo", doorNo);
+		map.put("doorName", doorName);
+		List<DoorItem> list = doorDao.selectByDoorNoAndDoorName(map);
+		PageInfo<DoorItem> pageInfo = new PageInfo<DoorItem>(list);
+		return pageInfo;
+	}
+	
+	@Override
+	public RspResultDto addDoor(DoorItem door,int userID) {
+		door.setCreateBy(userID);
+		door.setCreateTime(new Date());
+		if (doorDao.insertSelective(door)>0) {
+			return new RspResultDto(RspResultMessage.AddDoorSuccess);
+		}else {
+			return new RspResultDto(RspResultMessage.AddDoorFailed);
+		}
+	}
+
+	@Override
+	public RspResultDto editDoor(DoorItem doorItem,int userID) {
+		
+		doorItem.setUpdateBy(userID);
+		doorItem.setUpdateTime(new Date());
+		int i = doorDao.updateByPrimaryKeySelective(doorItem);
+		if (i>0) {
+			return new RspResultDto(RspResultMessage.EditDoorSuccess);
+		}else {
+			return new RspResultDto(RspResultMessage.EditDoorFailed);
+		}
+	}
+
+	@Override
+	public RspResultDto deleteDoor(int id) {
+		int i = doorDao.deleteByPrimaryKey(id);
+		if (i>0) {
+			return new RspResultDto(RspResultMessage.DeleteDoorSuccess);
+		}else {
+			return new RspResultDto(RspResultMessage.DeleteDoorFailed);
+		}
+	}
+
+}

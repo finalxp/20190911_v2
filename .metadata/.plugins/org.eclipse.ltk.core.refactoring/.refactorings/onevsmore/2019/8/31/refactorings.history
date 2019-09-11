@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;IEnrollService.java&apos; to &apos;onevsmore/src/main/java/com.xs.onevsmore.service&apos;&#x0D;&#x0A;- Original project: &apos;onevsmore&apos;&#x0D;&#x0A;- Destination element: &apos;onevsmore/src/main/java/com.xs.onevsmore.service&apos;&#x0D;&#x0A;- Original element: &apos;com.xs.onevsmore.service.IEnrollService.java&apos;" description="Copy compilation unit" destination="/src\/main\/java&lt;com.xs.onevsmore.service" element1="/src\/main\/java&lt;com.xs.onevsmore.service{IEnrollService.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1564740792003" units="1" version="1.0"/>
+</session>

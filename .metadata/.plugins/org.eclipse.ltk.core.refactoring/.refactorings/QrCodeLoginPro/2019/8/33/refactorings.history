@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;QRCode.jar&apos; to &apos;lib&apos;&#x0D;&#x0A;- Original project: &apos;QrCodeLoginPro&apos;&#x0D;&#x0A;- Destination element: &apos;lib&apos;&#x0D;&#x0A;- Original element: &apos;QRCode.jar&apos;" description="Copy file" element1="WebContent/WEB-INF/lib/QRCode.jar" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1565840990912" target="/text1/lib" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		var saveInsert,saveUpdate;
+		if(saveOrEdit=="null"){
+			$("#createByTR").hide(); 
+			$("#updateByTR").hide(); 
+			$("#progressBar").hide(); 
+		}else{
+			$("#progressBar").hide();
+		}
+		
+	});
+	var saveOrEdit=[[${systemParameterItem.id}]]+"";
+
+	if(saveOrEdit=="null"){
+		saveInsert = function(){
+			doSave('/system_parameter/insert');
+		};
+	}else{
+		saveUpdate = function(){
+			doSave('/system_parameter/update');
+		};
+	}
+
+   
+</script>
+<div id="dlg" style="width:100%;height:100%;padding:10px 20px">
+    <div style="margin-left: 4%;font-size: 20px;color: #747c84;">系统参数信息</div>
+    <div style="width:100%;border-top: 1px solid #c5c5d0;margin-top: 5px"></div>	
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post" enctype="multipart/form-data">
+		<table style="border-collapse:separate; border-spacing:0px 15px;">
+			<tr style="border-spacing:0px 0px;">
+				<td><input id="id" name="id" th:value="${systemParameterItem.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>WiFi ssid信息：</td>
+				<td colspan="3"><input class="easyui-textbox" id=wifiSsid name="wifiSsid" th:value="${systemParameterItem.wifiSsid}" 
+							style="width:140%" data-options="required:true,prompt:'请输入WiFi ssid信息'"></td>
+			</tr>
+			<tr><td><div style="margin-top:5px"></div></td></tr>
+			<tr>
+				<td>WiFi的Mac地址：</td>
+				<td colspan="3"><input class="easyui-textbox" id="wifiMacAddr" name="wifiMacAddr" th:value="${systemParameterItem.wifiMacAddr}" 
+							style="width:100%" data-options="required:true,prompt:'请输入WiFi的Mac地址'"></td>
+			</tr>
+<!-- 			<tr><td><div style="margin-top:5px"></div></td></tr>
+			<tr id="createByTR">
+				<td>创建人：</td>
+				<td><input class="easyui-textbox" id="createBy" disabled="disabled" name="createBy" th:value="${systemParameterItem.createBy}" 
+							></td>
+				<td>创建时间：</td>
+				<td><input class="easyui-datebox" id="createTime" disabled="disabled" name="createTime" th:value="${#dates.format(systemParameterItem.createTime,'yyyy-MM-dd HH:mm:ss')}" 
+						></td>
+			</tr>
+			<tr><td><div style="margin-top:5px"></div></td></tr>
+			<tr id="updateByTR">
+				<td>修改人：</td>
+				<td><input class="easyui-textbox" id="updateBy" disabled="disabled" name="updateBy" th:value="${systemParameterItem.updateBy}" 
+							></td>
+				<td>修改时间：</td>
+				<td><input class="easyui-datebox" id="updateTime" disabled="disabled" name="updateTime" th:value="${#dates.format(systemParameterItem.updateTime,'yyyy-MM-dd hh:mm')}" 
+						></td>
+			</tr> -->
+		</table>
+	</form>
+</div>
+</th:block>
+</html>

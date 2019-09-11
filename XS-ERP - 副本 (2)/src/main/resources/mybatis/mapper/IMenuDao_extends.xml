@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IMenuDao">
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+			id,menu_name,parent_id,menu_icon,menu_path,menu_depth,create_by,create_time,update_by,update_time
+		from t_menu
+	</select>
+	<select id="getFirstLevelMenus" resultMap="BaseResultMap">
+		select
+			id,menu_name,parent_id,menu_icon,menu_path,menu_depth,create_by,create_time,update_by,update_time
+		from t_menu where menu_depth=1
+	</select>
+	<select id="getTreeMenus" resultMap="BaseResultMap">
+		select
+			id,menu_name,parent_id,menu_icon,menu_path,menu_depth,create_by,create_time,update_by,update_time
+		from t_menu WHERE menu_depth&lt;&gt;1
+	</select>
+	<select id="selectByMenuPath" resultMap="BaseResultMap" parameterType="String">
+		select
+			id,menu_name,parent_id,menu_icon,menu_path,menu_depth,create_by,create_time,update_by,update_time
+		from
+			t_menu
+		where
+			menu_path=#{urlPath}
+	</select>
+	<select id="selectMenusByEmpID" resultMap="BaseResultMap" parameterType="Integer">
+		select
+			id,menu_name,parent_id,menu_icon,menu_path,menu_depth,create_by,create_time,update_by,update_time
+		from
+			t_menu
+		where
+			id in (select menu_id from t_menu_permission where emp_id=#{id})
+	</select>
+</mapper>

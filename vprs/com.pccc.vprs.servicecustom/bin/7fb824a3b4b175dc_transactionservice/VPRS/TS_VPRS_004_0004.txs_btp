@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="pccc" category="trans" create-date="2018-10-24 15:07:55" version="6.1.0">
+  <trans id="TS_VPRS_004_0004">
+    <name>TS_VPRS_004_0004</name>
+    <description>更新音频信息表</description>
+    <timeout>0</timeout>
+    <trans-type></trans-type>
+    <transaction-type>NONE</transaction-type>
+    <business-journal-record>false</business-journal-record>
+    <system-log-record>false</system-log-record>
+    <process-flows>
+      <process-flow flow-id="com.pccc.vprs.servicecustom.__process.VPRS.VPRS_004_0004" fun-code="VPRS_004_0004"/>
+    </process-flows>
+    <ext-property/>
+  </trans>
+</configuration>

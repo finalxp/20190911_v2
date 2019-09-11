@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IMenuPermissionDao">
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_employee
+	</select>
+	<!-- 为什么返回的只能用resultMap="BaseResultMap" 而不能写成resultType="cn.xs.erp.model.EmployeeItem" -->
+	<select id="getPermissionsByEmpID" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT emp_id,menu_id FROM t_menu_permission WHERE emp_id=#{empID,jdbcType=INTEGER} ORDER BY menu_id ASC
+	</select>
+	
+</mapper>

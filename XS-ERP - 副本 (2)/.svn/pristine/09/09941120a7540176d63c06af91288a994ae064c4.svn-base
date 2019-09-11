@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/themes/color.css">
+	<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+<div class="easyui-layout" style="height:650px;">
+	<div data-options="region:'north'" style="height:65px">
+		<div class="navbar-header">
+			<span style="vertical-align: middle;display: inline-block;height: 60px"></span>
+			<img alt="效生软件科技" src="/images/logo.jpg" width="50px" height="50px" style="vertical-align: middle;">
+		</div>
+		<div>
+			<ul class="nav nav-pills  navbar-right ittcnav" style="border: 0px solid red;" th:each="menu:${allMenus}">
+				
+				<li ><a th:href="@{{path}(path=${menu.menuPath})}" th:text="${menu.menuName}"></a></li>
+				
+				<!-- <li class="enterprise"><a href="/"><span th:text="${allMeunus.}"></span></a></li>
+				<li class="devmgr"><a href="/employee">员工管理</a></li>
+				<li class="usermgr"><a href="/fist/usermgr.jsp">门禁管理</a></li>
+				<li class="syscfg"><a href="/fist/syscfg.jsp">考勤管理</a></li>
+				<li class="private"><a href="/fist/private.jsp">权限管理</a></li>
+				<li class="binddev"><a href="/fist/binddev.jsp">设备绑定</a></li>
+				<li class="log"><a href="/fist/log.jsp">日志查询</a></li> -->
+			</ul>
+		</div>
+	</div>
+	
+	<div data-options="region:'center'">
+
+
+		<table id="dg" title="My Users" class="easyui-datagrid"
+				url="get_users.php"
+				toolbar="#toolbar" pagination="true"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+			<thead>
+				<tr>
+					<th field="firstname" width="50">First Name</th>
+					<th field="lastname" width="50">Last Name</th>
+					<th field="phone" width="50">Phone</th>
+					<th field="email" width="50">Email</th>
+				</tr>
+			</thead>
+		</table>
+		<div id="toolbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+		</div>
+		
+		<div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+			<form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+				<h3>User Information</h3>
+				<div style="margin-bottom:10px">
+					<input name="firstname" class="easyui-textbox" required="true" label="First Name:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="lastname" class="easyui-textbox" required="true" label="Last Name:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="phone" class="easyui-textbox" required="true" label="Phone:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="email" class="easyui-textbox" required="true" validType="email" label="Email:" style="width:100%">
+				</div>
+			</form>
+		</div>
+		<div id="dlg-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

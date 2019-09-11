@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ResponseTemplate.java&apos; to &apos;demoTelecomApp_v2/src/main/java/com.example.utils&apos;&#x0D;&#x0A;- Original project: &apos;demoTelecomApp_v2&apos;&#x0D;&#x0A;- Destination element: &apos;demoTelecomApp_v2/src/main/java/com.example.utils&apos;&#x0D;&#x0A;- Original element: &apos;com.example.utils.ResponseTemplate.java&apos;" description="Copy compilation unit" destination="/src\/main\/java&lt;com.example.utils" element1="/src\/main\/java&lt;com.example.utils{ResponseTemplate.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1567501806543" units="1" version="1.0"/>
+</session>

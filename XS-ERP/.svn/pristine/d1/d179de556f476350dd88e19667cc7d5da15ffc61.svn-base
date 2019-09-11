@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<div style="margin-bottom: 5px">
+		开始时间：<input name="startdate" id="starttime" class="easyui-datebox"
+			value="1999/01/01" style="width: 110px;" /> 
+		结束时间：<input name="enddate" id="endtime" class="easyui-datebox"
+			value="2019/12/31" style="width: 110px;" /> 
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findLoginRecord();">查询申请</a> 
+	</div>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '系统登录日志';
+	  var dataurl = '/conlog/list';
+	  var columns = [[
+	      {field : "id",width : 100,hidden:"hidden"},
+	      {field : "empNo",width : 100,title : "员工编号",align:"center"},
+	      {field : "empName",width : 100,title : "员工姓名",align:"center"},
+	      {field : "loginTime",width : 150,title : "登录时间",formatter: formatDatebox,align:"center"},
+	      {field : "loginIp",width : 150,title : "登录IP",align:"center"},
+	      {field : "clientOs",width : 380,title : "操作系统",align:"left"},
+	      {field : "clientDevice",title : "设备信息",align:"left"}
+	  ]];
+	  var toolbar = [{}];
+	  
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd hh:mm"); //扩展的Date的format方法
+	  }
+	  
+	  //根据开始、结束时间查询下属员工申请补卡记录
+	  function findLoginRecord(){
+	  	var startTime =$("#starttime").val();
+	  	var endTime =$("#endtime").val();
+	  	refresh({  		
+		    startTime:startTime,
+		    endTime:endTime  		
+		});
+	  }
+	
+    </script>
+</th:block>
+</html>

@@ -1,0 +1,11 @@
+package cn.xs.erp.util;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class PageUtil {
+
+	public boolean isAjaxRequest(HttpServletRequest request) {
+
+		return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+	}
+}

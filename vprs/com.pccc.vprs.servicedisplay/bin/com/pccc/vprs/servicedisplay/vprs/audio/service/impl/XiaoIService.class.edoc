@@ -1,0 +1,36 @@
+<map>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.enrolSpeaker(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.enrolSpeaker(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 声纹注册接口（固定文本）&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 输入报文&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 其中包含如下参数：1.userName用户名 2.certType证件类型 3.certNo证件号码 4.userUniqueId用户唯一标识&#x0D;
+                   5.channel渠道 6.businessType商业类型 7.closeAudio输入声纹&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outMessage&lt;/b&gt; 输出报文&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;outMessage 其中包含如下参数：1.	returnCode返回码 2.	returnMsg 返回描述 3.	similarity相似度 4.	threshold 阈值&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.updateSpeaker(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.updateSpeaker(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 声纹更新接口--固定文本&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 输入报文&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 其中包含如下参数：1.userName用户名 2.certType证件类型 3.certNo证件号码 4.userUniqueId用户唯一标识&#x0D;
+                   5.channel渠道 6.businessType商业类型 7.closeAudio输入声纹&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outMessage&lt;/b&gt; 输出报文&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;outMessage 其中包含如下参数：1.	returnCode返回码 2.	returnMsg 返回描述 3.	similarity相似度 4.	threshold 阈值&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.compareSpeaker(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.compareSpeaker(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 声纹比较接口&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 输入报文&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 其中包含如下参数：1.userName用户名 2.certType证件类型 3.certNo证件号码 4.userUniqueId用户唯一标识&#x0D;
+                   5.channel渠道 6.businessType商业类型 7.closeAudio输入声纹&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outMessage&lt;/b&gt; 输出报文&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;outMessage 其中包含如下参数：1.	returnCode返回码 2.	returnMsg 返回描述 3.	similarity相似度 4.	threshold 阈值&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>XiaoIService [小I声纹识别核心算法引擎接口]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;A174669&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2017-12-15 15:27:56&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.verifySpeaker(commonj.sdo.DataObject, commonj.sdo.DataObject, java.math.BigDecimal)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.verifySpeaker(DataObject inMessage, DataObject outMessage, BigDecimal threshold)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 声纹(注册)验证接口--更新模型 固定文本模型&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 输入报文&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 其中包含如下参数：1.userName用户名 2.certType证件类型 3.certNo证件号码 4.userUniqueId用户唯一标识&#x0D;
+                   5.channel渠道 6.businessType商业类型 7.closeAudio输入声纹&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outMessage&lt;/b&gt; 输出报文&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;outMessage 其中包含如下参数：1.	returnCode返回码 2.	returnMsg 返回描述 3.	similarity相似度 4.	threshold 阈值&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.enrolSpeakerIndependent(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.service.impl.XiaoIService.enrolSpeakerIndependent(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;p&gt; 声纹注册接口（文本无关）&#x0D;
+ &lt;dl&gt;&lt;dt&gt;参数：&lt;/dt&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 输入报文&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;inMessage&lt;/b&gt; 其中包含如下参数：1.userName用户名 2.certType证件类型 3.certNo证件号码 4.userUniqueId用户唯一标识&#x0D;
+                   5.channel渠道 6.businessType商业类型 7.closeAudio输入声纹&lt;/dd&gt;&lt;dd&gt;&lt;b&gt;outMessage&lt;/b&gt; 输出报文&lt;/dd&gt;&lt;dt&gt;返回：&lt;/dt&gt;&lt;dd&gt;outMessage 其中包含如下参数：1.	returnCode返回码 2.	returnMsg 返回描述 3.	similarity相似度 4.	threshold 阈值&lt;/dd&gt;&lt;dt&gt;抛出：&lt;/dt&gt;&lt;dd&gt;Exception&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

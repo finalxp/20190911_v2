@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A174669" category="jsonmsg" create-date="2018-01-09 11:18:30" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_001_0007" message-encoding="UTF-8" name="J_REQ_VPRS_001_0007" namespace="VPRS.J_REQ_VPRS_001_0007">
+    <description></description>
+    <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="root.data.certType">
+      <description>证件类型</description>
+    </data-field>
+    <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="root.data.certNo">
+      <description>证件号码</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data.userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+    <data-field dict-id="channel" display-name="channel" is-required="false" name="channel" exist-style="" is-repeated="false" xpath="root.data.channel">
+      <description>渠道号</description>
+    </data-field>
+    <data-field dict-id="audioType" display-name="audioType" is-required="true" name="audioType" exist-style="" is-repeated="false" xpath="root.data.audioType">
+      <description>声纹类型</description>
+    </data-field>
+    <data-field dict-id="userName" display-name="userName" is-required="true" name="userName" exist-style="" is-repeated="false" xpath="root.data.userName">
+      <description>用户姓名</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

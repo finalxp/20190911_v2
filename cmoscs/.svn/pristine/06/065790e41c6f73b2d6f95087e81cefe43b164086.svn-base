@@ -1,0 +1,10 @@
+package cn.productivetech.cmos.zhongbao.controller;
+
+/**
+ * 声纹模型建模控制器
+ * @author   kenny_peng
+ * @created  2019年4月26日
+ */
+public class EnrollAudioController extends BaseController{
+
+}

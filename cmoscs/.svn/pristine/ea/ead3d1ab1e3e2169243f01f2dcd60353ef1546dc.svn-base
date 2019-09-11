@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.cmos.zhongbao.dao.IProcessAudioDao">
+	
+	<!-- 批量插入待检测声纹信息 -->
+	<insert id="insertList" parameterType="java.util.List" useGeneratedKeys="false">
+		INSERT INTO ${tableName} (agent_id,voice_location) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.agentId},
+				#{item.voiceLocation}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 判断数据库中表名是否存在 -->
+	<select id="isTableExists" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) 
+		FROM 
+			information_schema.TABLES 
+		WHERE 
+			table_schema = 'cmos_cs_db' AND 
+			table_name='${tableName}'
+	</select>
+	
+	<!-- 创建新表 -->
+	<update id="createNewTable" parameterType="String">
+		CREATE TABLE ${tableName} (
+		  id bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+		  agent_id varchar(20) NOT NULL COMMENT '坐席ID',
+		  voice_location varchar(50) NOT NULL COMMENT '音频存储位置',
+		  download_status tinyint(3) unsigned DEFAULT NULL COMMENT '下载状态“0”代表未下载，“1”下载中，2”下载完成“3”失败',
+		  download_date datetime DEFAULT NULL COMMENT '下载完成时间',
+		  download_error varchar(50) DEFAULT NULL COMMENT '下载错误原因',
+		  process_status tinyint(3) unsigned DEFAULT NULL COMMENT '处理状态“0”失败，“1”成功',
+		  process_date datetime DEFAULT NULL COMMENT '处理日期',
+		  process_result tinyint(3) unsigned DEFAULT NULL COMMENT '处理结果“0”包含坐席，“1”不包含坐席',
+		  process_error varchar(50) DEFAULT NULL COMMENT '处理错误原因',
+		  create_by bigint(20) unsigned DEFAULT NULL COMMENT '创建人',
+		  create_date datetime DEFAULT NULL COMMENT '创建时间',
+		  upate_date datetime DEFAULT NULL COMMENT '更新时间',
+		  engine_version varchar(20) DEFAULT NULL COMMENT '引擎版本',
+		  process_remark varchar(40) DEFAULT NULL COMMENT '备注',
+		  PRIMARY KEY (id),
+		  KEY idx_download_status (download_status),
+		  KEY idx_process_status (process_status),
+		  KEY idx_process_result (process_result),
+		  KEY idx_create_date (create_date),
+		  KEY idx_agent_id (agent_id)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
+	</update>
+	
+	<!-- 批量更新待检测音频信息 -->
+	<update id="updateListByPrimaryKey">
+		UPDATE t_process_audio 
+		
+		<set>
+			<foreach collection="list" item="item" index="index" separator=",">
+				<if test=""></if>
+		
+		
+		
+			</foreach>
+		</set>
+		 
+	
+	
+	</update>
+</mapper>

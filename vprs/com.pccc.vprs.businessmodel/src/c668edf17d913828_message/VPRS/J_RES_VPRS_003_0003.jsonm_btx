@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="jsonmsg" create-date="2018-07-17 13:40:31" version="6.1.0">
+  <JsonTypeDefinition id="J_RES_VPRS_003_0003" message-encoding="UTF-8" name="J_RES_VPRS_003_0003" namespace="VPRS.J_RES_VPRS_003_0003">
+    <description></description>
+    <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="root.data.returnCode">
+      <description>后台返回码</description>
+    </data-field>
+    <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="root.data.returnMsg">
+      <description>返回信息</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data.userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+    <data-field dict-id="closeAudio" display-name="closeAudio" is-required="false" name="closeAudio" exist-style="" is-repeated="false" xpath="root.data.closeAudio">
+      <description>个人最近的声纹</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:A174669 -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <insert id="insertIntoRegisterTable1" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO tbl_vprs_register_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">CLOSE_IMG,</isNotEmpty> 
+				<isNotEmpty property ="certImg">CERT_IMG,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">CERT_FACE_IMG,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">CERT_BACK_IMG,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">CERT_HEAD_IMG,</isNotEmpty>
+				<isNotEmpty property ="video">VIDEO,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="audioType">AUDIOTYPE,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">TRANS_REQUEST_MSG,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">TRANS_RESPONSE_MSG,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="score">SCORE,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">#closeImg#,</isNotEmpty>
+				<isNotEmpty property ="certImg">#certImg#,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">#certFaceImg#,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">#certBackImg#,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">#certHeadImg#,</isNotEmpty>
+				<isNotEmpty property ="video">#video#,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="audioType">#audioType#,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="score">#score#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+</sqlMap>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.cmos.zhongbao.dao.IProcessAudioDao">
+	
+	<!-- 批量插入待检测声纹信息 -->
+	<insert id="insertList" parameterType="java.util.List">
+		INSERT INTO t_process_audio (agent_id,voice_location,create_date) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.agentId},
+				#{item.voiceLocation},
+				#{item.createDate}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 判断数据库中表名是否存在 -->
+	<select id="isTableExists" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) 
+		FROM
+			information_schema.TABLES 
+		WHERE 
+			table_schema = 'cmos_cs_db' AND 
+			table_name='${tableName}'
+	</select>
+	
+	<!-- 创建新表 -->
+	<update id="createNewTable" parameterType="String">
+		CREATE TABLE ${tableName} (
+		  id bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+		  agent_id varchar(20) NOT NULL COMMENT '坐席ID',
+		  voice_location varchar(50) NOT NULL COMMENT '音频存储位置',
+		  download_status tinyint(3) unsigned DEFAULT NULL COMMENT '下载状态“0”代表未下载，“1”下载中，2”下载完成“3”失败',
+		  download_date datetime DEFAULT NULL COMMENT '下载完成时间',
+		  download_error varchar(50) DEFAULT NULL COMMENT '下载错误原因',
+		  process_status tinyint(3) unsigned DEFAULT NULL COMMENT '处理状态“0”失败，“1”成功',
+		  process_date datetime DEFAULT NULL COMMENT '处理日期',
+		  process_result tinyint(3) unsigned DEFAULT NULL COMMENT '处理结果“0”包含坐席，“1”不包含坐席',
+		  process_error varchar(50) DEFAULT NULL COMMENT '处理错误原因',
+		  create_by bigint(20) unsigned DEFAULT NULL COMMENT '创建人',
+		  create_date datetime DEFAULT NULL COMMENT '创建时间',
+		  upate_date datetime DEFAULT NULL COMMENT '更新时间',
+		  engine_version varchar(20) DEFAULT NULL COMMENT '引擎版本',
+		  process_remark varchar(40) DEFAULT NULL COMMENT '备注',
+		  PRIMARY KEY (id),
+		  KEY idx_download_status (download_status),
+		  KEY idx_process_status (process_status),
+		  KEY idx_process_result (process_result),
+		  KEY idx_create_date (create_date),
+		  KEY idx_agent_id (agent_id)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
+	</update>
+	
+	<!-- 批量更新待检测音频下载状态到下载完成 -->
+	<update id="updateDownloadingStatus" parameterType="java.util.List" useGeneratedKeys="false">
+		UPDATE t_process_audio SET
+			download_status = 1,create_date=NOW()
+		WHERE
+			agent_id in
+			<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+				#{item.agentId}
+			</foreach>
+	
+	</update>
+	
+	<!-- 批量更新待检测音频下载状态到下载完成 -->
+ 	<update id="updateDownloadedStatus" parameterType="java.util.List">
+		UPDATE t_process_audio SET
+			<foreach collection="list" item="item" index="index" open="download_status=case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.downloadStatus}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="download_date=case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.downloadDate}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="download_error=case" close="end,">
+					WHEN agent_id=#{item.agentId} then #{item.downloadError}
+			</foreach>
+			<trim suffixOverrides=",">
+			<foreach collection="list" item="item" index="index" open="upate_date=case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.upateDate}
+			</foreach>
+			</trim>
+		WHERE
+		agent_id in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item.agentId}
+		</foreach>
+			
+	</update>
+	
+	<!-- 批量更新声纹验证状态 -->
+	<update id="updateProcessStatus" parameterType="java.util.List">
+		UPDATE t_process_audio SET
+			<foreach collection="list" item="item" index="index" open="process_status =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processStatus}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="process_date =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processDate}
+			</foreach>
+			<foreach collection="list" item="item" index="index" open="process_result =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processResult}
+			</foreach>
+			<trim suffixOverrides=",">
+			<foreach collection="list" item="item" index="index" open="process_error =case" close="end,">
+				WHEN agent_id=#{item.agentId} then #{item.processError}
+			</foreach>
+			</trim>
+		WHERE
+		agent_id in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item.agentId}
+		</foreach>
+	</update>
+
+	<!-- 查询所有待处理的音频信息集合 -->
+	<select id="queryAudioItemsByUnHandle" resultMap="BaseResultMap">
+		SELECT agent_id,voice_location,download_status,download_date,download_error,process_status,process_date,process_result,process_error,
+			create_by,create_date,upate_date,engine_version,process_remark
+		FROM
+		t_process_audio
+		WHERE  
+		download_status <![CDATA[!=]]> 2 OR download_status IS NULL OR process_status <![CDATA[!=]]> 1 OR process_status IS NULL
+	</select>
+</mapper>

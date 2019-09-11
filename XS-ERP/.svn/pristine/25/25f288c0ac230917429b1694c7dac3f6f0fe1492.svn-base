@@ -1,0 +1,16 @@
+package cn.xs.erp.service;
+
+import java.util.List;
+
+import cn.xs.erp.model.CheckinRecordItem;
+import cn.xs.erp.model.PageInfo;
+
+public interface ICheckinRecordService {
+	int addCheckinRecord(CheckinRecordItem checkinRecordItem);
+	int deleteCheckinRecord(int id);
+	CheckinRecordItem getCheckinRecordById(int id);
+	List<CheckinRecordItem> selectAllCheckinRecord(int loginUser);
+	PageInfo<CheckinRecordItem> selectAllCheckinRecordByPage(Integer page,Integer rows,int loginUser);
+	PageInfo<CheckinRecordItem> selectToolbarList(Integer page,Integer rows,String startTime,String endTime,int id);
+	PageInfo<CheckinRecordItem> selectToolbarAppplyList(Integer page,Integer rows,String startTime,String endTime,int id);
+}

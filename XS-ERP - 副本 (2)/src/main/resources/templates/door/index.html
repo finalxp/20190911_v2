@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<div style="margin-bottom: 8px">
+		门编号：
+		<input class="easyui-textbox" id="doorNo" style="width: 15%"
+			data-options="valueField:'id', textField:'text', panelHeight:'auto'"/>
+		门名称：
+		<input class="easyui-textbox" id="doorName" style="width: 20%"
+			data-options="valueField:'id', textField:'text', panelHeight:'auto'"/>
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findDoor();" style="width:12%;">查询</a>
+	</div>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '门列表';
+	  var wWidth = 50;
+	  var wHeight = 95;
+	  var dataurl = '/door/list';
+	  var addurl = '/door/add';
+	  var editurl = '/door/edit';
+	  var deleteurl ='/door/delete';
+	  var columns = [[
+	      {field : "id",width : 100,hidden:"hidden"},
+	      {field : "doorNo",width : 60,title : "门编号",align:"center"},
+	      {field : "doorName",width : 80,title : "门名称",align:"center"},
+	      {field : "doorMacAddr",width : 100,title : "Mac地址",align:"center"},
+	      {field : "usePassword",width : 60,title : "是否启用密码",align:"center",
+	      	formatter:function(index,row){
+	      		if(row.usePassword==1){
+	      			return '启用密码';
+	      		}else{
+	      			return '<span style="color:red;">密码开门未启用</span>';
+	      		}
+	      	}
+	      },
+	      {field : "beginEndTime",width : 120,title : "密码开门可用时间段",align:"center",
+	      	formatter:function(index,row){
+	      		var text="";
+	      		if(row.usePassword==1){
+	      			if(row.pwdBeginTime!=null && row.pwdEndTime!=null){
+		      			return row.pwdBeginTime+'~'+row.pwdEndTime;
+		      		}else{
+		      			return '';
+		      		}
+	      		}else{
+	      			return '';
+	      		}
+	      		
+	      	}
+	      }
+	  ]];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+	  //根据条件段查询门信息
+	  function findDoor(){
+	  	var doorNo = $("#doorNo").val();
+	  	var doorName= $("#doorName").val();
+		refresh({
+			doorNo:doorNo,
+			doorName:doorName
+		});
+	  }
+    </script>
+</th:block>
+</html>

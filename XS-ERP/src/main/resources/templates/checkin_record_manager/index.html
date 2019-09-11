@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+		开始时间：<input name="startdate" id="starttime" class="easyui-datebox"
+			value="1999/01/01" style="width: 110px;" /> 
+		结束时间：<input name="enddate" id="endtime" class="easyui-datebox"
+			value="2019/12/31" style="width: 110px;" /> 
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findApplyCheckinRecord();">查询申请</a> 
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '考勤管理列表';
+	  var wWidth = 325;
+	  var wHeight = 318;
+	  var dataurl = '/checkin_record_manager/list';
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "empNo",width : 150,title : "员工编号",align:"center"},
+		            {field : "empName",width : 150,title : "员工姓名",align:"center"},
+		            {field : "checkinTime",width : 300,title : "申请补卡日期",formatter: formatDatebox,align:"center"},
+		            {field : "createTime",width : 300,title : "申请时间",formatter: formatDatebox,align:"center"},
+		            {field : "comments",width : 300,title : "申请理由",align:"left"}
+	  ]];
+	  
+	  var toolbar = [{
+            text:'批准申请',
+            iconCls:'icon-add',
+            handler:approvalApply
+        }];
+	  
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd hh:mm"); //扩展的Date的format方法
+	  }
+	  
+	  //根据开始、结束时间查询下属员工申请补卡记录
+	  function findApplyCheckinRecord(){
+	  	var startTime =$("#starttime").val();
+	  	var endTime =$("#endtime").val();
+	  	refresh({  		
+		    startTime:startTime,
+		    endTime:endTime  		
+		});
+	  }
+	  //审批下属员工申请
+	  function approvalApply(){
+		  var row = $("#dg").datagrid("getSelected");
+		  if(row!=null){
+		  	$.messager.confirm("操作提示","确定要批准 "+row.empName+" 的补卡申请吗？",function(data){
+		  	if(data){
+		  		$.ajax({
+		  			url:'/checkin_record_manager/approvalApplyCheckin',
+		  			type:'POST',
+		  			dataType:'text',
+					data:{
+						id : row.id
+					},
+					success:function(data){
+						if(data=="success"){
+							$.messager.alert("提示","操作成功！");
+							$("#dg").datagrid("reload");
+						}else{
+							$.messager.alert("提示","操作失败！");
+						}
+					},
+					error:function(){
+						$.messager.alert("提示", "请检查网络连接！");
+					}
+		  		});
+		  	  }
+		    });
+		  }else{
+		  	$.messager.alert("提示", "请先选择要修改的行，再点击“修改”按钮！");
+		  }
+	  }
+    </script>
+</th:block>
+</html>

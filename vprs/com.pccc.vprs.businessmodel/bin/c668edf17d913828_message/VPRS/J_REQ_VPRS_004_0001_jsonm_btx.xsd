@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="VPRS.J_REQ_VPRS_004_0001" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="VPRS.J_REQ_VPRS_004_0001">
+    <xs:complexType name="J_REQ_VPRS_004_0001">
+        <xs:sequence>
+            <xs:any/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

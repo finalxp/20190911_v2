@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A174669" category="jsonmsg" create-date="2018-01-10 08:53:34" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_001_0002" message-encoding="UTF-8" name="J_REQ_VPRS_001_0002" namespace="VPRS.J_REQ_VPRS_001_0002">
+    <description></description>
+    <data-field dict-id="userType" display-name="userType" is-required="true" name="userType" exist-style="" is-repeated="false" xpath="root.data.userType">
+      <description>用户类型</description>
+    </data-field>
+    <data-field dict-id="userName" display-name="userName" is-required="true" name="userName" exist-style="" is-repeated="false" xpath="root.data.userName">
+      <description>用户姓名</description>
+    </data-field>
+    <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="root.data.certType">
+      <description>证件类型</description>
+    </data-field>
+    <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="root.data.certNo">
+      <description>证件号码</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data.userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+    <data-field dict-id="channel" display-name="channel" is-required="true" name="channel" exist-style="" is-repeated="false" xpath="root.data.channel">
+      <description>渠道号</description>
+    </data-field>
+    <data-field dict-id="businessType" display-name="businessType" is-required="true" name="businessType" exist-style="" is-repeated="false" xpath="root.data.businessType">
+      <description>业务场景</description>
+    </data-field>
+    <data-field dict-id="closeAudio" display-name="closeAudio" is-required="true" name="closeAudio" exist-style="" is-repeated="false" xpath="root.data.closeAudio">
+      <description>个人近期音频</description>
+    </data-field>
+    <data-field dict-id="closeAudioFormat" display-name="closeAudioFormat" is-required="true" name="closeAudioFormat" exist-style="" is-repeated="false" xpath="root.data.closeAudioFormat">
+      <description>声纹传递形式（path/base64)</description>
+    </data-field>
+    <data-field dict-id="audioSamplingRate" display-name="audioSamplingRate" is-required="true" name="audioSamplingRate" exist-style="" is-repeated="false" xpath="root.data.audioSamplingRate">
+      <description>音频文件采样率</description>
+    </data-field>
+    <data-field dict-id="audioEncodeFormat" display-name="audioEncodeFormat" is-required="true" name="audioEncodeFormat" exist-style="" is-repeated="false" xpath="root.data.audioEncodeFormat">
+      <description>音频文件编码格式</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

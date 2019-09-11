@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/color.css}">
+<script type="text/javascript" th:src="@{/js/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<style>
+	body{overflow：hidden}
+</style>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;">
+
+			<th:block layout:fragment="bodyAssets">
+
+			</th:block>
+		</div>
+		<div data-options="region:'south',border:false"
+			style="text-align: right; padding: 5px 0 0;">
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+				onclick="save()" style="width: 80px">保存</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+				href="javascript:void(0)" onclick="closeW()" style="width: 80px">关闭</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+			var saveInsert,saveUpdate;
+			function doSave(url){
+				$('#ff').form('submit',{
+					url:url,
+					onSubmit:function(){
+	                    return $(this).form('enableValidation').form('validate');
+	                },
+	                success:function(data){
+	                	var code = new Function("return" + data)().retCode;
+	                	var message = new Function("return" + data)().retMsg;
+	                	if(code=="0"){
+	                		$.messager.alert('提示', message,"info",function(){
+	                				closeW();
+	                		});
+                		}else{
+                			$.messager.alert('提示', message,"error");
+                		}
+	                },
+	                error:function(){
+	                	alert("网络有问题啦！");
+	                }
+	          	});
+			}
+			var save = function(){
+				if(saveInsert !="" && saveInsert!=undefined){
+					saveInsert();
+				}else if(saveUpdate != "" && saveUpdate!=undefined){
+					saveUpdate();
+				}
+			};
+        	function closeW(){
+        		parent.closeW();
+        	}
+        </script>
+</body>
+</html>

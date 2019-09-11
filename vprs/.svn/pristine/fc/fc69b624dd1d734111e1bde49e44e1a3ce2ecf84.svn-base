@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:A146714 -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!--查询交易注册表信息 -->
+    <select id="queryTransRegisterData" parameterClass="java.lang.String" resultClass="com.pccc.vprs.servicecustom.transflow.TransRegisterModel">
+		select REGISTER_NO registerNo, TRANS_CODE transCode, TRANS_DESC transDesc,OPER_TYPE operType, VOL_TYPE volType from TBL_VPRS_TRANS_REGISTER where 1=1 
+	</select>
+	
+	
+	   
+	 
+	
+	
+	
+	<!--插入注册明细流水表 vprs-->
+	<insert id="insertIntoFsRegisterTable" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO tbl_vprs_fs_register_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">RISK_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userType">USER_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="audioType">AUDIOTYPE,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">TRANS_REQUEST_MSG,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">TRANS_RESPONSE_MSG,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="score">SCORE,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">#riskLevel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userType">#userType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="audioType">#audioType#,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="score">#score#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+	
+	
+	<!--插入更新明细流水表 vprs-->
+	<insert id="insertIntoFsUpdateTable" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO tbl_vprs_fs_update_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">RISK_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userType">USER_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="audioType">AUDIOTYPE,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">TRANS_REQUEST_MSG,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">TRANS_RESPONSE_MSG,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="score">SCORE,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">#riskLevel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userType">#userType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="audioType">#audioType#,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="score">#score#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+	
+	
+		<!--插入删除明细流水表 vprs-->
+	<insert id="insertIntoFsDeleteTable" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO tbl_vprs_fs_delete_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				TRANS_CODE,
+				STATUS,
+				<isNotEmpty property ="userinfo_userName">user_name,</isNotEmpty>
+				<isNotEmpty property ="userinfo_certType">cert_type,</isNotEmpty>
+				<isNotEmpty property ="userinfo_certNo">cert_no,</isNotEmpty>
+				<isNotEmpty property ="userinfo_crtChannel">crt_channel,</isNotEmpty>
+				<isNotEmpty property ="transDesc">trans_desc,</isNotEmpty>	
+				<isNotEmpty property ="userUniqueId">user_unique_id,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">trans_request_msg,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">trans_response_msg,</isNotEmpty>
+				<isNotEmpty property ="returnCode">return_code,</isNotEmpty>				
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+				#transCode#,
+				#status#,
+				<isNotEmpty property ="userinfo_userName">#userinfo_userName#,</isNotEmpty>
+				<isNotEmpty property ="userinfo_certType">#userinfo_certType#,</isNotEmpty>
+				<isNotEmpty property ="userinfo_certNo">#userinfo_certNo#,</isNotEmpty>
+				<isNotEmpty property ="userinfo_crtChannel">#userinfo_crtChannel#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>	
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>				
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+	
+	<!--插入更新明细流水表 vprs-->
+	<insert id="insertIntoFsVerifyTable" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO tbl_vprs_fs_verify_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">RISK_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userType">USER_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="audioType">AUDIOTYPE,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">TRANS_REQUEST_MSG,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">TRANS_RESPONSE_MSG,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="score">SCORE,</isNotEmpty>
+				<isNotEmpty property ="compareResult">COMPARE_RESULT,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">#riskLevel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userType">#userType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="score">#score#,</isNotEmpty>
+				<isNotEmpty property ="compareResult">#compareResult#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+	
+	
+	<!--插入验证明细流水表 vprs-->
+	<insert id="insertIntoVerifyTable" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO tbl_vprs_verify_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">CLOSE_IMG,</isNotEmpty> 
+				<isNotEmpty property ="certImg">CERT_IMG,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">CERT_FACE_IMG,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">CERT_BACK_IMG,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">CERT_HEAD_IMG,</isNotEmpty>
+				<isNotEmpty property ="video">VIDEO,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="audioType">AUDIOTYPE,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">TRANS_REQUEST_MSG,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">TRANS_RESPONSE_MSG,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="score">SCORE,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">#closeImg#,</isNotEmpty>
+				<isNotEmpty property ="certImg">#certImg#,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">#certFaceImg#,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">#certBackImg#,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">#certHeadImg#,</isNotEmpty>
+				<isNotEmpty property ="video">#video#,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="audioType">#audioType#,</isNotEmpty>
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="score">#score#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+	
+	
+	<!--更新注册明细流水表 vprs-->
+	<update id="updateRegisterTableNew" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+ 	    UPDATE 
+			tbl_vprs_register_detail 
+		SET
+		    <isNotEmpty property="returnCode">RETURN_CODE = #returnCode# ,</isNotEmpty>
+		    <isNotEmpty property="returnMsg">RETURN_MSG = #returnMsg# ,</isNotEmpty>
+		    <isNotEmpty property="score">SCORE = #score# ,</isNotEmpty>		
+			lst_upd_time = current timestamp,
+			lst_upd_date = current date 
+			
+		WHERE 1=1
+			<isNotEmpty prepend = "and" property="jnlSeqNo"> JNL_SEQ_NO=#jnlSeqNo#  </isNotEmpty> 
+ 	</update> 
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--查询注册明细流水表 vprs  根据五要素按时间查出前4条记录-->  
+   <select id="queryRegisterTable" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel" resultClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+    
+        SELECT 
+				JNL_SEQ_NO          jnlSeqNo,
+				CHANNEL_SEQ_NO      channelSeqNo,
+				CHANNEL             channel,
+				BUSINESS_TYPE       businessType,
+				TRANS_DATE          transDate,
+				TRANS_TIME          transTime,
+				TRANS_CODE          transCode,
+				TRANS_DESC          transDesc,  
+				USER_UNIQUE_ID      userUniqueId,
+				CERT_TYPE           certType,
+				USER_NAME           userName,
+				CERT_NO             certNo,
+			<!--	CLOSE_IMG           closeImg,
+				CERT_IMG            certImg,
+				CERT_FACE_IMG       certFaceImg,
+				CERT_BACK_IMG		certBackImg,
+				CERT_HEAD_IMG       certHeadImg,
+				VIDEO               video,-->
+				CLOSE_AUDIO         closeAudio,
+				AUDIOTYPE           audioType,
+				TRANS_REQUEST_MSG   transRequestMsg,
+				TRANS_RESPONSE_MSG  transResponseMsg,
+				STATUS              status,
+				RETURN_CODE         returnCode,
+				SCORE   			score,
+				RETURN_MSG          returnMsg,
+				SERVER_NODE         serverNode,
+				CRT_TIME            crtTime,
+				LST_UPD_TIME        lstUpdTime,
+				LST_UPD_DATE        lstUpdDate,
+				LST_UPD_USER        lstUpdUser,
+				SCR_LEVEL           scrLevel,
+				RESERVE_COULUMN1    reserveCoulumn1,
+                RESERVE_COULUMN2    reserveCoulumn2,
+                RESERVE_COULUMN3    reserveCoulumn3,
+                RESERVE_COULUMN4    reserveCoulumn4,
+                RESERVE_COULUMN5    reserveCoulumn5
+		FROM  TBL_VPRS_REGISTER_DETAIL
+		WHERE 1=1  
+		<isNotEmpty prepend = "and" property="certNo">   CERT_NO=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">  USER_NAME=#userName#  </isNotEmpty> 	
+		<isNotEmpty prepend = "and" property="certType">  CERT_TYPE=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="audioType"> AUDIOTYPE=#audioType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">  CHANNEL=#channel#  </isNotEmpty> 	
+		ORDER  BY TRANS_TIME DESC FETCH FIRST 4 ROWS ONLY
+    </select>
+	
+	
+	<!--注册成功后，查询注册明细流水表 vprs  根据五要素按时间查出前3条记录-->  
+   <select id="queryRegisterTableSuccess" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel" resultClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+    
+        SELECT 
+				JNL_SEQ_NO          jnlSeqNo,
+				CHANNEL_SEQ_NO      channelSeqNo,
+				CHANNEL             channel,
+				BUSINESS_TYPE       businessType,
+				TRANS_DATE          transDate,
+				TRANS_TIME          transTime,
+				TRANS_CODE          transCode,
+				TRANS_DESC          transDesc,  
+				USER_UNIQUE_ID      userUniqueId,
+				CERT_TYPE           certType,
+				USER_NAME           userName,
+				CERT_NO             certNo,
+			<!--	CLOSE_IMG           closeImg,
+				CERT_IMG            certImg,
+				CERT_FACE_IMG       certFaceImg,
+				CERT_BACK_IMG		certBackImg,
+				CERT_HEAD_IMG       certHeadImg,
+				VIDEO               video,-->
+				CLOSE_AUDIO         closeAudio,
+				AUDIOTYPE           audioType,
+				TRANS_REQUEST_MSG   transRequestMsg,
+				TRANS_RESPONSE_MSG  transResponseMsg,
+				STATUS              status,
+				RETURN_CODE         returnCode,
+				SCORE   			score,
+				RETURN_MSG          returnMsg,
+				SERVER_NODE         serverNode,
+				CRT_TIME            crtTime,
+				LST_UPD_TIME        lstUpdTime,
+				LST_UPD_DATE        lstUpdDate,
+				LST_UPD_USER        lstUpdUser,
+				SCR_LEVEL           scrLevel,
+				RESERVE_COULUMN1    reserveCoulumn1,
+                RESERVE_COULUMN2    reserveCoulumn2,
+                RESERVE_COULUMN3    reserveCoulumn3,
+                RESERVE_COULUMN4    reserveCoulumn4,
+                RESERVE_COULUMN5    reserveCoulumn5
+		FROM  TBL_VPRS_REGISTER_DETAIL
+		WHERE 1=1  
+		<isNotEmpty prepend = "and" property="certNo">   CERT_NO=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">  USER_NAME=#userName#  </isNotEmpty> 	
+		<isNotEmpty prepend = "and" property="certType">  CERT_TYPE=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="audioType"> AUDIOTYPE=#audioType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">  CHANNEL=#channel#  </isNotEmpty> 	
+		ORDER  BY TRANS_TIME DESC FETCH FIRST 3 ROWS ONLY
+    </select>
+	
+	
+	
+	
+	<!--插入验证明细流水表 vprs-->
+	<insert id="insertIntoAudioTransDetail" parameterClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+		INSERT INTO TBL_VPRS_AUDIO_TRANS_DETAIL
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="userType">USER_TYPE,</isNotEmpty>
+				<isNotEmpty property ="phoneNo">PHONE_NO,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">RISK_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="closeAudioFormat">CLOSE_AUDIO_FORMAT,</isNotEmpty>
+				<!--
+				<isNotEmpty property ="transRequestMsg">TRANS_REQUEST_MSG,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">TRANS_RESPONSE_MSG,</isNotEmpty>
+				-->
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="userType">#userType#,</isNotEmpty>
+				<isNotEmpty property ="phoneNo">#phoneNo#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+				<isNotEmpty property ="riskLevel">#riskLevel#,</isNotEmpty>
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="closeAudioFormat">#closeAudioFormat#,</isNotEmpty>
+				<!--
+				<isNotEmpty property ="transRequestMsg">#transRequestMsg#,</isNotEmpty>
+				<isNotEmpty property ="transResponseMsg">#transResponseMsg#,</isNotEmpty>
+				-->
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+	
+		<!--查询语音导入流水表-->  
+   <select id="queryAudioTransDetail" parameterClass="com.pccc.vprs.servicedisplay.bams.model.TransDetailModelVO" resultClass="com.pccc.vprs.servicecustom.transflow.TransDetailModel">
+    
+        SELECT 
+				JNL_SEQ_NO          jnlSeqNo,
+				CHANNEL_SEQ_NO      channelSeqNo,
+				CHANNEL             channel,
+				BUSINESS_TYPE       businessType,
+				TRANS_DATE          transDate,
+				TRANS_TIME          transTime,
+				TRANS_CODE          transCode,
+				TRANS_DESC          transDesc,  
+				USER_UNIQUE_ID      userUniqueId,
+				CERT_TYPE           certType,
+				USER_NAME           userName,
+				USER_TYPE			userType,
+				PHONE_NO			phoneNo,
+				CERT_NO             certNo,
+				RISK_LEVEL          riskLevel,
+				CLOSE_AUDIO         closeAudio,
+				CLOSE_AUDIO_FORMAT  closeAudioFormat,
+				TRANS_REQUEST_MSG   transRequestMsg,
+				TRANS_RESPONSE_MSG  transResponseMsg,
+				RETURN_CODE         returnCode,
+				RETURN_MSG          returnMsg,
+				SERVER_NODE         serverNode,
+				CRT_TIME            crtTime,
+				LST_UPD_TIME        lstUpdTime,
+				LST_UPD_DATE        lstUpdDate,
+				LST_UPD_USER        lstUpdUser,
+				SCR_LEVEL           scrLevel,
+				RESERVE_COULUMN1    reserveCoulumn1,
+                RESERVE_COULUMN2    reserveCoulumn2,
+                RESERVE_COULUMN3    reserveCoulumn3,
+                RESERVE_COULUMN4    reserveCoulumn4,
+                RESERVE_COULUMN5    reserveCoulumn5
+		FROM  TBL_VPRS_AUDIO_TRANS_DETAIL
+		WHERE 1=1  
+		<isNotEmpty prepend = "and" property="certNo">   CERT_NO=#certNo#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="userName">  USER_NAME=#userName#  </isNotEmpty> 	
+		<isNotEmpty prepend = "and" property="certType">  CERT_TYPE=#certType#  </isNotEmpty> 
+		<isNotEmpty prepend = "and" property="channel">  CHANNEL=#channel#  </isNotEmpty>
+		<isNotEmpty prepend = "and" property="businessType">  BUSINESS_TYPE=#businessType#  </isNotEmpty>  	
+		<isNotEmpty prepend = "and" property="startDate">
+    		<![CDATA[ 
+				TRANS_TIME  >=   #startDate#
+			]]>
+		</isNotEmpty>
+		
+		<isNotEmpty prepend = "and" property="endDate">
+			<![CDATA[ 
+				TRANS_TIME   <=  #endDate# 
+			]]>   
+		</isNotEmpty>	
+		
+		 ORDER BY TRANS_TIME DESC fetch first 100 rows only
+    </select>
+	
+</sqlMap>

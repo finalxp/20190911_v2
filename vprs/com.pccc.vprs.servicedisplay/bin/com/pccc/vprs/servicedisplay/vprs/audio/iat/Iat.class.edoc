@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.iat.Iat.insertIatInfo(commonj.sdo.DataObject, commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.vprs.model.IatInfo, com.primeton.btp.api.engine.context.IKernelServiceContext)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.iat.Iat.insertIatInfo(DataObject inMessage, DataObject outMessage, IatInfo iatinfo, IKernelServiceContext context)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.iat.Iat.audioToText(commonj.sdo.DataObject, commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.vprs.model.IatInfo)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.iat.Iat.audioToText(DataObject inMessage, DataObject outMessage, IatInfo iatinfo)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>Iat [语音识别iat,将语音转化为文本]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.pccc.vprs.servicedisplay.vprs.audio.iat.Iat&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;A174669&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2017-12-22 15:40:15&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

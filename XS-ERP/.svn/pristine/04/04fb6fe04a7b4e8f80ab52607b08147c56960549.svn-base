@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	var addOrUpdate = "edit";
+	var editurl="/employee/editEmployee";
+</script>
+	<form id="ff" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><input class="id" name="id" th:value="${eItem.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>员工编号：</td>
+				<td>
+					<input class="empNo" name="empNo" th:value="${eItem.empNo}" type="text" onkeyup="verifyUser();" disabled="disabled" placeholder="请输入员工编号">
+				</td>
+			</tr>
+			<tr id="addFiled">
+				<td colspan="2" align="center">
+					<font id="ifExist" size="3" color="red"></font>
+				</td>
+			</tr>
+			<tr>
+				<td>员工姓名：</td>
+				<td><input class="empName" name="empName" th:value="${eItem.empName}" type="text" placeholder="请输入员工姓名"></td>
+			</tr>
+			<tr>
+				<td>入职时间：</td>
+				<td><input class="hiredate" name="hiredate" th:value="${#dates.format(eItem.hiredate,'yyyy-MM-dd')}" type="date" style="width:175px; "></td>
+			</tr>
+			<tr>
+				<td>性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</td>
+				<td>
+					<select class="sex" name="sex" style="width:175px;height:25px;border:1px solid #ccc;" >
+						<option th:selected="${eItem.sex==''}">请选择:</option>
+						<option th:selected="${eItem.sex=='M'}" value="M">男</option>
+						<option th:selected="${eItem.sex=='F'}" value="F">女</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话：</td>
+				<td><input class="phoneNo" name="phoneNo" th:value="${eItem.phoneNo}" type="text" placeholder="请输入员工电话"></td>
+			</tr>
+			<tr>
+				<td>生&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日：</td>
+				<td><input class="birthday" name="birthday" th:value="${#dates.format(eItem.birthday,'yyyy-MM-dd')}" type="date" style="width:175px; "></td>
+			</tr>
+			<tr>
+				<td>昵&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp称：</td>
+				<td><input class="nickname" name="nickname" th:value="${eItem.nickname}" type="text" placeholder="请输入用户昵称"></td>
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>

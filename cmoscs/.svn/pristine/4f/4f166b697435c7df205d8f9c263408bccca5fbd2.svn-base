@@ -1,0 +1,13 @@
+package cn.productivetech.cmos.zhongbao.service;
+
+import cn.productivetech.cmos.zhongbao.model.ProcessAudioItem;
+
+/**
+ * 待验证声纹基本信息处理类
+ * @author Administrator
+ * @created 2019-04-17
+ */
+public interface IProcessAudioService extends IBaseAudioService<ProcessAudioItem> {
+
+	
+}

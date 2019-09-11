@@ -1,0 +1,62 @@
+package cn.xs.erp.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.xs.erp.dao.IDoorDao;
+import cn.xs.erp.model.DoorItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IDoorService;
+
+import com.github.pagehelper.PageHelper;
+
+@Service
+public class DoorServiceImpl implements IDoorService {
+
+	@Autowired
+	private IDoorDao doorDao;
+
+	@Override
+	public DoorItem getDoorItemById(int Id) {
+		return doorDao.selectByPrimaryKey(Id);
+	}
+
+	@Override
+	public PageInfo<DoorItem> selectDoorByPage(int page, int pageSize) {
+		PageHelper.startPage(page, pageSize);
+		List<DoorItem> docs = doorDao.selectAll();
+		PageInfo<DoorItem> pageInfo = new PageInfo<>(docs);
+		return pageInfo;
+	}
+
+	@Override
+	public PageInfo<DoorItem> selectDoorByPage(Integer page, Integer rows,String doorNo, String doorName) {
+		PageHelper.startPage(page,rows);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("doorNo", doorNo);
+		map.put("doorName", doorName);
+		List<DoorItem> list = doorDao.selectByDoorNoAndDoorName(map);
+		PageInfo<DoorItem> pageInfo = new PageInfo<DoorItem>(list);
+		return pageInfo;
+	}
+	
+	@Override
+	public int addDoor(DoorItem door) {
+		return doorDao.insertSelective(door);
+	}
+
+	@Override
+	public int editDoor(DoorItem doorItem) {
+		return doorDao.updateByPrimaryKeySelective(doorItem);
+	}
+
+	@Override
+	public int deleteDoor(int id) {
+		return doorDao.deleteByPrimaryKey(id);
+	}
+
+}

@@ -1,0 +1,17 @@
+package cn.xs.erp.service;
+
+import cn.xs.erp.model.DepartmentItem;
+import cn.xs.erp.model.PageInfo;
+
+public interface IDepartmentService {
+
+	DepartmentItem getEmployeeById(int Id);
+
+	PageInfo<DepartmentItem> selectDepartmentByPage(int page,int pagesize);
+	
+	int AddDepartment(DepartmentItem department);
+
+	DepartmentItem getDepartmentByNo(String depNo);
+	
+	
+}

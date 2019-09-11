@@ -1,0 +1,15 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+  <head>
+  <meta charset="UTF-8">
+  </head>
+<body>
+	<div title="系统管理" data-options="region:'west'" style="width: 13%; padding: 10px;" >
+		<div class="list" style="margin-left:1mm;">
+			<ul class="yiji" th:each="menu:${allMenus}" >
+				<li><a th:href="@{{path}(path=${menu.menuPath})}" th:text="${menu.menuName}"></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

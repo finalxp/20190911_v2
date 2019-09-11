@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="pccc" category="jsonmsg" create-date="2018-10-15 15:15:29" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_001_0009" message-encoding="UTF-8" name="J_REQ_VPRS_001_0009" namespace="VPRS.J_REQ_VPRS_001_0009">
+    <description></description>
+    <data-field dict-id="userType" display-name="userType" is-required="false" name="userType" exist-style="" is-repeated="false" xpath="root.data">
+      <description>用户类型</description>
+    </data-field>
+    <data-field dict-id="userName" display-name="userName" is-required="false" name="userName" exist-style="" is-repeated="false" xpath="root.data">
+      <description>用户姓名</description>
+    </data-field>
+    <data-field dict-id="certType" display-name="certType" is-required="false" name="certType" exist-style="" is-repeated="false" xpath="root.data">
+      <description>证件类型</description>
+    </data-field>
+    <data-field dict-id="certNo" display-name="certNo" is-required="false" name="certNo" exist-style="" is-repeated="false" xpath="root.data">
+      <description>证件号码</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data">
+      <description>用户唯一标识</description>
+    </data-field>
+    <data-field dict-id="channel" display-name="channel" is-required="false" name="channel" exist-style="" is-repeated="false" xpath="root.data">
+      <description>渠道号</description>
+    </data-field>
+    <data-field dict-id="businessType" display-name="businessType" is-required="false" name="businessType" exist-style="" is-repeated="false" xpath="root.data">
+      <description>业务场景</description>
+    </data-field>
+    <data-field dict-id="isDesc" display-name="isDesc" is-required="false" name="isDesc" exist-style="" is-repeated="false" xpath="root.data">
+      <description>是否倒叙</description>
+    </data-field>
+    <data-field dict-id="transDate" display-name="transDate" is-required="false" name="transDate" exist-style="" is-repeated="false" xpath="root.data">
+      <description>交易日期</description>
+    </data-field>
+    <data-field dict-id="startDate" display-name="startDate" is-required="false" name="startDate" exist-style="" is-repeated="false" xpath="root.data">
+      <description>开始时间</description>
+    </data-field>
+    <data-field dict-id="endDate" display-name="endDate" is-required="false" name="endDate" exist-style="" is-repeated="false" xpath="root.data">
+      <description>结束时间</description>
+    </data-field>
+    <data-field dict-id="callId" display-name="callId" is-required="false" name="callId" exist-style="" is-repeated="false" xpath="root.data">
+      <description>座机ID</description>
+    </data-field>
+    <data-entity display-name="page" is-repeated="false" is-required="false" name="page" type="page" xpath="root.data.page">
+      <data-field dict-id="pageBeginNo" display-name="pageBeginNo" is-required="true" name="pageBeginNo" exist-style="" is-repeated="false" xpath="root.data.page.pageBeginNo">
+        <description>开始</description>
+      </data-field>
+      <data-field dict-id="pageNO" display-name="pageNO" is-required="true" name="pageNO" exist-style="" is-repeated="false" xpath="root.data.page.pageNO">
+        <description>长度</description>
+      </data-field>
+      <data-field dict-id="isCountNum" display-name="isCountNum" is-required="true" name="isCountNum" exist-style="" is-repeated="false" xpath="root.data.page.isCountNum">
+        <description>是否记录总条数</description>
+      </data-field>
+   </data-entity>
+  </JsonTypeDefinition>
+</configuration>

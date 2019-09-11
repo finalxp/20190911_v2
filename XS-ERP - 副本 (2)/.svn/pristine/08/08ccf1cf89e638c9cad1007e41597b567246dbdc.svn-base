@@ -1,0 +1,15 @@
+package cn.xs.erp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class DoorPermissionController extends BaseController{
+	
+	@RequestMapping("/door_manager")
+	public String doorManagerHome(){
+		return "/door_manager/index";
+	}
+	
+
+}

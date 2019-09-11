@@ -1,0 +1,6 @@
+#
+#Wed Aug 16 16:12:39 CST 2017
+contribution.type=btp.servicedisplay
+componentType=com.primeton.component.contribution
+componentVersion=6.3
+autoDeploy=true

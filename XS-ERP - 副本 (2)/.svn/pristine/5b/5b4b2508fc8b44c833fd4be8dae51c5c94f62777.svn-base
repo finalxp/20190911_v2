@@ -1,0 +1,18 @@
+package cn.xs.erp.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BaseApiController {
+
+	@ExceptionHandler
+	public String exp(HttpServletRequest request, Exception ex) {
+
+		ex.printStackTrace();
+
+		return "{\"retCode\":500,\"retMsg\":\"服务器异常\"}";
+	}
+}

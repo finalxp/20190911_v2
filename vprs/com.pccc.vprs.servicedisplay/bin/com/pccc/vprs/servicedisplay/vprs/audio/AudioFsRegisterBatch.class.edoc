@@ -1,0 +1,22 @@
+<map>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.queryUserInfo(commonj.sdo.DataObject, commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.queryUserInfo(DataObject inMessage, DataObject outMessage, AudioUserInfo audioUserInfo)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.queryUserAudioInfo(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.queryUserAudioInfo(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.updateUserInfo(commonj.sdo.DataObject, commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.bams.model.AudioUserInfo)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.updateUserInfo(DataObject inMessage, DataObject outMessage, AudioUserInfo audioUserInfo)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.updateAudioInfo(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch.updateAudioInfo(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>AudioFsRegisterBatch [声纹跑批注册]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.pccc.vprs.servicedisplay.vprs.audio.AudioFsRegisterBatch&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;pccc&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-10-09 14:39:07&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

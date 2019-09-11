@@ -1,0 +1,46 @@
+package cn.xs.erp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IEmployeeService;
+
+/**
+ * 
+ * @author kenny create on 2019/1/18
+ *
+ */
+@Controller
+public class EmployeeController extends BaseController {
+
+	@Autowired
+	private IEmployeeService employeeService;
+
+	@RequestMapping("/employee")
+	public String selectAllEmpInfo(Model model) {
+		return "employee/index";
+	}
+
+	@RequestMapping("/employee/add")
+	public String addEmployee(Model model) {
+		return "employee/edit";
+	}
+
+	@RequestMapping("/employee/edit")
+	public String editEmployee(Model model, @RequestParam int id) {
+		return "employee/edit";
+	}
+
+	@RequestMapping(value = "/employee/list", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<EmployeeItem> list(@RequestParam(value = "page", required = false) int page, @RequestParam(value = "rows", required = false) int rows) {
+		return employeeService.selectEmployeeByPage(page, rows);
+	}
+}

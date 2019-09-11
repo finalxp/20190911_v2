@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<table>
+		<tr>
+			<td>职位等级范围:</td>
+			<td><input class="easyui-textbox" id="rankFrom" style="width: 60%;"
+			data-options="valueField:'id', textField:'text', panelHeight:18"></td>
+			<td>~</td>
+			<td><input class="easyui-textbox" id="rankTo" style="width: 60%;"
+			data-options="valueField:'id', textField:'text', panelHeight:18"></td>
+			<td>&nbsp&nbsp职位名称:</td>
+			<td><input id="jobName" class="easyui-textbox" style="width:100%;"/> </td>
+			<td>&nbsp&nbsp<a class="easyui-linkbutton" iconCls="icon-search" onclick="findJobItem()" style="width:100px;">查询</a></td>
+		</tr>
+	</table>
+
+	<div style="margin-bottom: 10px">
+	</div>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '职位列表';
+	  var wWidth = 50;
+	  var wHeight = 90;
+	  var dataurl = '/job_manager/list';
+	  var addurl = '/job_manager/add';
+	  var editurl = '/job_manager/edit';
+	  var deleteurl ='/job_manager/delete';
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "jobRank",width : 70,title : "职位等级",align:"center"},
+		            {field : "jobName",width : 80,title : "职位名称",align:"center"},
+		            {field : "jobDescri",width : 150,title : "职位描述",align:"center"}
+	  ]];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd"); //扩展的Date的format方法
+	  }
+
+	  function findJobItem(){
+	  	var rankFrom = $("#rankFrom").val();
+	  	var rankTo = $("#rankTo").val();
+	  	var jobName =$("#jobName").val();
+	  	refresh({  		
+			    rankFrom:rankFrom,
+			    rankTo:rankTo,
+			    jobName:jobName  		
+			});
+	  }
+	  
+    </script>
+</th:block>
+</html>

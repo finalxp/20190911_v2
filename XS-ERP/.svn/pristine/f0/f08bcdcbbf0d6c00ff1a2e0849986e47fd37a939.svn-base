@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<table>
+		<tr>
+			<td>ssid信息:</td>
+			<td><input class="easyui-textbox" id="rankFrom" style="width: 60%;"
+					data-options="valueField:'id', textField:'text', panelHeight:18"></td>
+			<td>&nbsp&nbsp Mac地址:</td>
+			<td><input id="jobName" class="easyui-textbox" style="width:100%;"/> </td>
+			<td>&nbsp&nbsp<a class="easyui-linkbutton" iconCls="icon-search" onclick="findJobItem()" style="width:100px;">查询</a></td>
+		</tr>
+	</table>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '系统参数表';
+	  var wWidth = 50;
+	  var wHeight = 60;
+	  var dataurl = '/system_parameter/list';
+	  var addurl = '/system_parameter/add';
+	  var editurl = '/system_parameter/edit';
+	  var deleteurl ='/system_parameter/delete';
+  	  var dbClickFunction=function(){
+		onEdit();
+	  }
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "wifiSsid",width : 120,title : "WiFi ssid信息",align:"center"},
+		            {field : "wifiMacAddr",width : 200,title : "WiFi的Mac地址",align:"left"},
+		            {field : "createEmpNo",width : 100,title : "创建人",align:"left"},
+		            {field : "createTime",width : 300,title : "创建时间",formatter:formatDatebox,align:"left"},
+		            {field : "updateEmpNo",width : 100,title : "修改人",align:"left"},
+		            {field : "updateTime",width : 305,title : "修改时间",formatter:formatDatebox,align:"left"}
+	  ]];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法
+	  }
+
+	  function findJobItem(){
+	  	var rankFrom = $("#rankFrom").val();
+	  	var rankTo = $("#rankTo").val();
+	  	var jobName =$("#jobName").val();
+	  	refresh({  		
+			    rankFrom:rankFrom,
+			    rankTo:rankTo,
+			    jobName:jobName  		
+			});
+	  }
+	  
+    </script>
+</th:block>
+</html>

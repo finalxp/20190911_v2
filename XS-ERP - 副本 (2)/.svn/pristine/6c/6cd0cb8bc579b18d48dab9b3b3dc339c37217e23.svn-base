@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<div id="toolbar">
+		<div style="margin-bottom: 5px">
+			门编号：<input class="easyui-textbox" id="doorNo" style="width: 100px"
+				data-options="valueField:'id', textField:'text', panelHeight:'auto'">
+			门名称：<input class="easyui-textbox" id="doorName" style="width: 100px"
+				data-options="valueField:'id', textField:'text', panelHeight:'auto'">
+			<a class="easyui-linkbutton" iconCls="icon-search" onclick="findDoor();">查询</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+			<a class="easyui-linkbutton" iconCls="icon-add" onclick="onAdd();">添加</a>&nbsp
+			<a class="easyui-linkbutton" iconCls="icon-edit" onclick="onEdit();">编辑</a>&nbsp
+			<a class="easyui-linkbutton" iconCls="icon-delete" onclick="onDelete();">删除</a> &nbsp
+			<a class="easyui-linkbutton" iconCls="icon-reload" onclick="reload();">刷新</a>
+		</div>
+	</div>
+	<script type="text/javascript" th:inline="none">
+	  var title = '门列表';
+	  var wWidth = 325;
+	  var wHeight = 328;
+	  var dataurl = '/door/list';
+	  var addurl = '/door/add';
+	  var editurl = '/door/edit';
+	  var deleteurl ='/door/delete';
+	  var columns = [[
+	      {field : "id",width : 100,hidden:"hidden"},
+	      {field : "doorNo",width : 60,title : "门编号",align:"center"},
+	      {field : "doorName",width : 80,title : "门名称",align:"center"},
+	      {field : "doorMacAddr",width : 100,title : "Mac地址",align:"center"},
+	      {field : "usePassword",width : 60,title : "是否启用密码",align:"center"},
+	      {field : "beginEndTime",width : 120,title : "密码开门可用时间段",align:"center",
+	      	formatter:function(index,row){
+	      		var text="";
+	      		if(row.pwdBeginTime!=null && row.pwdEndTime!=null){
+	      			return row.pwdBeginTime+'~'+row.pwdEndTime;
+	      		}else{
+	      			return '';
+	      		}
+	      	}
+	      }
+	  ]];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+	  
+	  function onDelete(){
+	  	var row = $('#dg').datagrid('getSelected');
+		var deleteRow,deleteurl;
+		if (row){
+			$.messager.confirm("提示", "是否确认删除门编号为:"+row.doorNo+"，门名称为："+row.doorName+"的门?",function(r){
+				if(r){
+					$.ajax({
+						url : '/door/deleteDoor',
+						dataType : 'text',
+						data : {
+							_method : "DELETE",
+							"id" : row.id
+						},
+						type : 'POST',
+						success : function(data) {
+							$.messager.alert("操作提示", "删除成功！", "info", function() {
+								var i = true;
+								if (i) {
+									reload();
+								}
+							});
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							$.messager.alert("提示", "删除失败！！");
+							alert(XMLHttpRequest.status);
+							alert(XMLHttpRequest.readyState);
+							alert(textStatus);
+						}
+					});
+				}
+			});
+		}else{
+			alt('请选中要编辑的行!');
+		}
+	  }
+
+	  //根据条件段查询门信息
+	  function findDoor(){
+	  	var doorNo = $("#doorNo").val();
+	  	var doorName= $("#doorName").val();
+	  	
+	  	$("#dg").datagrid({
+			title:title,
+			url:'/door/toolbarList',
+			queryParams: {  		
+			    doorNo:doorNo,
+			    doorName:doorName
+			},
+			singleSelect:true,
+			toolbar:"#toolbar",
+			columns:columns,
+			onLoadSuccess:onsuccess,
+			rowStyler:rowStyler
+		});
+		var pager = $('#dg').datagrid().datagrid('getPager');
+        pager.pagination({
+            buttons:[{
+                iconCls:'icon-add',
+                handler:function(){
+                    onAdd();
+                }
+            },{
+                iconCls:'icon-edit',
+                handler:function(){
+                    onEdit();
+                }
+            }]
+        });  
+	  }
+    </script>
+</th:block>
+</html>

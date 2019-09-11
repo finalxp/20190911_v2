@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.IGetSubDepUserDao">
+ 
+    <resultMap id="BaseResultMap2" type="com.example.model.User">
+       <result column="user_login_name" jdbcType="VARCHAR" property="userLoginName" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="text_number" jdbcType="VARCHAR" property="textNumber" />
+        <result column="administrator_privileges" jdbcType="INTEGER" property="administratorPrivileges" />
+        <result column="user_dep_id" jdbcType="VARCHAR" property="userDepId" />
+    </resultMap>
+ 
+    <select id="getSubUserDao" resultMap="BaseResultMap2">
+        SELECT * FROM users_telecom WHERE user_dep_id=#{depId}
+    </select>
+ 
+</mapper>

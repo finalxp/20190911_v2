@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="jsonmsg" create-date="2018-07-18 16:48:27" version="6.1.0">
+  <JsonTypeDefinition id="J_RES_VPRS_003_0004" message-encoding="UTF-8" name="J_RES_VPRS_003_0004" namespace="VPRS.J_RES_VPRS_003_0004">
+    <description></description>
+    <data-entity display-name="info" is-repeated="true" is-required="false" name="info" type="info" xpath="info">
+      <data-field dict-id="transDate" display-name="transDate" is-required="true" name="transDate" exist-style="" is-repeated="false" xpath="info.transDate">
+        <description>交易日期</description>
+      </data-field>
+      <data-field dict-id="transTime" display-name="transTime" is-required="true" name="transTime" exist-style="" is-repeated="false" xpath="info.transTime">
+        <description>交易时间</description>
+      </data-field>
+      <data-field dict-id="userName" display-name="userName" is-required="true" name="userName" exist-style="" is-repeated="false" xpath="info.userName">
+        <description>用户姓名</description>
+      </data-field>
+       <data-field dict-id="riskLevel" display-name="riskLevel" is-required="false" name="riskLevel" exist-style="" is-repeated="false" xpath="root.data.riskLevel">
+      <description>风险标识</description>
+    </data-field>
+    <data-field dict-id="userType" display-name="userType" is-required="false" name="userType" exist-style="" is-repeated="false" xpath="root.data.userType">
+      <description>用户类型</description>
+    </data-field>
+    <data-field dict-id="phoneNo" display-name="phoneNo" is-required="false" name="phoneNo" exist-style="" is-repeated="false" xpath="root.data.phoneNo">
+      <description>手机号码</description>
+    </data-field>
+      <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="info.certType">
+        <description>证件类型</description>
+      </data-field>
+      <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="info.certNo">
+        <description>证件号码</description>
+      </data-field>
+      <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="info.userUniqueId">
+        <description>用户唯一标识</description>
+      </data-field>
+      <data-field dict-id="channel" display-name="channel" is-required="true" name="channel" exist-style="" is-repeated="false" xpath="info.channel">
+        <description>渠道号</description>
+      </data-field>
+      <data-field dict-id="businessType" display-name="businessType" is-required="true" name="businessType" exist-style="" is-repeated="false" xpath="info.businessType">
+        <description>业务场景</description>
+      </data-field>
+      <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="info.returnCode">
+        <description>返回码</description>
+      </data-field>
+      <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="info.returnMsg">
+        <description>返回信息</description>
+      </data-field>
+    </data-entity>
+    <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="returnCode">
+      <description>返回码</description>
+    </data-field>
+    <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="returnMsg">
+      <description>返回信息</description>
+    </data-field>
+    <data-field dict-id="totalNum" display-name="totalNum" is-required="false" name="totalNum" exist-style="" is-repeated="false" xpath="totalNum">
+      <description>总条数</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

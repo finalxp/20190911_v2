@@ -1,0 +1,32 @@
+package com.example.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+
+import com.example.model.Department;
+
+public interface QueryDepartmentTreeMapper {
+	
+	@Results({
+		@Result(property = "department_id", column = "department_id"),
+		@Result(property = "department_name", column = "department_name"),
+		@Result(property = "department_type", column = "department_type"),
+		@Result(property = "department_sup_id", column = "department_sup_id"),
+		@Result(property = "department_sup_name", column = "department_sup_name")
+	})
+	@Select("SELECT user_dep_id FROM users_telecom WHERE NAME=#{depId}")
+	public String getSubDepMapper(String userId);
+	
+	@Results({
+		@Result(property = "department_id", column = "department_id"),
+		@Result(property = "department_name", column = "department_name"),
+		@Result(property = "department_type", column = "department_type"),
+		@Result(property = "department_sup_id", column = "department_sup_id"),
+		@Result(property = "department_sup_name", column = "department_sup_name")
+	})
+	@Select("SELECT department_sup_id FROM department_telecom WHERE department_id =#{depId}")
+	public List<Department> queryDepartmentTreeMapper(String depId);
+}

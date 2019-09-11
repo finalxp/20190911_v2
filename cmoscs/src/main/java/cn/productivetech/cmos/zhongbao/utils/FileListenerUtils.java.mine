@@ -1,0 +1,191 @@
+package cn.productivetech.cmos.zhongbao.utils;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+
+import redis.clients.jedis.Jedis;
+
+/**
+ * 语音接续文件夹监听工具类，
+ * 监听语音接续文件夹文件的变化
+ * @author: kenny_peng
+ * @created:2019-04-09
+ */
+public class FileListenerUtils {
+
+	//语音接续文件夹路径
+	private String filePath;
+	
+	//redis host地址
+	private final String REDITS_IP = "192.168.18.154";
+	
+	//redis端口
+	private final int REDITS_PORE = 6379;
+	
+	//存放已读文件
+//	private static Map<String, File> map = new HashMap<String, File>();
+	Jedis jedisMap = new Jedis(REDITS_IP, REDITS_PORE);
+	
+	/**
+	 * 构造方法
+	 */
+	public FileListenerUtils(String filePath){
+		this.filePath= filePath;
+	}
+	
+	/**
+	 * 文件监听
+	 */
+	public void fileMonitor(){
+		
+		//获取语音接续文件夹所有文件
+		File[] files = getFiles(filePath,null);
+		
+		//获取缓存中以及存在的所有文件名集合
+		List<String> existFileNames = jedisMap.lrange("fileNames", 0, -1);
+		
+		if (files != null && files.length>0) {
+			String fName = "";//存放缓存文件名字
+			
+			//如果缓存中文件与读取的个数不一样时
+			if (files.length != existFileNames.size()) {
+				
+				//当existFileNames大小为0说明缓存中没有文件
+				if (existFileNames.size() == 0) {
+					
+					//为缓存中添加已有文件对象
+					for (File file : files) {
+						addFileNameToCache(file);
+						
+						/*
+						 * 新增了txt，在此解析txt文件获取坐席ID和音频存放路径
+						 */
+						
+					}//End for
+				}else {
+					
+					//如果文件减少，删除缓存中对应的文件名
+					if (existFileNames.size() > files.length) {
+						List<String> removeFileList = new ArrayList<String>();		//要删除的文件名集合
+						Iterator<String> iterator = existFileNames.iterator();		//遍历缓存中的文件名
+						
+						while (iterator.hasNext()) {
+							boolean isRemove = true;
+							String inCacheFileName = iterator.next();
+							if (inCacheFileName != null && inCacheFileName.length() > 0) {
+								for (File file : files) {
+									fName = file.getName();
+									if (fName.equals(inCacheFileName)) {
+										isRemove=false;
+									}//End if
+								}//End for
+								if (isRemove) {
+									removeFileList.add(inCacheFileName);
+								}//End if
+							}//End if
+						}//End while
+						
+						//删除缓存中删除的文件名
+						removeDeleteFileNameInCache(removeFileList);
+					}else {
+						
+						//当缓存中有文件对象时，判断缓存文件跟读取文件是否相同
+						for (File file : files) {
+							fName = file.getName().trim();
+							boolean isCacheContainsFile = existFileNames.contains(fName);
+							if (!isCacheContainsFile) {
+								addFileNameToCache(file);
+								
+								/*
+								 * 新增了txt，在此解析txt文件获取坐席ID和音频存放路径
+								 */
+								
+							}//End if
+						}//End for
+					}
+				}
+			}
+		}else {
+			
+			//filePath路径下文件个数为空或者大小等于0时
+			if (existFileNames.size() > 0) {
+				
+				//接续文件夹为空时，删除缓存中所有的接续文件名
+				jedisMap.del("fileNames");
+			}
+		}
+	}
+
+	/**
+	 * 向缓存中添加接收到的文件名
+	 * @param fName 文件名
+	 */
+	private void addFileNameToCache(File file) {
+		String fName = file.getName();
+		jedisMap.lpush("fileNames", fName);
+		System.out.println("添加了  "+ fName);
+	}
+	
+	/**
+	 * 从缓存中删除从文件夹删除掉的文件名
+	 * @param removeFileList 要删除掉的文件名集合
+	 */
+	private void removeDeleteFileNameInCache(List<String> removeFileList) {
+		
+		//判断是否有文件删除，如果有，遍历集合删除缓存中对应的文件名
+		if (removeFileList.size() > 0) {
+			for (String string : removeFileList) {
+				jedisMap.lrem("fileNames", 1, string);
+				System.out.println("减少了文件："+string);
+				
+				
+				
+				
+			}//End for
+		}//End if
+	}
+
+	/**
+	 * 根据文件夹路径，或者文件名获取文件对象集
+	 * @param filePath2 要获取文件所在的文件夹路径
+	 * @param fileName  文件名称
+	 * @return 返回文件数组
+	 */
+	private File[] getFiles(String filePath, String fileName) {
+
+		File[] files = null;														//定义返回文件数组
+		
+		//当fileName为空时，读取文件夹全部文件，存到files中
+		if (fileName == null || fileName == "") {
+			File doc = new File(filePath);											//获取路径为filePath的文件对象
+			
+			//判断路径为filePath文件对象是否是一个文件夹，是读取文件夹内容，否则返回空
+			if (doc.isDirectory()) {
+				String[] fileNameList = doc.list();
+				if (fileNameList.length > 0) {
+					files = new File[fileNameList.length];							//定义返回文件数组的长度
+					for (int i = 0; i < fileNameList.length; i++) {
+						fileName = fileNameList[i];									//获取文件夹filePath中单个文件的文件名
+						String fileAbsPath = filePath + fileName;					//文件夹filePath中的单个文件绝对路径
+						files[i] = new File(fileAbsPath);							//获取得到的单个文件对象,存放到返回文件数组
+					}//End for
+				}//End if
+			}else {
+				return null;
+			}
+		}else {
+			
+			//当参数fileName不为空时，返回filePath文件夹路径下名为fileName的文件对象
+			String fileAbsPath =  filePath + fileName;
+			File doc = new File(filePath);
+			if (doc.isDirectory()) {
+				files = new File[1];
+				files[0] = new File(fileAbsPath);
+			}//End if
+		}
+		return files;
+	}
+}

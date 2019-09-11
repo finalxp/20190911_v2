@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="bams.J_BAMS_HEADER" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="bams.J_BAMS_HEADER">
+    <xs:complexType name="J_BAMS_HEADER">
+        <xs:sequence>
+            <xs:any/>
+            <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="globalSeqNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="S_transTime" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="channelSource" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="consumerId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

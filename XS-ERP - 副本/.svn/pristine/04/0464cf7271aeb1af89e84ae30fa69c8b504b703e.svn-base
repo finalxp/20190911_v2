@@ -1,0 +1,94 @@
+package cn.xs.erp.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.MenuItem;
+import cn.xs.erp.model.MenuPermissionItem;
+import cn.xs.erp.service.IEmployeeService;
+import cn.xs.erp.service.IMenuPermissionService;
+import cn.xs.erp.service.IMenuService;
+
+
+//@Controller
+@RestController
+public class SampController extends BaseController {
+	
+	@Autowired
+	private IEmployeeService employeeService;
+	@Autowired
+	private IMenuService menuService;
+	@Autowired
+	private IMenuPermissionService menuPermissionService;
+	
+/*	@RequestMapping("/employee")
+	public String employee(Model model) {
+		model.addAttribute("title", "welcome to emp page");
+		return "employee/index";
+	}*/
+	
+/*	@RequestMapping("/employee/list")
+	public String employeeList(Model model) {
+		model.addAttribute("title", "layout demo");
+		return "employee/list";
+	}*/
+	
+	/**
+	 * 判断新增用户empNo是否重复
+	 * @param empNo
+	 * @return
+	 */
+	@RequestMapping(value="/ifExistEmpNo",method=RequestMethod.GET)
+	public String  ifExistEmpNo(@RequestParam("empNo") String empNo){
+		EmployeeItem employeeItem=employeeService.getEmployeeByNo(empNo);
+		System.out.println("------empNo--------"+empNo);
+		if (employeeItem==null) {
+			return "success";
+		}else {
+			return "unsuccess";
+		}
+	}
+	
+	
+	@RequestMapping(value="/allMenus",method=RequestMethod.POST)
+	public List<Object> findAllMenus(HttpServletRequest request, HttpServletResponse response){
+		List<Object> listZTree = new ArrayList<Object>(); 
+		System.out.println("----777777777777--------str-------77777777777----");
+		EmployeeItem item =employeeService.getEmployeeByNo(((EmployeeItem)getSession().getAttribute(Const.LOGIN_SESSION_KEY)).getEmpNo());
+		List<MenuPermissionItem> list= menuPermissionService.getPermissionsByEmpID(item.getId());
+		List<MenuItem> listMenuItems = new ArrayList<MenuItem>();
+		for (MenuPermissionItem mpItem : list) {
+			if (menuService.getMenuItemById(mpItem.getMenuId())!=null) {
+				System.out.println(menuService.getMenuItemById(mpItem.getMenuId()).getMenuName());
+				listMenuItems.add(menuService.getMenuItemById(mpItem.getMenuId()));
+			}
+		}
+		String str="";
+		for(int i = 0; i < listMenuItems.size(); i++){
+			MenuItem menuItem = listMenuItems.get(i);
+			if(i==0){
+				str="[{\"id\":" +menuItem.getId() + ", \"parentId\":"+menuItem.getParentId()+", \"name\":\""+menuItem.getMenuName()+"\"}";//封装ztree需要格式的字符串
+			}else if (i==(listMenuItems.size()-1)) {
+				str="{\"id\":" +menuItem.getId() + ", \"parentId\":"+menuItem.getParentId()+", \"name\":\""+menuItem.getMenuName()+"\"}]";//封装ztree需要格式的字符串
+			}else {
+				str="{\"id\":" +menuItem.getId() + ", \"parentId\":"+menuItem.getParentId()+", \"name\":\""+menuItem.getMenuName()+"\"}";//封装ztree需要格式的字符串
+			}
+			System.out.println(str+"------------str-----------");
+			listZTree.add(str);
+		}
+		return listZTree;
+	}
+	
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;qrdemo20190819/src/main/java/com.validsoft.utils&apos;&#x0D;&#x0A;- Original project: &apos;QrCodeLoginPro&apos;&#x0D;&#x0A;- Destination element: &apos;qrdemo20190819/src/main/java/com.validsoft.utils&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     cn.util.TwoDimensionCode.java&#x0D;&#x0A;     cn.util.TwoDimensionCodeImage.java" description="Copy compilation units" destination="=qrdemo20190819/src\/main\/java&lt;com.validsoft.utils" element1="/src&lt;cn.util{TwoDimensionCode.java" element2="/src&lt;cn.util{TwoDimensionCodeImage.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1566209104111" units="2" version="1.0"/>
+</session>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	var url="/door/addDoor";
+	var checkWhat="doorApplyAdd";
+</script>
+	<form id="ff" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><input id="id" class="id" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>门编号&nbsp&nbsp&nbsp：</td>
+				<td>
+					<input id="doorNo" class="doorNo" name="doorNo" type="text" onkeyup="verifyDoor();" placeholder="请输入门编号">
+				</td>
+			</tr>
+			<tr id="addFiled">
+				<td colspan="2" align="center">
+					<font id="ifExist" size="3" color="red"></font>
+				</td>
+			</tr>
+			<tr>
+				<td>门名称&nbsp&nbsp&nbsp：</td>
+				<td><input id="doorName" class="doorName" name="doorName" type="text" placeholder="请输入门名称"/></td>
+			</tr>
+			<tr>
+				<td>Mac地址：</td>
+				<td><input id="doorMacAddr" class="doorMacAddr" name="doorMacAddr" type="text" placeholder="请输入门Mac地址"></td>
+			</tr>
+			<tr>
+				<td>密码开门：</td>
+				<td>
+					<select id="usePassword" class="usePassword" name="usePassword" style="width:175px;height:25px;border:1px solid #ccc;" >
+						<option selected value="">请选择:</option>
+						<option value="1">启用</option>
+						<option value="0">禁用</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>密码开门起始时间：</td>
+				<td><input id="pwdBeginTime" class="pwdBeginTime" name="pwdBeginTime" type="time" style="width:175px;"></td>
+			</tr>
+			<tr>
+				<td>密码开门结束时间：</td>
+				<td><input id="pwdEndTime" class="pwdEndTime" name="pwdEndTime" type="time" style="width:175px; "></td>
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>

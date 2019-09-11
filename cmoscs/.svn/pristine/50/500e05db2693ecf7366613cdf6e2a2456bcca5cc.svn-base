@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.cmos.zhongbao.dao.IProcessAudioDao">
+  <resultMap id="BaseResultMap" type="cn.productivetech.cmos.zhongbao.model.ProcessAudioItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+    <result column="voice_location" jdbcType="VARCHAR" property="voiceLocation" />
+    <result column="download_status" jdbcType="TINYINT" property="downloadStatus" />
+    <result column="download_date" jdbcType="TIMESTAMP" property="downloadDate" />
+    <result column="download_error" jdbcType="VARCHAR" property="downloadError" />
+    <result column="process_status" jdbcType="TINYINT" property="processStatus" />
+    <result column="process_date" jdbcType="TIMESTAMP" property="processDate" />
+    <result column="process_result" jdbcType="TINYINT" property="processResult" />
+    <result column="process_error" jdbcType="VARCHAR" property="processError" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="upate_date" jdbcType="TIMESTAMP" property="upateDate" />
+    <result column="engine_version" jdbcType="VARCHAR" property="engineVersion" />
+    <result column="process_remark" jdbcType="VARCHAR" property="processRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_id, voice_location, download_status, download_date, download_error, process_status, 
+    process_date, process_result, process_error, create_by, create_date, upate_date, 
+    engine_version, process_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_process_audio
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_process_audio
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.productivetech.cmos.zhongbao.model.ProcessAudioItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_process_audio (agent_id, voice_location, download_status, 
+      download_date, download_error, process_status, 
+      process_date, process_result, process_error, 
+      create_by, create_date, upate_date, 
+      engine_version, process_remark)
+    values (#{agentId,jdbcType=VARCHAR}, #{voiceLocation,jdbcType=VARCHAR}, #{downloadStatus,jdbcType=TINYINT}, 
+      #{downloadDate,jdbcType=TIMESTAMP}, #{downloadError,jdbcType=VARCHAR}, #{processStatus,jdbcType=TINYINT}, 
+      #{processDate,jdbcType=TIMESTAMP}, #{processResult,jdbcType=TINYINT}, #{processError,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{upateDate,jdbcType=TIMESTAMP}, 
+      #{engineVersion,jdbcType=VARCHAR}, #{processRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.productivetech.cmos.zhongbao.model.ProcessAudioItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_process_audio
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="voiceLocation != null">
+        voice_location,
+      </if>
+      <if test="downloadStatus != null">
+        download_status,
+      </if>
+      <if test="downloadDate != null">
+        download_date,
+      </if>
+      <if test="downloadError != null">
+        download_error,
+      </if>
+      <if test="processStatus != null">
+        process_status,
+      </if>
+      <if test="processDate != null">
+        process_date,
+      </if>
+      <if test="processResult != null">
+        process_result,
+      </if>
+      <if test="processError != null">
+        process_error,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="upateDate != null">
+        upate_date,
+      </if>
+      <if test="engineVersion != null">
+        engine_version,
+      </if>
+      <if test="processRemark != null">
+        process_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="agentId != null">
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceLocation != null">
+        #{voiceLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadStatus != null">
+        #{downloadStatus,jdbcType=TINYINT},
+      </if>
+      <if test="downloadDate != null">
+        #{downloadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadError != null">
+        #{downloadError,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null">
+        #{processStatus,jdbcType=TINYINT},
+      </if>
+      <if test="processDate != null">
+        #{processDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processResult != null">
+        #{processResult,jdbcType=TINYINT},
+      </if>
+      <if test="processError != null">
+        #{processError,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateDate != null">
+        #{upateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="engineVersion != null">
+        #{engineVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="processRemark != null">
+        #{processRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.productivetech.cmos.zhongbao.model.ProcessAudioItem">
+    update t_process_audio
+    <set>
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceLocation != null">
+        voice_location = #{voiceLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadStatus != null">
+        download_status = #{downloadStatus,jdbcType=TINYINT},
+      </if>
+      <if test="downloadDate != null">
+        download_date = #{downloadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadError != null">
+        download_error = #{downloadError,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null">
+        process_status = #{processStatus,jdbcType=TINYINT},
+      </if>
+      <if test="processDate != null">
+        process_date = #{processDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processResult != null">
+        process_result = #{processResult,jdbcType=TINYINT},
+      </if>
+      <if test="processError != null">
+        process_error = #{processError,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateDate != null">
+        upate_date = #{upateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="engineVersion != null">
+        engine_version = #{engineVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="processRemark != null">
+        process_remark = #{processRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.productivetech.cmos.zhongbao.model.ProcessAudioItem">
+    update t_process_audio
+    set agent_id = #{agentId,jdbcType=VARCHAR},
+      voice_location = #{voiceLocation,jdbcType=VARCHAR},
+      download_status = #{downloadStatus,jdbcType=TINYINT},
+      download_date = #{downloadDate,jdbcType=TIMESTAMP},
+      download_error = #{downloadError,jdbcType=VARCHAR},
+      process_status = #{processStatus,jdbcType=TINYINT},
+      process_date = #{processDate,jdbcType=TIMESTAMP},
+      process_result = #{processResult,jdbcType=TINYINT},
+      process_error = #{processError,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      upate_date = #{upateDate,jdbcType=TIMESTAMP},
+      engine_version = #{engineVersion,jdbcType=VARCHAR},
+      process_remark = #{processRemark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

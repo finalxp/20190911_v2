@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A174669" category="jsonmsg" create-date="2018-01-22 10:10:40" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_002_0002" message-encoding="UTF-8" name="J_REQ_VPRS_002_0002" namespace="VPRS.J_REQ_VPRS_002_0002">
+    <description></description>
+    <data-field dict-id="userType" display-name="userType" is-required="false" name="userType" exist-style="" is-repeated="false" xpath="root.data.userType">
+      <description>用户类型</description>
+    </data-field>
+    <data-field dict-id="userName" display-name="userName" is-required="false" name="userName" exist-style="" is-repeated="false" xpath="root.data.userName">
+      <description>用户姓名</description>
+    </data-field>
+    <data-field dict-id="certType" display-name="certType" is-required="false" name="certType" exist-style="" is-repeated="false" xpath="root.data.certType">
+      <description>证件类型</description>
+    </data-field>
+    <data-field dict-id="certNo" display-name="certNo" is-required="false" name="certNo" exist-style="" is-repeated="false" xpath="root.data.certNo">
+      <description>证件号码</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data.userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+    <data-field dict-id="channel" display-name="channel" is-required="true" name="channel" exist-style="" is-repeated="false" xpath="root.data.channel">
+      <description>渠道号</description>
+    </data-field>
+    <data-field dict-id="businessType" display-name="businessType" is-required="true" name="businessType" exist-style="" is-repeated="false" xpath="root.data.businessType">
+      <description>业务场景</description>
+    </data-field>
+    <data-field dict-id="text" display-name="text" is-required="true" name="text" exist-style="" is-repeated="false" xpath="root.data.text">
+      <description>需要转换的文本</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.ISystemParameterDao">
+  <select id="selectAll" resultMap="BaseResultMap">
+	SELECT a.id,a.wifi_ssid,a.wifi_mac_addr,a.create_by,b.emp_no createEmpNo,a.create_time,a.update_by,c.emp_no updateEmpNo,a.update_time
+	FROM
+	t_parameter a
+	LEFT JOIN
+	t_employee b
+	ON
+	a.create_by=b.id
+	LEFT JOIN
+	t_employee c
+	ON
+	a.update_by=c.id
+  </select>
+</mapper>

@@ -1,0 +1,38 @@
+<map>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.insertOrUpdateUserInfo(commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.bams.model.AudioInfo, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.insertOrUpdateUserInfo(DataObject inMessage, AudioInfo audioInfo, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.downloadAudioFile(commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.downloadAudioFile(DataObject inMessage, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.savaAudioInfo(commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.bams.model.AudioInfo, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.savaAudioInfo(DataObject inMessage, AudioInfo audioInfo, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>AudioCollect [语音采集处理类]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;A146901&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-07-09 10:12:41&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.queryUserAudioInfo(commonj.sdo.DataObject, commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.queryUserAudioInfo(DataObject inMessage, DataObject outMessage, DataObject pageCond)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.queryAudioTransDetail(commonj.sdo.DataObject, commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.queryAudioTransDetail(DataObject inMessage, DataObject outMessage, DataObject pageCond)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.savaAudio2DFS(commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.bams.model.AudioInfo, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.savaAudio2DFS(DataObject inMessage, AudioInfo audioInfo, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.detectAudio(commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.bams.model.AudioInfo, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.detectAudio(DataObject inMessage, AudioInfo audioInfo, DataObject outMessage)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.queryUserAudioDetail(commonj.sdo.DataObject, commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.AudioCollect.queryUserAudioDetail(DataObject inMessage, DataObject outMessage, DataObject pageCond)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

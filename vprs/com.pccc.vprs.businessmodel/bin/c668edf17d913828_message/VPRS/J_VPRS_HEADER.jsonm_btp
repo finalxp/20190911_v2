@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="pccc" category="jsonmsg" create-date="2014-10-11 11:22:49" version="6.1.0">
+  <JsonTypeDefinition id="J_BAMS_HEADER" message-encoding="UTF-8" name="J_BAMS_HEADER" namespace="bams.J_BAMS_HEADER">
+    <description></description>
+    <data-field dict-id="sessionId" display-name="sessionId" is-required="false" name="sessionId" exist-style="" is-repeated="false" xpath="root.data.sessionId">
+      <description></description>
+    </data-field>
+    <data-field dict-id="globalSeqNo" display-name="globalSeqNo" is-required="false" name="globalSeqNo" exist-style="" is-repeated="false" xpath="root.data.globalSeqNo">
+      <description></description>
+    </data-field>
+    <data-field dict-id="S_transTime" display-name="transTime" is-required="false" name="S_transTime" exist-style="" is-repeated="false" xpath="root.data.transTime">
+      <description></description>
+    </data-field>
+    <data-field dict-id="msgId" display-name="msgId" is-required="false" name="msgId" exist-style="" is-repeated="false" xpath="root.data.msgId">
+      <description></description>
+    </data-field>
+    <data-field dict-id="channelSource" display-name="channelSource" is-required="false" name="channelSource" exist-style="" is-repeated="false" xpath="root.data.channelSource">
+      <description></description>
+    </data-field>
+    <data-field dict-id="consumerId" display-name="consumerId" is-required="false" name="consumerId" exist-style="" is-repeated="false" xpath="root.data.consumerId">
+      <description></description>
+    </data-field>
+    <data-field dict-id="serviceName" display-name="serviceName" is-required="false" name="serviceName" exist-style="" is-repeated="false" xpath="root.data.serviceName">
+      <description></description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

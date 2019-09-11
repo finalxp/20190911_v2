@@ -1,0 +1,60 @@
+	var ifClick=false;
+	function checkReturn(){
+		if(ifClick){
+			return false;
+		}else if(clickHandler2()){
+			return true;
+		}
+		return false;	
+	}
+
+	function clickHandler2(){
+		var empNo= $("#empNo").val();
+		var empPassword =$("#empPassword").val();
+		var empName=$("#empName").val();
+		var sex =$("#sex option:selected").val();
+		if(empNo==""){
+			$.messager.alert("警告","员工号不能为空！");
+			return false;
+		}else if(empPassword==""){
+			$.messager.alert("警告","员工密码不能为空！");
+			return false;
+		}else if(empName==""){
+			$.messager.alert("警告","员工名字不能为空！");
+			return false;
+		}
+		return true;
+	}
+	
+	//弹出新增员工框
+	function newUser(){
+		
+		$("#w_addEmployee").window({"title" : "添加员工"}).window("open");
+		$(".id").val("");
+		$(".empNo").val("");
+		$(".empName").val("");
+		$(".sex").val("");
+		$(".phoneNo").val("");
+		$(".birthday").val("");
+		$(".nickname").val("");
+	}
+	
+	//添加员工
+	function addEmployee(){
+		
+
+	}
+	//修改员工信息
+	function editUser(){
+		
+	
+	}
+	//删除员工
+	function destroyUser(){
+		
+	}
+	//关闭窗口
+	function close_window(){
+		$("#w_addEmployee").window("close");	
+		ifClick=true;
+	}

@@ -1,0 +1,10 @@
+<map>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.fs.VprsFsVerify.queryPageVprsFsVerifyInfo(commonj.sdo.DataObject, commonj.sdo.DataObject, commonj.sdo.DataObject)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.fs.VprsFsVerify.queryPageVprsFsVerifyInfo(DataObject inMessage, DataObject outMessage, DataObject page)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>VprsFsVerify [随意说验证明细流水表]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.pccc.vprs.servicedisplay.vprs.audio.fs.VprsFsVerify&lt;/b&gt;&lt;br/&gt;&lt;p&gt; &lt;dl&gt;&lt;dt&gt;作者:&lt;/dt&gt;&lt;dd&gt;pccc&lt;/dd&gt;&lt;dt&gt;@date&lt;/dt&gt;&lt;dd&gt;2018-10-12 15:33:43&lt;/dd&gt;&lt;/dl&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

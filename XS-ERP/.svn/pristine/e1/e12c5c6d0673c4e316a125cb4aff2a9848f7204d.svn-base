@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/color.css}">
+<script type="text/javascript" th:src="@{/js/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+</head>
+<body>
+	<div>
+		<form id="fquery">
+			<th:block layout:fragment="bodyQuery">
+		
+			</th:block>
+		</form>
+	</div>
+	<table id="dg" class="easyui-datagrid" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+	</table>
+	<script type="text/javascript">
+		var addurl,editurl;
+		var dataurl;
+		var title;
+		var wWidth,wHeight;
+		var columns = [];
+		var frozenColumns = [];
+		var queryParams = {};
+		var onsuccess = function(data){
+		}
+		
+		var rowStyler = function(index,row){
+		}
+		function onAdd(){
+			parent.showW(wWidth,wHeight,addurl,'添加');
+		}
+	    function onEdit(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				parent.showW(wWidth,wHeight,editurl + '?id=' + row.id,'编辑');
+				
+			}else{
+				alt('请选中要编辑的行!');
+			}
+		}
+		function onDelete(){
+			parent.onDelete();
+		}
+		
+		function add(title,w,h){
+			parent.showW(w,h,addurl,title);
+		}
+		function edit(title,w,h){
+			parent.showW(w,h,editurl,title);
+		}
+		function reload(){
+			$("#dg").datagrid('reload'); 
+		}
+		function refresh(queryParams){
+			$("#dg").datagrid({
+				queryParams:queryParams
+			}); 
+		}
+		function cf(text,ok){
+			$.messager.confirm('系统提示', text, function(r){
+                if (r){
+                    if(typeof ok === "function"){
+                   	 	ok();
+                    }
+                }
+            });
+		}
+		function alt(text){
+			$.messager.alert('系统提示',text,'info');
+		}
+		$(function(){
+			$("#dg").datagrid({
+				title:title,
+				url:dataurl,
+				singleSelect:true,
+				toolbar:"#toolbar",
+				columns:columns,
+				onLoadSuccess:onsuccess,
+				rowStyler:rowStyler
+				
+			});
+			var pager = $('#dg').datagrid().datagrid('getPager');
+/*            pager.pagination({
+                buttons:[{
+                    iconCls:'icon-add',
+                    handler:function(){
+                        onAdd();
+                    }
+                },{
+                    iconCls:'icon-edit',
+                    handler:function(){
+                        onEdit();
+                    }
+                }]
+            });    */  
+		});
+	</script>
+	<th:block layout:fragment="bodyAssets">
+
+	</th:block>
+</body>
+</html>

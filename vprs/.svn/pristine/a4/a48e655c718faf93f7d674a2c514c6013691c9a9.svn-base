@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://www.primeton.com/btp/cfg" author="jxta" category="trans-server" create-date="" version="6.1">
+	<!--
+		交易服务器配置说明:
+		id:				交易服务器的id标识
+		name:			交易服务器的名称
+		description：	交易服务器的描述信息
+		timeout：		交易服务器的超时事件	单位：秒	取值范围：整型
+		work-threads:	交易服务器线程池配置
+			min-size:	初始化线程数大小		取值范围：大于0的整数
+			max-size:	最大线程数			取值范围：大于0的整数,且不能小于min-size的值
+			keep-alive-time:空闲线程存活时间	单位：秒	取值范围：大于0的整数
+			queue-size:	队列大小				取值范围：整数
+			rejected-policy:拒绝策略			类的全称，必须实现接口：java.util.concurrent.RejectedExecutionHandler
+		work-threads-ref：工作线程引用
+		ext-property:	扩展属性		example:<entry description="" value="testValue" key="test"/>
+		-->
+
+	<trans-server id="DefaultTransServer">
+		<name>默认交易服务器</name>
+		<description>默认的交易服务器</description>
+		<timeout>-1</timeout>
+		<work-threads>
+			<min-size>100</min-size>
+			<max-size>200</max-size>
+			<keep-alive-time>100</keep-alive-time>
+			<queue-size>150</queue-size>
+			<rejected-policy>java.util.concurrent.ThreadPoolExecutor$AbortPolicy</rejected-policy>
+		</work-threads>
+		<work-threads-ref/>
+		<ext-property>
+		</ext-property>
+	</trans-server>
+</configuration>

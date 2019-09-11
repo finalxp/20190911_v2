@@ -1,0 +1,38 @@
+package cn.productivetech.cmos.zhongbao;
+
+import cn.productivetech.cmos.zhongbao.utils.FileListenerUtils;
+
+/**
+ * 启动监听接续文件夹文件变换情况
+ * @author: Administrator
+ * @created:2019-4-10
+ */
+public class FileListenerImpl implements Runnable{
+
+	private final String FILE_PATH = "f:\\1\\";
+	private FileListenerUtils fileUtils = new FileListenerUtils(FILE_PATH);
+
+	
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(3000);				//设置3秒监听一次文件变化
+				fileUtils.fileMonitor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * main启动监听
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Thread t = new Thread(new FileListenerImpl());
+		t.setName("fileListener");
+		t.start();
+	}
+	
+}

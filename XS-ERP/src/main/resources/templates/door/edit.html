@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	$(function(){
+		var saveInsert,saveUpdate;
+		if(saveOrEdit=="0"){
+			$("#createByTR1").hide();
+			$("#updateByTR1").hide();
+			$("#createByTR2").hide();
+			$("#updateByTR2").hide();
+		}
+		
+		$("#usePassword").combobox({
+			onSelect:function(record){
+				var selected=record.value;
+				if(selected == "1"){
+					$("#pwdOpenDoorTime").show();
+				}else{
+					$("#pwdOpenDoorTime").hide();
+				}
+			}
+		
+		
+		});
+	});
+	
+	var saveOrEdit=[[${doorItem.id}]]+"";
+	function checkeInput(){
+		var usePassword=$("#usePassword option:selected").val();
+		var pwdBeginTime=$("#pwdBeginTime").val();
+		var pwdEndTime=$("#pwdEndTime").val();
+		if(usePassword==""){
+			$.messager.alert("警告", "请选择是否启用密码开门！");
+			return false;
+		}
+		if(usePassword==1){
+			if(pwdBeginTime=="" || pwdEndTime==""){
+				$.messager.alert("警告","选择启用密码开门后，必须选择密码开门开始和结束时间！");
+				return false;
+			}
+		}
+		return true;
+	}
+	if(saveOrEdit=="0"){
+		saveInsert = function(){
+			if(checkeInput()){
+				doSave('/door/insert');
+			}
+		};
+	}else{
+		saveUpdate = function(){
+			if(checkeInput()){
+				doSave('/door/update');
+			}
+		};
+	}
+</script>
+	<div style="margin-left: 4%;font-size: 20px;color: #747c84;">门信息</div>
+    <div style="width:100%;border-top: 1px solid #c5c5d0;margin-top: 5px"></div>
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post" enctype="multipart/form-data">
+		<table style="border-collapse:separate; border-spacing:0px 15px;width:95%;">
+			<tr>
+				<td><input id="id" class="id" name="id" th:value="${doorItem.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>门  编  号 : </td>
+				<td><input id="doorNo" class="easyui-textbox" name="doorNo" th:value="${doorItem.doorNo}" 
+						type="text" style="width:94%;" data-options="required:true,prompt:'请输入门编号'">
+					<font style="font-size: 16px; color: red;">*</font>
+				</td>
+				<td>门名称: </td>
+				<td><input id="doorName" class="easyui-textbox" name="doorName" th:value="${doorItem.doorName}" 
+						type="text" style="width:95%;" data-options="required:true,prompt:'请输入门名称'"/>
+					<font style="font-size: 16px; color: red;">*</font>		
+				</td>
+			</tr>
+			<tr>
+				<td>Mac地址: </td>
+				<td><input id="doorMacAddr" class="easyui-textbox" name="doorMacAddr" th:value="${doorItem.doorMacAddr}" 
+						type="text" style="width:94%;" data-options="required:true,prompt:'请输入门Mac地址'">
+					<font style="font-size: 16px; color: red;">*</font>
+				</td>
+			</tr>
+			<tr><td><a></a></td></tr>
+			<tr>
+				<td>密码开门:</td>
+				<td colspan="3">
+					<select id="usePassword" class="easyui-combobox" name="usePassword" 
+					style="width:31%;height:30px;border:1px solid #ccc;" 
+					data-options="editable:false,prompt:'请选择密码开门是否可用'">
+
+						<option th:selected="${doorItem.usePassword==''}" value=""></option>
+						<option th:selected="${doorItem.usePassword==1}" value="1">启用</option>
+						<option th:selected="${doorItem.usePassword==0}" value="0">禁用</option>
+					</select>
+					<font style="font-size: 16px; color: red;">*</font>
+				</td>
+			</tr>
+			<tr id="pwdOpenDoorTime">
+				<td colspan="2">
+					<label>密码开门启用时间:</label>
+					<input id="pwdBeginTime" class="easyui-timespinner" name="pwdBeginTime" th:value="${doorItem.pwdBeginTime}"
+						style="width:60%;">
+				</td>
+				<td colspan="2">
+					<label>密码开门结束时间:</label>
+					<input id="pwdEndTime" class="easyui-timespinner" name="pwdEndTime" th:value="${doorItem.pwdEndTime}" 
+						style="width:60%;">
+				</td>
+			</tr>
+			<tr><td><a></a></td></tr>
+			<tr id="createByTR1">
+				<td>创建人：</td>
+				<td><input id="createBy" class="easyui-textbox" name="createBy" th:value="${doorItem.createBy}"
+						style="width:100%" disabled="disabled"/></td>
+				<td>创建时间：</td>
+				<td><input id="createTime" class="easyui-datebox" type="datetime" name="createTime" th:value="${doorItem.createTime}" 
+						style="width:100%;" disabled="disabled" data-options="formatter:formatDatebox"></td>
+			</tr>
+			<tr id="updateByTR1">
+				<td>修改人：</td>
+				<td><input id="createBy" class="easyui-textbox" name="createBy" th:value="${doorItem.createBy}"
+						style="width:100%" disabled="disabled"/></td>
+				<td>修改时间：</td>
+				<td><input id="updateTime" class="easyui-datebox" type="datetime" name="updateTime" th:value="${doorItem.updateTime}" 
+						style="width:100%;" disabled="disabled" data-options="formatter:formatDatebox"></td>
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>

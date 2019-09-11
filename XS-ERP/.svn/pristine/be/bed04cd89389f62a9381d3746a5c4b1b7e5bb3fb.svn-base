@@ -1,0 +1,23 @@
+package cn.xs.erp.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.xs.erp.service.IDepartmentService;
+
+@Controller
+@ComponentScan
+public class DepartmentController extends BaseController {
+
+	@Autowired
+	private IDepartmentService departmentService;
+
+	@RequestMapping("/department")
+	public String selectAllDepInfo(Model model){
+		return "department/index";
+	}
+}

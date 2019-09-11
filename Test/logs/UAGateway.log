@@ -1,0 +1,24 @@
+2018-12-21 15:58:32,840 INFO cn.xs.log.NodeLogger:19 - ProxyServer Statup up maxthread=50: minThreads=5: timeOutMillis=5000
+2018-12-21 15:58:32,842 INFO cn.xs.log.NodeLogger:19 - ProxyServer debug=true
+2018-12-21 15:58:32,855 INFO cn.xs.log.NodeLogger:19 - Mapping =/stdBiometricLite/* to 
+2018-12-21 15:58:32,858 INFO cn.xs.log.NodeLogger:19 - Initialise DBPools
+2018-12-21 15:58:32,880 INFO org.eclipse.jetty.util.log.Log:192 - Logging initialized @1060ms
+2018-12-21 15:58:32,987 INFO spark.embeddedserver.jetty.EmbeddedJettyServer:142 - == Spark has ignited ...
+2018-12-21 15:58:32,987 INFO spark.embeddedserver.jetty.EmbeddedJettyServer:146 - >> Listening on 0.0.0.0:4567
+2018-12-21 15:58:32,989 INFO org.eclipse.jetty.server.Server:345 - jetty-9.3.z-SNAPSHOT
+2018-12-21 15:58:33,010 INFO cn.xs.log.NodeLogger:19 - DB connection pool - maxTotal=80 maxIdle=60 minIdle=10 blockeWhenExhausted=true
+2018-12-21 15:58:33,012 INFO cn.xs.log.NodeLogger:19 - Initialise Encryption
+2018-12-21 15:58:33,277 INFO org.eclipse.jetty.server.AbstractConnector:270 - Started ServerConnector@6d53affe{HTTP/1.1,[http/1.1]}{0.0.0.0:4567}
+2018-12-21 15:58:33,277 INFO org.eclipse.jetty.server.Server:403 - Started @1460ms
+2018-12-24 10:41:34,470 INFO cn.xs.log.NodeLogger:19 - ProxyServer Statup up maxthread=50: minThreads=5: timeOutMillis=5000
+2018-12-24 10:41:34,489 INFO cn.xs.log.NodeLogger:19 - ProxyServer debug=true
+2018-12-24 10:41:34,500 INFO cn.xs.log.NodeLogger:19 - Mapping =/stdBiometricLite/* to 
+2018-12-24 10:41:34,504 INFO cn.xs.log.NodeLogger:19 - Initialise DBPools
+2018-12-24 10:41:34,564 INFO org.eclipse.jetty.util.log.Log:192 - Logging initialized @2245ms
+2018-12-24 10:41:34,689 INFO cn.xs.log.NodeLogger:19 - DB connection pool - maxTotal=80 maxIdle=60 minIdle=10 blockeWhenExhausted=true
+2018-12-24 10:41:34,691 INFO cn.xs.log.NodeLogger:19 - Initialise Encryption
+2018-12-24 10:41:34,691 INFO spark.embeddedserver.jetty.EmbeddedJettyServer:142 - == Spark has ignited ...
+2018-12-24 10:41:34,691 INFO spark.embeddedserver.jetty.EmbeddedJettyServer:146 - >> Listening on 0.0.0.0:4567
+2018-12-24 10:41:34,693 INFO org.eclipse.jetty.server.Server:345 - jetty-9.3.z-SNAPSHOT
+2018-12-24 10:41:34,977 INFO org.eclipse.jetty.server.AbstractConnector:270 - Started ServerConnector@1a6cf91{HTTP/1.1,[http/1.1]}{0.0.0.0:4567}
+2018-12-24 10:41:34,977 INFO org.eclipse.jetty.server.Server:403 - Started @2661ms

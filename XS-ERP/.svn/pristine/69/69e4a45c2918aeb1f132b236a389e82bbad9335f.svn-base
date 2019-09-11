@@ -1,0 +1,105 @@
+package cn.xs.erp.controller;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IEmployeeService;
+import cn.xs.erp.util.MD5Util;
+import cn.xs.erp.util.RandomUtil;
+@Controller
+public class EmployeeController extends BaseController {
+
+	@Autowired
+	private IEmployeeService employeeService;
+
+	@RequestMapping("/employee")
+	public String selectAllEmpInfo(Model model) {
+		return "employee/index";
+	}
+
+	@RequestMapping("/employee/add")
+	public String addEmployee(Model model) {
+		return "employee/add";
+	}
+
+	@RequestMapping("/employee/edit")
+	public String editEmployee(Model model, @RequestParam int id) {
+		EmployeeItem eItem = employeeService.getEmployeeById(id);
+		model.addAttribute("eItem", eItem);
+		return "employee/edit";
+	}
+
+	@RequestMapping(value = "/employee/list", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<EmployeeItem> list(@RequestParam(value = "page", required = false) int page, @RequestParam(value = "rows", required = false) int rows) {
+		return employeeService.selectEmployeeByPage(page, rows);
+	}
+	
+	@RequestMapping("/employee/addEmployee")
+	@ResponseBody
+	public String addEmployee(EmployeeItem employeeItem) {
+		EmployeeItem employeeItem2 = employeeService.getEmployeeById((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		employeeItem.setCreateBy(employeeItem2.getId());
+		employeeItem.setIsEnable((short) 1);
+		employeeItem.setCreateTime(new Date());
+		String salt =RandomUtil.getRandomNumber(8);
+		employeeItem.setSalt(salt);//varchar(8)
+		String pwdString = MD5Util.getMD5(employeeItem.getEmpPassword() + salt);
+		employeeItem.setEmpPassword(pwdString);
+		employeeService.addEmployee(employeeItem);
+		return "success";
+	}
+	
+	@RequestMapping("/employee/editEmployee")
+	@ResponseBody
+	public String editEmployee(EmployeeItem employeeItem)throws ParseException {
+		employeeItem.setUpdateBy((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		employeeItem.setUpdateTime(new Date());
+		employeeService.updateByPrimaryKeySelective(employeeItem);
+		return "success";
+	}
+	
+	@RequestMapping(value = "/employee/deleteEmployee", method = RequestMethod.DELETE)
+	public String deleteEmpByID(int id) {
+		EmployeeItem eItem = employeeService.getEmployeeById(id);
+		eItem.setIsEnable((short) 0);
+		eItem.setResignationTime(new Date());
+		eItem.setUpdateBy((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		eItem.setUpdateTime(new Date());
+		employeeService.updateByPrimaryKeySelective(eItem);
+		return "redirect:/employee";
+	}
+
+	//根据toolbar条件查询员工呢信息
+	@RequestMapping(value="/employee/toolbarList",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<EmployeeItem> getQueryList(@RequestParam(value="depID",required=false)String depID,@RequestParam(value="empID",required=false)String empID,
+			@RequestParam(value="startTime",required=false)String startTime,@RequestParam(value="endTime",required=false)String endTime,
+			@RequestParam(value = "page", required = false) int page, @RequestParam(value = "rows", required = false) int rows){
+		return employeeService.selectEmployeeByPage(page, rows,empID,depID,startTime,endTime);
+	}
+	
+	// form表单提交 Date类型数据绑定
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
+		sFormat.setLenient(true);// 指定日期/时间解析是否宽松
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(sFormat, true));
+	}
+	
+}

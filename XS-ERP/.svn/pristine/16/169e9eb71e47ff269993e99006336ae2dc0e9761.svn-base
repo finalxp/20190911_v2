@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:40px" th:fragment="copy_header">
+            <div>
+               <div data-options="region:'north'" style="height:55px">
+					 <div class="navbar-header">
+						<span style="vertical-align: middle;display: inline-block;height: 60px"></span>
+						<img alt="效生软件科技" src="/images/logo.jpg" width="50px" height="50px" style="vertical-align: middle;">
+					</div>
+					<div id="footer">
+						<ul class="nav nav-pills  navbar-right" style="border: 0px solid red;">
+							<li ><a href="#" th:text="综合部" style="width:250px;line-height: 40px;font-size: 16px"></a></li>
+							<li ><a href="#" th:text="技术部" style="width:250px;line-height: 40px;font-size: 16px"></a></li>
+							<li ><a href="#" th:text="市场部" style="width:250px;line-height: 40px;font-size: 16px"></a></li>
+							<li ><a href="#" th:text="其他" style="width:350px;line-height: 40px;font-size: 16px"></a></li>
+						</ul>
+					</div> 
+				</div> 
+						  
+			  
+			  
+			  
+            </div>
+        </nav>
+    </body>
+</html>
+
+

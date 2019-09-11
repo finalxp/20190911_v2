@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IEmployeeDao">
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_employee
+	</select>
+	<!-- 为什么返回的只能用resultMap="BaseResultMap" 而不能写成resultType="cn.xs.erp.model.EmployeeItem" -->
+	<select id="getEmployeeByNo" resultMap="BaseResultMap" parameterType="String">
+		SELECT id,emp_no, emp_password FROM t_employee WHERE emp_no=#{empNo,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAllEmpInfo" resultMap="BaseResultMap">
+		SELECT a.id,a.emp_no, a.emp_name, a.birthday, CASE WHEN a.sex='M' THEN '男' ELSE '女' END AS sex, a.phone_no, a.avatar_url, a.nickname,
+			   CASE WHEN b.emp_id>0 THEN '已注册' ELSE '未注册' END AS enrolled 
+	    FROM 
+	      t_employee a 
+	    LEFT JOIN
+	      t_voiceprint b
+	    ON
+	      a.`id`=b.emp_id
+	    WHERE
+   		  a.is_enable=1
+	</select>
+	<update id="updateEmployeeById" parameterType="hashmap">
+		 UPDATE t_employee
+			 <trim prefix="set" suffixOverrides=",">
+			 	<if test="empNo!=null">emp_no=#{empNo},</if>
+			 	<if test="empName!=null">emp_name=#{empName},</if>
+			 	<if test="sex!=null">sex=#{sex},</if>
+			 	<if test="phoneNo!=null">phone_no=#{phoneNo},</if>
+			 	<if test="birthday!=null">birthday=#{birthday},</if>
+			 	<if test="nickname!=null">nickname=#{nickname},</if>
+			 	update_by=CONVERT(#{updateBy}, UNSIGNED INTEGER),
+				update_time=NOW()
+			 </trim>
+			 
+		 WHERE 
+		 	id=#{id}
+	
+	
+	
+	
+	</update>
+	
+</mapper>

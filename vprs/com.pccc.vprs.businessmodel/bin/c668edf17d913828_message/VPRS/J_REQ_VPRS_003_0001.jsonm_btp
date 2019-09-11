@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="jsonmsg" create-date="2018-07-09 10:08:23" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_003_0001" message-encoding="UTF-8" name="J_REQ_VPRS_003_0001" namespace="VPRS.J_REQ_VPRS_003_0001">
+    <description></description>
+    <data-field dict-id="userName" display-name="userName" is-required="true" name="userName" exist-style="" is-repeated="false" xpath="root.data.userName">
+      <description>用户姓名</description>
+    </data-field>
+    <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="root.data.certType">
+      <description>证件类型</description>
+    </data-field>
+    <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="root.data.certNo">
+      <description>证件号码</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data.userUniqueId">
+      <description>用户唯一标识,存放业代工号</description>
+    </data-field>
+    <data-field dict-id="channel" display-name="channel" is-required="true" name="channel" exist-style="" is-repeated="false" xpath="root.data.channel">
+      <description>渠道号</description>
+    </data-field>
+    <data-field dict-id="businessType" display-name="businessType" is-required="true" name="businessType" exist-style="" is-repeated="false" xpath="root.data.businessType">
+      <description>业务场景</description>
+    </data-field>
+    <data-field dict-id="closeAudio" display-name="closeAudio" is-required="true" name="closeAudio" exist-style="" is-repeated="false" xpath="root.data.closeAudio">
+      <description>个人近期音频</description>
+    </data-field>
+    <data-field dict-id="closeAudioFormat" display-name="closeAudioFormat" is-required="true" name="closeAudioFormat" exist-style="" is-repeated="false" xpath="root.data.closeAudioFormat">
+      <description>声纹传递形式（path/str)</description>
+    </data-field>
+    <data-field dict-id="riskLevel" display-name="riskLevel" is-required="false" name="riskLevel" exist-style="" is-repeated="false" xpath="root.data.riskLevel">
+      <description>风险标识</description>
+    </data-field>
+    <data-field dict-id="userType" display-name="userType" is-required="false" name="userType" exist-style="" is-repeated="false" xpath="root.data.userType">
+      <description>用户类型</description>
+    </data-field>
+    <data-field dict-id="phoneNo" display-name="phoneNo" is-required="false" name="phoneNo" exist-style="" is-repeated="false" xpath="root.data.phoneNo">
+      <description>手机号码</description>
+    </data-field>
+     <data-field dict-id="closeAudioName" display-name="closeAudioName" is-required="false" name="closeAudioName" exist-style="" is-repeated="false" xpath="root.data.closeAudioName">
+      <description>音频名称</description>
+    </data-field>
+    <data-field dict-id="batchTime" display-name="batchTime" is-required="false" name="batchTime" exist-style="" is-repeated="false" xpath="root.data.batchTime">
+      <description>批量时间</description>
+    </data-field>
+     <data-field dict-id="city" display-name="city" is-required="false" name="city" exist-style="" is-repeated="false" xpath="root.data.city">
+      <description>城市</description>
+    </data-field>
+    <data-field dict-id="nosieTest" display-name="nosieTest" is-required="false" name="nosieTest" exist-style="" is-repeated="false" xpath="root.data.nosieTest">
+      <description>城市</description>
+    </data-field>
+    <data-field dict-id="recodeWay" display-name="recodeWay" is-required="false" name="recodeWay" exist-style="" is-repeated="false" xpath="root.data.recodeWay">
+      <description>城市</description>
+    </data-field>
+    <data-field dict-id="processResult" display-name="processResult" is-required="false" name="processResult" exist-style="" is-repeated="false" xpath="root.data.processResult">
+      <description>语音处理结果</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="inbound" create-date="2018-07-18 16:41:32" version="6.1.0">
+  <inbound id="J_VPRS_003_0004">
+    <name>J_VPRS_003_0004</name>
+    <transport-id>HTTP_VPRS</transport-id>
+    <description>查询语音导入交易流水</description>
+    <timeout>0</timeout>
+    <kernel-service-type>TRANS</kernel-service-type>
+    <kernel-service-id>TS_VPRS_003_0004</kernel-service-id>
+    <fun-code>a</fun-code>
+    <req-message-id>J_REQ_VPRS_003_0004</req-message-id>
+    <resp-message-id>J_RES_VPRS_003_0004</resp-message-id>
+    <is-one-way>false</is-one-way>
+    <process-type></process-type>
+    <ext-property/>
+    <ext-class></ext-class>
+  </inbound>
+</configuration>

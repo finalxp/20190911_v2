@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+		<label>部门: </label>
+		<input id="depID" class="easyui-combobox" style="width:8%;height:28px;" data-options="panelHeight:200"/>
+		<label style="margin-left:5px;">员工编号: </label>
+		<input id="empNo" class="easyui-textbox" style="width: 10%;height:28px;" data-options="panelHeight:'auto'"/>
+		<label style="margin-left:5px;">门编号: </label>
+		<input class="easyui-textbox" id="doorNo" style="width: 12%;height:28px;"
+			data-options="valueField:'id', textField:'text'"/>
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findDoorPermission();" style="width:80px;height:30px;margin-left:5px;">查询</a>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '员工门权限列表';
+	  var wWidth = 50;
+	  var wHeight = 75;
+	  var dataurl = '/door_manager/list';
+	  var editurl = '/door_manager/edit';
+	  var dbClickFunction=function(){
+			onEdit();
+	  }
+	  var columns = [[
+	      {field : "id",width : 100,hidden:"hidden"},
+	      {field : "empNo",width : 130,title : "员工编号",align:"center"},
+	      {field : "empName",width : 190,title : "员工名",align:"center"},
+	      {field : "doorList",width : 1000,title : "门权限列表",align:"left",
+	      	formatter:function(value,rows,index){
+	      		var returnString="";
+	      		for (var i = 0; i < rows.doorPermission.length; i++) {
+		            returnString +="["+rows.doorPermission[i].doorNo+","+rows.doorPermission[i].doorName+"]，"
+		        }
+	      		return returnString;
+	      	}
+	      }
+	  ]];
+	  var toolbar = [{
+          text:'修改权限',
+          iconCls:'icon-edit',
+          handler:onEdit
+      }];
+	  
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+	  
+	  //加载部门下拉框
+	  $(function(){
+	  	$('#depID').combobox({
+		    url:'/department/comboboxList',
+		    valueField:'id',
+		    textField:'depName'
+		});
+	  })
+	  
+	  //根据条件段查询门信息
+	  function findDoorPermission(){
+	  	var depID = $("#depID").val();
+	  	var empNo= $("#empNo").val();
+	  	var doorNo= $("#doorNo").val();
+		refresh({
+			depID:depID,
+			empNo:empNo,
+			doorNo:doorNo,
+		});
+	  }
+    </script>
+</th:block>
+</html>

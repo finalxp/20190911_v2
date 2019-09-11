@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A172252" category="jsonmsg" create-date="2019-01-02 10:23:13" version="6.1.0">
+  <JsonTypeDefinition id="J_RES_VPRS_001_0006" message-encoding="UTF-8" name="J_RES_VPRS_001_0006" namespace="VPRS.J_RES_VPRS_001_0006">
+    <description></description>
+    <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="root.data">
+      <description>返回码</description>
+    </data-field>
+    <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="root.data">
+      <description>返回信息</description>
+    </data-field>
+     <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data">
+      <description>用户唯一标识</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

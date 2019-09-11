@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="inbound" create-date="2017-12-20 09:17:40" version="6.1.0">
+  <inbound id="J_VPRS_001_0002">
+    <name>J_VPRS_001_0002</name>
+    <transport-id>HTTP_VPRS</transport-id>
+    <description>声纹注册（固定文本）</description>
+    <timeout>0</timeout>
+    <kernel-service-type>TRANS</kernel-service-type>
+    <kernel-service-id>TS_VPRS_001_0002</kernel-service-id>
+    <fun-code>VPRS_001_0002</fun-code>
+    <req-message-id>J_REQ_VPRS_001_0002</req-message-id>
+    <resp-message-id>J_RES_VPRS_001_0002</resp-message-id>
+    <is-one-way>false</is-one-way>
+    <process-type></process-type>
+    <ext-property/>
+    <ext-class></ext-class>
+  </inbound>
+</configuration>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handlers>
+	<!--add custom StartupListener here-->
+	<!-- thw following three are executed as the order they appears:international resource loading,
+	log configruation files registration,modules loading -->
+	<!-- international resource loading -->
+	<handler
+		handle-class="com.primeton.ext.common.international.startup.AppResourceStartupRuntimeListener" />
+	<!-- log configruation files registration -->
+	<!-- reading log4j-trace.xml, config Trace log-->
+	<!--
+	Trace Log registration was moved to RuntimeJ2EEHost
+	<handler
+		handle-class="com.primeton.runtime.core.impl.startup.TraceLoggingStartupRuntimeListener" />
+	 -->
+
+	<!--reading log4j-sys.xml log4j-engine.xml-->
+	<handler
+		handle-class="com.primeton.ext.common.logging.startup.AppLoggingStartupRuntimeListener" />
+
+	<!-- modules loading -->
+	<handler
+		handle-class="com.primeton.ext.common.config.startup.AppConfigStartupRuntimeListener" />
+
+	<!--
+	<handler
+		handle-class="com.primeton.ext.common.asyn.startup.AppAsynStartupRuntimeListener" />
+	-->
+
+	<!--Listener that start DataContext,will register serializer and deserializer of DataContext -->
+	<handler
+		handle-class="com.primeton.ext.data.datacontext.startup.DataContextStartupListener" />
+
+	<!--start enginge-->
+	<handler handle-class="com.primeton.engine.core.impl.process.EngineStartUpListener"/>
+
+	<!--start DAS_ENTITY-->
+	<handler handle-class="com.primeton.ext.das.common.DASCommonStartupListener"/>
+
+	<!-- register application's classloader to EJB-->
+	<handler
+		handle-class="com.primeton.ext.access.client.startup.AppClientStartupRuntimeListener" />
+
+	<!--start Access_Http-->
+	<handler handle-class="com.primeton.ext.access.http.startup.AccessHttpStartupListener"/>
+
+	<!--read configruation of runtime enviroment from sys-config.xml（[moudle name="Runtime"]）-->
+	<handler handle-class="com.primeton.ext.runtime.resource.startup.ResourceConfigLoaderStartUpListener"/>
+
+	<!--start WebUI-->
+	<handler handle-class="com.primeton.web.startup.WebUIStartUpListener"/>
+
+
+	<!-- added for btp startup -->
+		<handler handle-class="com.primeton.btp.api.bootstrap.BTPRuntimeStartup"/>
+	<!-- ===================== -->
+
+	<!--load SCA resource register-->
+	<!--
+	<handler handle-class="com.primeton.sca.host.impl.SCAStartUpListener"/>
+	-->
+
+	<!--load Connection releaser-->
+	<handler handle-class="com.primeton.ext.common.connection.startup.ConnectionStartupListener"/>
+
+	<!-- load xpath cache -->
+	<handler handle-class="com.primeton.ext.data.xpath.startup.XPathStartupListener"/>
+
+</handlers>

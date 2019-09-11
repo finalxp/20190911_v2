@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="VPRS.J_RES_VPRS_001_0009" xmlns:sdo="commonj.sdo" xmlns:sdoJava="commonj.sdo/java" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="VPRS.J_RES_VPRS_001_0009">
+    <xs:complexType name="info">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="compareResult" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="channel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="businessType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="transDate" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="transTime" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="transCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userUniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="certType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="certNo" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="returnCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="score" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="returnMsg" nillable="true" type="xs:string"/>
+            <xs:any/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="J_RES_VPRS_001_0009">
+        <xs:sequence>
+            <xs:any/>
+            <xs:element minOccurs="0" name="returnCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="returnMsg" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="totalNum" nillable="true" type="xs:int"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="info" nillable="true" type="info"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

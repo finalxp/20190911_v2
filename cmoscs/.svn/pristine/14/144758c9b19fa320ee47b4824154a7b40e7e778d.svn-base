@@ -1,0 +1,108 @@
+package cn.productivetech.cmos.zhongbao.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * 面向对象数据访问基础接口
+ * @author Administrator
+ * @created 2019-04-16
+ * @param <K>
+ * @param <T>
+ */
+public interface IBaseDao<K, T> {
+
+	/**
+	 * 根据主键删除
+	 * @param id			主键
+	 * @return
+	 */
+	public int deleteByPrimaryKey(K id);
+	
+	/**
+	 * 添加一条新数据(不判断字段是否为空)
+	 * @param object		添加数据信息
+	 * @return				受影响的行数
+	 */
+	public int insert(T object);
+	
+	/**
+	 * 添加一条新数据(判断字段是否为空)
+	 * @param object		添加数据信息
+	 * @return				受影响的行数
+	 */
+	public int insertSelective(T object);
+	
+	/**
+	 * 通过主键更新数据（传入字段为空，不做更新）
+	 * @param object		需要更新对象
+	 * @return				受影响的行数
+	 */
+	public int updateByPrimaryKeySelective(T object);
+	
+	/**
+	 * 通过主键更新数据（传入字段为空，更新为空）
+	 * @param object		需要更新对象
+	 * @return				受影响的行数
+	 */
+	public int updateByPrimaryKey(T object);
+	
+	/**
+	 * 根据主键查询
+	 * @param id			主键
+	 * @return				受影响的行数
+	 */
+	T selectByPrimaryKey(K id);
+	
+	/**
+	 * 判断名为tableName的表是否存在
+	 * @param tableName		数据库表名
+	 * @return				受影响的行数
+	 */
+	int isTableExists(@Param("tableName")String tableName);
+	
+	/**
+	 * 创建名为tableName的新表
+	 * @param tableName		数据库表名
+	 * @return				受影响的行数
+	 */
+	int createNewTable(@Param("tableName")String tableName);
+
+	/**
+	 * 批量插入信息
+	 * @param list 			待处理音频信息集合
+	 * @return				受影响的行数
+	 */
+	int insertList(List<T> list);
+
+	/**
+	 * 批量更新验证声纹模型
+	 * @param data			要更新的数据
+	 * @return				受影响的行数
+	 */
+	int updateDownloadedStatus(List<T> list);
+
+	/**
+	 * 批量更新声纹下载状态为下载中
+	 * @param tableName		数据库表名
+	 * @param data			要更新的数据
+	 * @return				受影响的行数
+	 */
+	int updateDownloadingStatus(List<T> list);
+	
+	/**
+	 * 批量更新声纹处理状态
+	 * @param tableName		数据库表名
+	 * @param data			要更新的数据
+	 * @return				受影响的行数
+	 */
+	int updateProcessStatus(List<T> data);
+	
+	/**
+	 * 查询所有未处理完成音频信息
+	 * @return				所有未处理完成音频信息
+	 */
+	List<T> queryAudioItemsByUnHandle();
+	
+}

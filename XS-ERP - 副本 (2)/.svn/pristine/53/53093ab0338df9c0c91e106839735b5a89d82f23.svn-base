@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script></script>
+</head>
+<body>
+<div layout:fragment="content">
+	<div class="easy-layout" style="height:650px;" >
+		<div th:repalce="~{layout/tree}"></div>
+		<div data-options="region:'center'">
+			<table id="department_table" title="部门管理" class="easyui-datagrid" url="" toolbar="#toolbar"
+				pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+				<thead>
+					<tr>
+						<th id="hidden_dep" align="center" field="id" hidden="hidden"></th>
+						
+						<th align="center" field="depName" width="50">部门名称</th>
+						<th align="center" field="parentDep" width="50">上级部门</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${#lists.isEmpty(allDepartments)}" class="btn-warning">
+						<td  colspan="3" align="center" >No Department Yet!!!</td>
+					</tr>
+					<tr th:each="dep:${allDepartments}">
+						<td th:text="${dep.id}"></td>
+						<td th:text="${dep.depName}"></td>
+						<td th:text="${dep.parentDepId}"></td>
+					</tr>
+				</tbody>		
+			</table>
+		</div>
+		<div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+			<form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+				<h3>User Information</h3>
+				<div style="margin-bottom:10px">
+					<input name="firstname" class="easyui-textbox" required="true" label="First Name:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="lastname" class="easyui-textbox" required="true" label="Last Name:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="phone" class="easyui-textbox" required="true" label="Phone:" style="width:100%">
+				</div>
+				<div style="margin-bottom:10px">
+					<input name="email" class="easyui-textbox" required="true" validType="email" label="Email:" style="width:100%">
+				</div>
+			</form>
+		</div>
+		<div id="toolbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newDepartment()">New Department</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editDepartment()">Edit Department</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyDepartment()">Remove Department</a>
+		</div>
+		
+		<div id="dlg-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
+		</div>
+	</div>
+</div>
+
+<!--add department-->
+<div id="w_addDepartment" class="easyui-window" data-options="modal:ture,closed:ture,iconCls:'icon-save'" style="width:300px;height:308px;padding:5px;">
+	<div class="easy-layout" data-options="fit:ture">
+		<div data-options="region:'center'" style="padding:10px;">
+			<form id="form_addDepartment" onsubmit="return checkAddReturn()" method="post" th:object="${departmentItem}" th:action="@{/department/addDepartment}">
+				<table>
+					<tr>
+						<td>
+							<input class="id" type="hidden">
+						</td>
+					</tr>
+					<tr>
+						<td>部门编号</td>
+						<td>
+							<input class="depNo" name="depNo" type="text" th:field="*{depNo}" placeholder="请输入部门编号">
+						</td>					
+					</tr>
+					<tr id="addFiled">
+						<td th:if="${addDepartment eq 'unsuccess'" clospan="2">
+							部门号存在
+						</td>
+					</tr>
+					<tr>
+						<td>部门名称</td>
+						<td><input class="depName" name="depName" th:field="*{depName}" type="text" placeholder="请输入部门名称"></td>
+					</tr>
+					<tr>
+						<td>上级部门</td>
+						<td><input class="depParentId" name="depParentId" th:field="*{depParentId}" type="text" placeholder="请输入上级部门"></td>
+					</tr>
+				</table>
+				<div data-options="regioni:'south',border:false" style="text-align:center; padding:5px 0 0;">
+					<button id="btn_addDepartment" class="easyui-linkbutton brnSave" data-options="iconCls:'icon-ok'" style="width:80px" type="submit">
+						保存
+					</button>
+					<a class="easyui-linkbutton btnSave" data-options="iconCls:'icon-cancel'" style="width:80px" onclick="close_window()">取消</a>
+				</div>
+			</form>
+		</div>
+	</div> 
+</div>
+</body>
+</html>

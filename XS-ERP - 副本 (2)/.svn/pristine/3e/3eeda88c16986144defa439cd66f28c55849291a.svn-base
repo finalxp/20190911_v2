@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '员工列表';
+	  var wWidth = 720;
+	  var wHeight = 300;
+	  var dataurl = '/employee/list';
+	  var addurl = '/employee/add';
+	  var editurl = '/employee/edit';
+	  var columns = [[{'field':'id',title:'ID',width:40,align:'center'},
+	  {'field':'empNo',title:'工号',width:80},
+	  {'field':'empName',title:'姓名',width:120},
+	  {'field':'isEnable',title:'是否在职',width:80,formatter:function(index,row){
+	  	if(row.isEnable == 1){
+	  		return '<span style="color:red;">启用</span>';
+	  	}
+	  	return '停用';
+	  }}]];
+	  var rowStyler = function(index,row){
+	  	if(row.id === 60){
+	  		return 'color:#0099fe';
+	  	}
+	  }
+	  refresh({"empNo":"123"});
+    </script>
+</th:block>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		var saveInsert,saveUpdate;
+		$('#menuID').combobox({
+			editable:false,
+			url:'/menu_permission/comboxList',
+		   	valueField:'id',
+		   	textField:'menuName',
+            multiple:true,
+            panelHeight:'38%',
+            onLoadSuccess: function(data){
+			if(menuPermission !=''){
+				for(var p in menuPermission){
+		        	$('#menuID').combobox('setValue', menuPermission);
+		        	$("#menuID").textbox('textbox').css("font-size", "larger").css("line-height","1.5");
+		        }
+			}
+			var opts = $(this).combobox('options');
+		                var target = this;
+		                var values = $(target).combobox('getValues');//获取选中的值的values
+		                $.map(values, function (value) {
+		                    var el = opts.finder.getEl(target, value);
+		                    el.find('input.combobox-checkbox')._propAttr('checked', true);
+		                })
+			},
+			onSelect:function(row){
+				var opts = $(this).combobox('options');
+				$('#menuID').val($(this).combobox('getValues'));
+				var el = opts.finder.getEl(this, row[opts.valueField]);
+			             			el.find('input.combobox-checkbox')._propAttr('checked', true);
+			},
+			onUnselect:function(row){
+				var opts = $(this).combobox('options');
+			                $('#menuID').val($(this).combobox('getValues'));
+			                var el = opts.finder.getEl(this, row[opts.valueField]);
+			                el.find('input.combobox-checkbox')._propAttr('checked', false);
+			},
+			formatter:function(row){
+				var opts = $(this).combobox('options');
+			             			return '<input type=\'checkbox\' class=\'combobox-checkbox\'>' + row[opts.textField];
+			}
+		});
+	});
+	var menuPermission =JSON.parse([[${menuPermission}]]);
+	saveUpdate = function(){
+		doSave('/menu_permission/update');
+	};
+</script>
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post" enctype="multipart/form-data">
+		<table style="border-collapse:separate; border-spacing:0px 20px;width:95%;">
+			<tr>
+				<td><input id="id" class="id" name="id" th:value="${employeeMenuPermission.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>员工号：</td>
+				<td><input id="empNo" class="easyui-textbox" name="empNo" th:value="${employeeMenuPermission.empNo}" 
+						disabled style="width:100%;" data-options="required:true"></td>
+			</tr>
+			<tr>
+				<td>员工名：</td>
+				<td><input id="empName" class="easyui-textbox" name="empName" th:value="${employeeMenuPermission.empName}" 
+						disabled style="width:100%;" data-options="required:true"/></td>
+			</tr>
+			<tr>
+				<td>权限名：</td>
+				<td>
+					<input id="menuID" class="easyui-combobox" multiline="true" name="menuID" style="width:100%;height: 150px;"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>

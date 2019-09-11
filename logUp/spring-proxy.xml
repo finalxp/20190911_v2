@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx.xsd  
+       http://www.springframework.org/schema/context   
+       http://www.springframework.org/schema/context/spring-context.xsd  
+       http://www.springframework.org/schema/aop  
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+   
+	
+	<bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+      <property name="locations" value="touda.properties"/>
+    </bean>
+	
+	<bean id="serviceConfigManager" class="com.pccc.touda.common.ServiceConfigManager" init-method ="init">
+		<property name="map">
+			<map>
+				<!--监控数据上报服务  必须添加 此服务连接标识为2，不区分环境，包括生产环境 -->
+				<entry key="J_MON_001_0001" value="${monitor_connect_flag},com.pccc.touda.monitor.servicecustom.J_MON_001_0001,http://${monitor_host}:8044/monitor/J_MON_001_0001?encoding=utf-8"></entry>
+				<!-- [功能信息描述] -->
+				<!-- 样例 -->
+				
+			<!-- 	<entry key="J_UPLOAD_001_0001" value="2,com.pccc.touda.toudafile.servicecustom.J_UPLOAD_001_0001,http://127.0.0.1:8078/upload/J_UPLOAD_001_0001?encoding=utf-8"/>
+				<entry key="J_UPLOAD_001_0002" value="2,com.pccc.touda.toudafile.servicecustom.J_UPLOAD_001_0002,http://127.0.0.1:8079/file/J_UPLOAD_001_0002?encoding=utf-8"/>
+				 -->
+				<!-- <entry key="J_UPLOAD_001_0001" value="2,com.pccc.touda.toudafile.servicecustom.J_UPLOAD_001_0001,http://182.180.198.6:8078/upload/J_UPLOAD_001_0001?encoding=utf-8"/>
+				<entry key="J_UPLOAD_001_0002" value="2,com.pccc.touda.toudafile.servicecustom.J_UPLOAD_001_0002,http://182.180.198.6:8079/file/J_UPLOAD_001_0002?encoding=utf-8"/>
+				 -->
+				 <!-- 
+                    .
+					.
+					.
+	                应用模块调用服务添加处
+					.
+					.
+					.
+				-->
+			</map>
+		</property>
+	</bean>
+	
+		<bean id="monitorService" class="com.pccc.touda.common.MonitorServiceReg" >
+		<property name="map">
+			<map>
+				<entry key="fs" value="com.pccc.touda.monitor.fs.FsService">
+				</entry>
+				<entry key="jvm" value="com.pccc.touda.monitor.jvm.JvmService">
+				</entry>
+				<entry key="os" value="com.pccc.touda.monitor.os.OsService">
+				</entry>
+				<entry key="threadpool" value="com.pccc.touda.monitor.threadpool.ThreadPoolService">
+				</entry>
+				<entry key="service" value="com.pccc.touda.monitor.invokeService.ServiceInvokeMonitorService">
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	<bean id="monitorFilter" class="com.pccc.touda.common.MonitorStatsFilter" >
+		<property name="map">
+			<map>
+				<entry key="jvm" value="bufferPools,classes"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="failFast" class="com.pccc.touda.proxy.fail.FailFastEvent" scope="prototype">
+	</bean>
+	
+	<bean id="failOver" class="com.pccc.touda.proxy.fail.FailOverEvent" scope="prototype">
+	</bean>
+	
+	<bean id="roundRobinLoadBalance" class="com.pccc.touda.common.loadbalance.RoundRobinLoadBalance">
+	</bean>
+
+	<bean id="failStrategyManager" class="com.pccc.touda.proxy.fail.FailStrategyManager">
+		<property name="map">
+			<map>
+				<entry key="failOver" value-ref="failOver">
+				</entry>
+				<entry key="failFast" value-ref="failFast">
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="headMapping" class="com.pccc.touda.proxy.ext.HeadMapping">
+		<property name="map">
+			<map>
+				<entry key="source" value-ref="sourceMapping">
+				</entry>
+				<entry key="accessType" value-ref="accessTypeMapping">
+				</entry>
+			</map>
+		</property>
+	</bean>
+		<bean id="sourceMapping" class="com.pccc.touda.proxy.ext.ServiceMapping" >
+		<property name="map">
+			<map>
+				<!--<entry key="pms_user_service" value="J_PUB_901_0001"></entry>-->
+
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="accessTypeMapping" class="com.pccc.touda.proxy.ext.ServiceMapping" >
+		<property name="map">
+			<map>
+				<entry key="query" value=""></entry>
+				
+				<entry key="insert" value=""></entry>
+				
+				<entry key="delete" value=""></entry>
+				
+				<entry key="update" value=""></entry>
+				
+				
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="configPreProcess" class="com.pccc.touda.zookeeper.processor.ConfigProcessor"></bean>
+	
+</beans>

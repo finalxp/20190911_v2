@@ -1,0 +1,21 @@
+package cn.xs.erp.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Const {
+	
+	public static String BASE_PATH;
+	
+	public static String LOGIN_SESSION_KEY = "Employee_No";
+	
+	public static int COOKIE_TIMEOUT= 5;//cookie设置保存时间为1个小时
+	
+	public static String DEFAULT_PASSWORD="WelcomToJoinTeam";
+	@Autowired
+	public void setBathPath(@Value("${web.base.path}") String basePath){
+		Const.BASE_PATH=basePath;
+	}
+}

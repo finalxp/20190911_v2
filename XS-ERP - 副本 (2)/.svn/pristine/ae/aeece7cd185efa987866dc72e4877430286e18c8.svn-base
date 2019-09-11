@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<!-- xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout"> -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script></script>
+</head>
+<body>
+<div layout:fragment="content">
+	<div class="easy-layout" style="height:650px;" >
+			<table id="department_table" title="部门管理" class="easyui-datagrid"
+				pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+				<tr><td>123</td></tr>
+			</table>
+		</div>
+		
+		<div id="toolbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newDepartment()">New Department</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editDepartment()">Edit Department</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyDepartment()">Remove Department</a>
+		</div>
+		
+		
+</div>
+
+<!--add department-->
+<div id="w_addDepartment" class="easyui-window" data-options="modal:ture,closed:ture,iconCls:'icon-save'" style="width:300px;height:308px;padding:5px;">
+	<div class="easy-layout" data-options="fit:ture">
+		<div data-options="region:'center'" style="padding:10px;">
+			<form id="form_addDepartment" onsubmit="return checkAddReturn()" method="post" action="/department/addDepartment">
+				<table>
+					<tr>
+						<td>
+							<input class="id" type="hidden">
+						</td>
+					</tr>
+					<tr>
+						<td>部门编号</td>
+						<td>
+							<input class="depNo" name="depNo" type="text" placeholder="请输入部门编号">
+						</td>					
+					</tr>
+					<tr id="addFiled">
+						<td clospan="2">
+							部门号存在
+						</td>
+					</tr>
+					<tr>
+						<td>部门名称</td>
+						<td><input class="depName" name="depName" type="text" placeholder="请输入部门名称"></td>
+					</tr>
+					<tr>
+						<td>上级部门</td>
+						<td><input class="depParentId" name="depParentId" type="text" placeholder="请输入上级部门"></td>
+					</tr>
+				</table>
+				<div data-options="regioni:'south',border:false" style="text-align:center; padding:5px 0 0;">
+					<button id="btn_addDepartment" class="easyui-linkbutton brnSave" data-options="iconCls:'icon-ok'" style="width:80px" type="submit">
+						保存
+					</button>
+					<a class="easyui-linkbutton btnSave" data-options="iconCls:'icon-cancel'" style="width:80px" onclick="close_window()">取消</a>
+				</div>
+			</form>
+		</div>
+	</div> 
+</div>
+</body>
+</html>

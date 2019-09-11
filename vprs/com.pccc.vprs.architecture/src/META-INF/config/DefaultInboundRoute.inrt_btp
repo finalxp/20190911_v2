@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://www.primeton.com/btp/cfg" author="ScottWang" category="route" create-date="" version="6.1">
+	<route id="__route_transportservice__">
+		<!--
+		渠道服务路由配置说明:
+		policy:匹配策略
+			(1)target-url:是远程机器的url地址，目前是HTTP方式，例如，http://192.168.3.3/trans；
+			(2)target-type:目标服务类型，只能是如下三种
+				1. TRANS_SERVER，交易服务器
+				2. EVENT_SERVER，事件服务器
+				3. OUTBOUND_SERVER，主机服务器
+			(3)target-id:目标服务器（Server）的编号（id属性）；
+			(4)match-rule:路由匹配规则，可以多个，如果任何一个规则匹配，则路由到policy中指定的target-url(target-id)
+				match-class:路由匹配判断，从com.primeton.btp.api.route.AbstractMatcher继承
+				ext-property：匹配规则扩展属性
+
+		匹配原则：
+		1. 如果多个policy生效，则只路由到第一个policy，根据配置的顺序
+		2. 同一个policy下的多个match-rule是或(or)的关系，如果某个match-class返回true，
+		      则路由带该policy指定的target（target-url & target-id).
+		-->
+		<!--
+		sample:
+		<policy id="String">
+			<name>String</name>
+			<description>String</description>
+			<target-url>String</target-url>
+			<target-id>String</target-id>
+			<target-type>String</target-type>
+			<match-rules>
+				<match-rule>
+					<match-class>String</match-class>
+					<ext-property>
+						<entry description="String" value="String" key="String"/>
+					</ext-property>
+					<description>String</description>
+				</match-rule>
+			</match-rules>
+		</policy>
+		-->
+
+		<policy id="DefaultTransRoutePolicy">
+			<target-url/>
+			<target-id>DefaultTransServer</target-id>
+			<target-type>TRANS_SERVER</target-type>
+			<description>默认路由，路由到默认的交易服务器</description>
+			<name>默认交易服务路由</name>
+		</policy>
+		<policy id="DefaultEventRoutePolicy">
+			<target-url/>
+			<target-id>DefaultEventServer</target-id>
+			<target-type>EVENT_SERVER</target-type>
+			<description>默认路由，路由到默认的事件服务器</description>
+			<name>默认事件服务路由</name>
+		</policy>
+		<policy id="DefaultHostRoutePolicy">
+			<target-url/>
+			<target-id>DefaultHostTransServer</target-id>
+			<target-type>OUTBOUND_SERVER</target-type>
+			<description>默认路由，路由到默认的主机服务器</description>
+			<name>默认主机服务路由</name>
+		</policy>
+	</route>
+</configuration>
+
+

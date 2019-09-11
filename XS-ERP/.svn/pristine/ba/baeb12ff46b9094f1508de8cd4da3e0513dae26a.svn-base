@@ -1,0 +1,7 @@
+package cn.xs.erp.dao;
+
+import cn.xs.erp.model.DoorPermissionItem;
+
+public interface IDoorPermissionDao extends IBaseDao<DoorPermissionItem, Integer> {
+	
+}

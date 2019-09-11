@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration author="A146901" category="data-type" create-date="2017-08-16 16:11:53" version="6.1.0" xsi:schemaLocation="http://www.primeton.com/btp/cfg data-dict.xsd" xmlns="http://www.primeton.com/btp/cfg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+		数据类型配置文件可以配置多个data-type，用户如果自己定义了data-type，需要在此文件中新加data-type节点。
+		name：数据类型名称，显示在数据字典定义的选择下拉列表中；
+		id：数据类型标识，不可重复；
+		impl-class：数据类型的实现类；
+		xsd-type:数据类型对应于xml scheme的数据类型；
+		description：数据类型的描述信息；
+		constaint-property:数据类型的约束属性，在建立数据字典时，出现在数据字典的扩展属性中。
+	-->
+	<data-type name="字符型" id="string_type" impl-class="com.primeton.btp.impl.data.type.StringDataType"
+		xsd-type="string">
+		<description>字符串型，基于java.lang.String</description>
+	</data-type>
+	<data-type name="时间型" id="time_type" impl-class="com.primeton.btp.impl.data.type.DateDataType"
+		xsd-type="dateTime">
+		<description>时间型，基于java.util.Date</description>
+		<!--时间型的格式，参考java.text.SimpleDateFormat中的时间格式设置-->
+		<constraint-property>
+			<entry key="FORMATTER" type="string" value="HHmmss" description="时间格式" />
+		</constraint-property>
+	</data-type>
+	<data-type name="日期型" id="date_type" impl-class="com.primeton.btp.impl.data.type.DateDataType"
+		xsd-type="dateTime">
+		<description>日期型，基于java.util.Date</description>
+		<!--时间型的格式，参考java.text.SimpleDateFormat中的时间格式设置-->
+		<constraint-property>
+			<entry key="FORMATTER" type="string" value="yyyyMMdd" description="日期格式" />
+		</constraint-property>
+	</data-type>
+	<data-type name="浮点型" id="float_type" impl-class="com.primeton.btp.impl.data.type.FloatDataType"
+		xsd-type="float">
+		<description>浮点数，基于java.lang.Float</description>
+		<!--浮点型数据类型的精度，指小数点后的位数-->
+		<constraint-property>
+			<entry key="ACCURACY" type="int" value="2" description="数值精度" />
+		</constraint-property>
+	</data-type>
+	<data-type name="双精度型" id="double_type" impl-class="com.primeton.btp.impl.data.type.DoubleDataType"
+		xsd-type="double">
+		<description>双精度，基于java.lang.Double</description>
+		<!--双精度型数据类型的精度，指小数点后的位数-->
+		<constraint-property>
+			<entry key="ACCURACY" type="int" value="2" description="数值精度" />
+		</constraint-property>
+	</data-type>
+	<data-type name="大数字型" id="big_decimal_type" impl-class="com.primeton.btp.impl.data.type.BigDecimalDataType"
+		xsd-type="decimal">
+		<description>超大数字，基于java.math.BigDecimal</description>
+	</data-type>
+	<data-type name="整型" id="int_type" impl-class="com.primeton.btp.impl.data.type.IntegerDataType"
+		xsd-type="int">
+		<description>整形数据类型，基于java.lang.Integer</description>
+	</data-type>
+	<data-type name="金额型" id="money_type" impl-class="com.primeton.btp.impl.data.type.MoneyDataType"
+		xsd-type="decimal">
+		<description>金额型，基于java.lang.Float</description>
+		<!--
+			例：16.01格式化的结果是1601；如果报文域长为12，右对齐，补齐字符是'0'，则最终结果是000000001601；
+			如果系统默认提供的金额型不能满足要求，请自定义数据类型。
+		-->
+	</data-type>
+	<data-type name="布尔型" id="bool_type" impl-class="com.primeton.btp.impl.data.type.BooleanDataType"
+		xsd-type="boolean">
+		<description>布尔型，基于java.lang.Boolean</description>
+		<!--
+			TRUE-SYMBOL：布尔真的文本值，如果设置为"1"，则new Boolean(true)格式话的结果就是"1";
+			FALSE-SYMBOL：布尔假的文本值，如果设置为'F"，则new Boolean(false)格式化的结果是"F"。
+		-->
+		<constraint-property>
+			<entry key="TRUE-SYMBOL" type="string" value="1" description="布尔真表示值" />
+			<entry key="FALSE-SYMBOL" type="string" value="0" description="布尔假表示值"/>
+		</constraint-property>
+	</data-type>
+</configuration>

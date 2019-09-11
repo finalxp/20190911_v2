@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;VerifyController.java&apos; to &apos;qrdemo20190819/src/main/java/com.validsoft.web&apos;&#x0D;&#x0A;- Original project: &apos;demoTelecomApp_v2&apos;&#x0D;&#x0A;- Destination element: &apos;qrdemo20190819/src/main/java/com.validsoft.web&apos;&#x0D;&#x0A;- Original element: &apos;com.example.web.VerifyController.java&apos;" description="Copy compilation unit" destination="=qrdemo20190819/src\/main\/java&lt;com.validsoft.web" element1="/src\/main\/java&lt;com.example.web{VerifyController.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1566208786943" units="1" version="1.0"/>
+</session>

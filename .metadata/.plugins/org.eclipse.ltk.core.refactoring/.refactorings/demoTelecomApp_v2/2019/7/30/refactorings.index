@@ -1,0 +1,23 @@
+1563784660593	Copy file
+1563784686515	Delete element
+1563786071737	Rename type 'GetRootDepartment'
+1563786155885	Rename type 'GetRootDepartmentController'
+1563786166517	Rename type 'GetSupDepartmentController'
+1563791532946	Move compilation unit
+1563791541452	Delete element
+1563864239567	Move compilation unit
+1563875395026	Delete element
+1563932524787	Delete element
+1563934102748	Delete element
+1563946653124	Rename type 'EncryptionAndDecryption'
+1564020316722	Delete element
+1564022313800	Rename type 'EnDeCryption'
+1564025073599	Infer generic type arguments
+1564051319494	Delete element
+1564108052877	Rename type 'QueryForAdministrator'
+1564112875594	Move compilation unit
+1564121041262	Rename type 'GetSubDepController'
+1564121160349	Delete element
+1564121202685	Rename type 'GetSubDepService'
+1564121233714	Delete element
+1564121699850	Rename type 'IGetSubDepDao'

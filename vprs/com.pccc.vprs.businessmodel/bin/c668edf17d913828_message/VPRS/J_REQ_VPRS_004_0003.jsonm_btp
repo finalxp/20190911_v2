@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="pccc" category="jsonmsg" create-date="2018-10-24 13:40:20" version="6.1.0">
+  <JsonTypeDefinition id="J_REQ_VPRS_004_0003" message-encoding="UTF-8" name="J_REQ_VPRS_004_0003" namespace="VPRS.J_REQ_VPRS_004_0003">
+    <description></description>
+    <data-field dict-id="regRiskLevel" display-name="regRiskLevel" is-required="false" name="regRiskLevel" exist-style="" is-repeated="false" xpath="root.data">
+      <description>注册风险等级</description>
+    </data-field>
+    <data-field dict-id="maxRiskLevel" display-name="maxRiskLevel" is-required="false" name="maxRiskLevel" exist-style="" is-repeated="false" xpath="root.data">
+      <description>最高风险等级</description>
+    </data-field>
+    <data-field dict-id="isFsRegistered" display-name="isFsRegistered" is-required="false" name="isFsRegistered" exist-style="" is-repeated="false" xpath="root.data">
+      <description>是否已经注册随意说声纹</description>
+    </data-field>
+     <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="root.data">
+      <description>证件号</description>
+    </data-field>
+    <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="root.certType">
+        <description>证件类型</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

@@ -1,0 +1,111 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="js/zTree/metroStyle.css">
+  <script type="text/javascript" src="js/zTree/jquery.ztree.all.min.js"></script>
+  <script type="text/javascript" src="js/zTree/jquery.ztree.core.js"></script>
+  <script type="text/javascript" src="js/zTree/jquery.ztree.excheck.js"></script>
+  <script type="text/javascript" src="js/zTree/jquery.ztree.exedit.js"></script>
+  
+  
+  <script type="text/javascript">
+        function addTabs(id) {
+        	var ts =$("#"+id+"").text();
+        	
+        	var hre =$("#"+id+"").attr('name');
+
+            if ($('#contents').tabs('exists', ts)) {
+                $('#contents').tabs('select', ts);
+            } else {
+                var iframe = '<iframe src="' + hre + '?source=menu" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
+                $('#contents').tabs('add', {
+                    title: ts,
+                    content: iframe,
+                    closable: true,
+                    bodyCls: 'content-doc',
+                });
+            }
+        }
+  
+  
+		var setting = {
+			view: {
+			    selectedMulti: false
+			},
+			check: {
+			    enable: false
+			},
+			data: {
+			simpleData: {
+			enable: true
+			}
+			},
+			callback: {
+				beforeClick: beforeClick,
+				onClick: onClicks
+			}
+		};	
+		function showIconForTree(treeId, treeNode) {
+			return !treeNode.isParent;
+		};
+
+
+		$(document).ready(function(){
+			//$.fn.zTree.init($("#leftTree"), setting, zNodes);
+			onloadZTree();
+		});
+
+		//加载ztree  
+     	function onloadZTree(){  
+           var ztreeNodes;  
+           $.ajax( {  
+                async : true, //是否异步  
+                cache : false, //是否使用缓存  
+                type : 'post', //请求方式,post  
+                dataType : 'json', //数据传输格式  
+                url : '/allMenus',//请求链接  
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+		        	alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                     alert('亲，网络有点不给力呀！');  
+                },  
+                success : function(data) {
+					 alert(data); 
+                     ztreeNodes = eval( "["+data+"]" ); //将string类型转换成json对象
+                     $.fn.zTree.init($("#leftTree"), setting, ztreeNodes);  
+                     zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo" );  
+             //        $( "#selectAll").bind("click" , selectAll);  
+                     
+                }  
+           });  
+     };
+	function beforeClick(treeId, treeNode, clickFlag) {
+	}
+	function onClick(event, treeId, treeNode, clickFlag) {
+		detail(treeNode.id);
+	}
+  
+  
+  
+  
+  </script>
+  </head>
+<body>
+	<div title="系统管理" data-options="region:'west'" style="width: 13%; padding: 10px;" >
+		<div class="list" style="margin-left:1mm;">
+			<!-- <ul class="yiji" th:each="menu:${allMenus}" >
+				<li><a th:name="${menu.menuPath}" th:text="${menu.menuName}" th:id="${menu.id}"
+						th:onclick= "|addTabs(${menu.id})|"></a></li>
+						th:onclick= "|addTabs(this,${menu.id},'${menu.menuName}')|"></a></li>
+						th:href="@{{path}(path=${menu.menuPath})}"
+		</ul> -->
+		
+		
+			  <ul id="leftTree" class="ztree"></ul>
+ 
+		</div>
+	</div>
+</body>
+</html>

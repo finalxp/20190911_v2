@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/Material/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/color.css}">
+<script type="text/javascript" th:src="@{/js/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<style>
+	body{overflow：hidden}
+</style>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;border:0">
+
+			<th:block layout:fragment="bodyAssets">
+
+			</th:block>
+		</div>
+		<div data-options="region:'south',border:false"
+			style="text-align: right; padding: 5px 0 0;">
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+				onclick="save()" style="width: 80px;">保存</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+				href="javascript:void(0)" onclick="closeW()" style="width: 80px">关闭</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+			var saveInsert,saveUpdate;
+			function doSave(url){
+				$('#ff').form('submit',{
+					url:url,
+					onSubmit:function(){
+	                    return $(this).form('enableValidation').form('validate');
+	                },
+	                success:function(data){
+	                	var code = new Function("return" + data)().retCode;
+	                	var message = new Function("return" + data)().retMsg;
+	                	if(code=="0"){
+	                		$.messager.alert('提示', message,"info",function(){
+	                				closeW();
+	                		});
+                		}else{
+                			$.messager.alert('提示', message,"error");
+                		}
+	                },
+	                error:function(){
+	                	alert("网络有问题啦！");
+	                }
+	          	});
+			}
+			var save = function(){
+				if(saveInsert !="" && saveInsert!=undefined){
+					saveInsert();
+				}else if(saveUpdate != "" && saveUpdate!=undefined){
+					saveUpdate();
+				}
+			};
+        	function closeW(){
+        		parent.closeW();
+        	}
+        	
+        	
+        		//格式化日期
+  	Date.prototype.format = function (format) {
+	  	var o = {
+			"M+": this.getMonth() + 1, // month
+			"d+": this.getDate(), // day
+			"h+": this.getHours(), // hour
+	        "m+": this.getMinutes(), // minute
+	        "s+": this.getSeconds(), // second
+	        "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+	        "S": this.getMilliseconds()
+	    }
+	    if (/(y+)/.test(format)){
+	    	format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	    }
+	    for (var k in o){
+	        if (new RegExp("(" + k + ")").test(format)){
+	        	format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+	        }
+	    }
+	    return format;
+	}
+	function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法
+	}
+        	
+        	
+        	
+        </script>
+</body>
+</html>

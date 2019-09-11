@@ -1,0 +1,28 @@
+package com.xskj.LicenseTips;
+
+
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+
+
+
+
+
+@ComponentScan("com.xskj.*")
+public class LicenseTipsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LicenseTipsApplication.class, args);
+		
+		
+	public static void init(){
+		
+		
+		
+	};
+
+}

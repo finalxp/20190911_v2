@@ -1,0 +1,72 @@
+package cn.xs.erp.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.MenuItem;
+import cn.xs.erp.model.MenuPermissionItem;
+import cn.xs.erp.service.IEmployeeService;
+import cn.xs.erp.service.IMenuPermissionService;
+import cn.xs.erp.service.IMenuService;
+
+@Controller
+@ComponentScan
+public class LoginController extends BaseController {
+	
+	@Autowired
+	private IEmployeeService employeeService;
+	@Autowired
+	private IMenuPermissionService menuPermissionService;
+	@Autowired
+	private IMenuService menuService;
+	
+	@RequestMapping("/login")
+	public String home(Model model) {
+		model.addAttribute("title", "welcome use thymeleaf");
+		model.addAttribute("employeeItem",new EmployeeItem());
+		return "login";
+	}
+	
+	@RequestMapping("/index")
+	public String login(@ModelAttribute("employeeItem") EmployeeItem employeeItem,Model model,HttpServletResponse response){
+		
+//		System.out.println(employeeItem.getEmpNo()+"------------------"+employeeItem.getEmpPassword());
+		EmployeeItem item =employeeService.getEmployeeByNo(employeeItem.getEmpNo());
+		if (item==null) {
+			model.addAttribute("errorEmployee", "该员工不存在，请输入正确的员工号！");
+			return "login";
+		}else if (!item.getEmpPassword().equals(employeeItem.getEmpPassword())) {
+			model.addAttribute("errorPassWord", "密码输入错误，请重新输入！");
+			return "login";
+		}
+		Cookie cookie = new Cookie(Const.LOGIN_SESSION_KEY, employeeItem.getEmpNo());
+		cookie.setMaxAge(Const.COOKIE_TIMEOUT);
+		cookie.setPath("/index");
+		response.addCookie(cookie);
+		getSession().setAttribute(Const.LOGIN_SESSION_KEY, employeeItem);
+		
+		List<MenuPermissionItem> list= menuPermissionService.getPermissionsByEmpID(item.getId());
+		List<MenuItem> listMenuItems = new ArrayList<MenuItem>();
+		for (MenuPermissionItem mpItem : list) {
+			if (menuService.getMenuItemById(mpItem.getMenuId())!=null) {
+				System.out.println(menuService.getMenuItemById(mpItem.getMenuId()).getMenuName());
+				listMenuItems.add(menuService.getMenuItemById(mpItem.getMenuId()));
+			}
+		}
+		model.addAttribute("allMenus", listMenuItems);
+		return "index";
+	}
+	
+}

@@ -1,0 +1,102 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<!-- 指定服务器的输出根目录 -->
+	<substitutionProperty name="SERVER_HOME" value="${catalina.base}" />
+	<!-- 控制台日志输出格式 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>
+<![CDATA[
+weblog|%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%level|%X{gloId}|%X{sessionId}|%X{userId}|%logger{10}|%msg%n
+]]>
+			</pattern>
+		</layout>
+	</appender>
+	<!-- weblog日志输出到文件 -->
+	<appender name="weblog_file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${SERVER_HOME}/logs/web-app.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${SERVER_HOME}/logs/web-app.%d{yyyyMMdd}.%i.log.gz
+			</fileNamePattern>
+			<maxHistory>5</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>100MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+<![CDATA[
+%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%level|%X{gloId}|%X{sessionId}|%X{userId}|%logger{10}|%msg%n
+]]>
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="async_weblog_file" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="weblog_file" />
+	</appender>
+	<!-- webproxy日志输出到文件 -->
+	<appender name="webproxy_file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${SERVER_HOME}/logs/web-proxy.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>
+				${SERVER_HOME}/logs/web-proxy.%d{yyyyMMdd}.%i.log.gz
+			</fileNamePattern>
+			<maxHistory>5</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>100MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+<![CDATA[
+%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%level|%X{gloId}|%X{sessionId}|%X{userId}|%logger{10}|%msg%n
+]]>
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="async_webproxy_file" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="webproxy_file" />
+	</appender>
+	<!-- weblog日志输出到kafka-云上使用 -->
+	<appender name="weblog" class="com.pccc.touda.common.log.KafkaAppender">
+		<Encoding>UTF-8</Encoding>
+		<encoder>
+			<pattern>
+<![CDATA[
+weblog|%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%level|%X{gloId}|%X{sessionId}|%X{userId}|%logger{10}|%msg%n
+]]>
+			</pattern>
+		</encoder>
+		<appender-ref ref="stdout" />
+	</appender>
+	<appender name="async_weblog" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="weblog" />
+	</appender>
+	<!-- webproxy日志输出到kafka-云上使用 -->
+	<appender name="webproxy" class="com.pccc.touda.common.log.KafkaAppender">
+		<Encoding>UTF-8</Encoding>
+		<encoder>
+			<pattern>
+<![CDATA[
+webproxy|%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%level|%X{gloId}|%X{sessionId}|%X{userId}|%logger{10}|%msg%n
+]]>
+			</pattern>
+		</encoder>
+		<appender-ref ref="stdout" />
+	</appender>
+	<appender name="async_webproxy" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="webproxy" />
+	</appender>
+	<logger name="com.pccc.touda" level="info" additivity="false">
+		<appender-ref ref="async_webproxy_file" />
+		<appender-ref ref="async_webproxy" />
+	</logger>
+	<logger name="com.pccc" level="info" additivity="false">
+		<appender-ref ref="async_weblog_file" />
+		<appender-ref ref="async_weblog" />
+	</logger>
+	<root level="error">
+		<appender-ref ref="async_weblog_file" />
+	</root>
+</configuration>

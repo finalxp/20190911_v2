@@ -1,0 +1,9 @@
+package com.example.service;
+
+import java.util.List;
+
+import com.example.model.User;
+
+public interface IQueryDepartmentTree {
+	public List<User> queryFuzzyService(String nameId);
+}

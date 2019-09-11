@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+	<table>
+		<tr>
+			<td>部门:</td>
+			<td><input class="easyui-combobox" id="depSearch" style="width:90%;"
+					data-options="panelHeight:'auto'"></td>
+			<td>员工编号:</td>
+			<td><input class="easyui-textbox" id="empSearch" style="width: 90%;"
+			data-options="valueField:'id', textField:'text', panelHeight:18"></td>
+			<td>入职开始时间:</td>
+			<td><input name="startdate" id="starttime" class="easyui-datebox" style="width:100%;"/> </td>
+			<td>入职结束时间:</td>
+			<td><input name="enddate" id="endtime" class="easyui-datebox" style="width: 100%;"/></td>
+			<td>&nbsp&nbsp<a class="easyui-linkbutton" iconCls="icon-search" onclick="queryData();" style="width:100px;">查询</a></td>
+		</tr>
+	</table>
+
+	<div style="margin-bottom: 10px">
+	</div>
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '员工列表';
+	  var wWidth = 55;
+	  var wHeight = 90;
+	  var dataurl = '/employee/list';
+	  var addurl = '/employee/add';
+	  var editurl = '/employee/edit';
+	  var deleteurl ='/employee/delete';
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "empNo",width : 80,title : "员工编号",align:"center"},
+		            {field : "empName",width : 80,title : "员工姓名",align:"center"},
+		            {field : "sex",width : 80,title : "性别",align:"center",
+		            	formatter:function(index,row){
+		            		if(row.sex=="M"){
+		            			return "男";
+		            		}else if(row.sex=="F"){
+		            			return "女";
+		            		}
+		            	}
+		            },
+		            {field : "phoneNo",width : 80,title : "电话",align:"center"},
+		            {field : "birthday",width : 80,title : "生日",formatter: formatDatebox,align:"center"},
+		            {field : "nickname",width : 80,title : "昵称",align:"center"},
+		            {field : "avatarUrl",width : 80,title : "头像",align:"center",
+		            	formatter:function(index,row){
+		            		if(row.avatarUrl !="" && row.avatarUrl !=null){
+		            			return "<img style='width:14px;height:14px;' src='"+row.avatarUrl+"' title='员工头像'/>";
+		            		}
+		            	}
+		            },
+		            {field : "enrolled",width : 80,title : "声纹是否注册",align:"center",
+		            	formatter:function(index,row){
+						  	if(row.enrolled>0)
+						  		return '已注册';
+						  	return '<span style="color:red;">未注册</span>';
+		            	}
+		            },
+		            {field : "hiredate",width : 80,title : "入职时间",formatter: formatDatebox,align:"center"},
+		            {field : "operation",width : 20,title : "操作",align:"center",
+		            	formatter:function(index,row){
+		            		return "<a onclick=\"editPwd('"+row.id+"','"+row.empNo+"','"+row.empName+"');\"><img style='width:14px;height:14px;' src='images/edit.png' title='点击修改该行员工密码'/></a>";
+		            	}
+		            }
+	  ]];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd"); //扩展的Date的format方法
+	  }
+	  
+	  //加载部门下拉框
+	  $(function(){
+	  	$('#depSearch').combobox({
+		    url:'/department/comboboxList',
+		    valueField:'id',
+		    textField:'depName'
+		});
+	  })
+	  function queryData(){
+	  	var depID = $("#depSearch").val();
+	  	var empNo = $("#empSearch").val();
+	  	var startTime =$("#starttime").val();
+	  	var endTime =$("#endtime").val();
+	  	refresh({  		
+			    depID:depID,
+			    empNo:empNo,
+			    startTime:startTime,
+			    endTime:endTime  		
+			});
+	  }
+	  
+	  function editPwd(id,empNo,empName){
+	  	$("#w_addEmployee").window({"title" : "修改员工密码"}).window("open");
+	  	$('#id').val(id);
+	  	$('#empNo').textbox('setValue',empNo);
+	  	$('#empName').textbox('setValue',empName);
+	  }
+	  
+	  function onsubmitFunction(){
+	  	var id =$("#id").val();
+	  	$('#edit_pwd_form').form('submit',{
+			url:'/employee/updatePwd?id='+id,
+			onSubmit:function(){
+				if($("#queryempPassword").val()!=$("#empPassword").val()){
+					$.messager.alert('提示', '两次输入密码不一样');
+					return false;
+				}
+				return $(this).form('enableValidation').form('validate');
+            },
+            success:function(data){
+            	var code = new Function("return" + data)().retCode;
+            	var message = new Function("return" + data)().retMsg;
+            	if(code=="0"){
+            		$.messager.alert('提示', message,"info",function(){
+            				closeEditPwdWindow();
+            		});
+           		}else{
+           			$.messager.alert('提示', message,"error");
+           		}
+            },
+            error:function(){
+            	alert("网络有问题啦！");
+            }
+      	});
+	  
+	  }
+	  
+	  function closeEditPwdWindow(){
+	  	$("#w_addEmployee").window("close");
+	  }
+	  
+    </script>
+    <div id="w_addEmployee" class="easyui-window" data-options="modal:true,closed:true" 
+		style="width:380px;height:308px;padding:1px;">
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;">
+		<form id="edit_pwd_form" class="easyui-form" data-options="novalidate:true" method="post">
+	                <table style="border-collapse:separate; border-spacing:0px 10px;width:95%;">
+	                	<tr style="border-spacing:0px 0px;">
+							<td><input id="id" name="id" type="hidden"></td>
+						</tr>
+	                	<tr>
+	                		<td><input class="easyui-textbox" id="empNo" name="empNo" required
+									style="width:95%;" data-options="label:'员工编号：'"></td>
+	                	</tr>
+	                	<tr>
+							<td><input class="easyui-textbox" id="empName" name="empName" 
+										style="width:95%" data-options="label:'员工姓名：',required:true"></td>
+						</tr>
+	                    <tr>
+	                    	<td><input class="easyui-textbox" id="empPassword" name="empPassword" 
+										style="width:95%" data-options="label:'新密码：',required:true"></td>
+	                    </tr>
+	                    <tr>
+	                    	<td><input class="easyui-textbox" id="queryempPassword" 
+										style="width:95%" required data-options="label:'确认密码：',required:true"></td>
+	                    </tr>
+	                </table>
+	                <br>
+	              <div align="center">
+	              	<a id="edit_pwd_submit" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+	              		style="width: 100px;" onclick="onsubmitFunction();">确认</a>
+	              	
+	              	<a id="edit_pwd_cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+	              		style="width: 100px;" onclick="closeEditPwdWindow();">取消</a>   
+	              </div>
+        </form>
+	
+	</div>  </div></div>  
+    
+</th:block>
+</html>

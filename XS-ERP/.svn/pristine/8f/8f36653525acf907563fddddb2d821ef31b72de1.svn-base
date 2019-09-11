@@ -1,0 +1,84 @@
+package cn.xs.erp.controller;
+
+
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.DepartmentItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IDepartmentService;
+
+@Controller
+public class DepartmentController extends BaseController {
+
+	@Autowired
+	private IDepartmentService departmentService;
+
+	@RequestMapping("/department")
+	public String selectAllDepInfo(Model model){
+		return "department/index";
+	}
+	
+	@RequestMapping("/department/add")
+	public String add(Model model){
+		return "department/add";
+	}
+	
+	@RequestMapping("/department/edit")
+	public String edit(Model model, @RequestParam int id){
+		DepartmentItem dItem = departmentService.getDepartmentById(id);
+		model.addAttribute("dItem",dItem);
+		return "department/add";
+	}
+	
+	@RequestMapping(value="/department/combobox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<DepartmentItem> selectDepartementcomboboxList(){
+		return departmentService.selectAllDepInfo();
+	}
+	
+	@RequestMapping(value="/department/list", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<DepartmentItem> selectDepartementList(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows){
+		return departmentService.selectDepartmentByPage(page,rows);
+	}
+	
+	@RequestMapping("/department/addDepartment")
+	@ResponseBody
+	public String addDepartment(DepartmentItem departmentItem) {
+		DepartmentItem departmentItem2 = departmentService.getDepartmentById((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		departmentItem.setCreateBy(departmentItem2.getId());		
+		departmentItem.setCreateTime(new Date());			
+		departmentService.AddDepartment(departmentItem);
+		return "success";
+	}
+	
+	@RequestMapping("/department/editDepartment")
+	@ResponseBody
+	public String editDepartment(DepartmentItem departmentItem)throws ParseException {
+		departmentItem.setUpdateBy((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		departmentItem.setUpdateTime(new Date());
+		return "success";
+	}
+	
+	@RequestMapping(value = "/employee/deleteDepartment", method = RequestMethod.DELETE)
+	public String deleteDepByID(int id) {
+		DepartmentItem dItem = departmentService.getDepartmentById(id);
+
+		dItem.setUpdateBy((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		dItem.setUpdateTime(new Date());
+		return "redirect:/department";
+	}
+
+}

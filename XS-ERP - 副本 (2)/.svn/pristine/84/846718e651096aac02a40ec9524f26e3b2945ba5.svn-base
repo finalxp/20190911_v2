@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	var addOrUpdate = "add";
+	var addurl="/department/addDepartment";
+</script>
+	<form id="ff" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><input class="id" name="id" th:value="${dItem.id}" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>部门编号：</td>
+				<td>
+					<input class="depNo" name="depNo" th:value="${dItem.depNo}" type="text" onkeyup="verifydepartment();" disabled="disabled" placeholder="请输入部门编号">
+				</td>
+			</tr>
+			<tr id="addFiled">
+				<td colspan="2" align="center">
+					<font id="ifExist" size="3" color="red"></font>
+				</td>
+			</tr>
+			<tr>
+				<td>部门名称：</td>
+				<td><input class="depName" name="depName" th:value="${dItem.depName}" type="text" placeholder="请输入部门名称"></td>
+			</tr>
+			<tr>
+				<td>上级部门：</td>
+				<td><input class="parentDepName" name="parentDepName" th:value="${dItem.parentDepName}" type="text" style="width:175px; "></td>
+			</tr>
+
+			
+		</table>
+	</form>
+</th:block>
+</html>

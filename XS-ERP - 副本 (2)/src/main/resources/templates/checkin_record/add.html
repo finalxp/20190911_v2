@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	function checkeInput(){
+		var timeInOut=$("#timeInOut option:selected").val();
+		if(timeInOut==""){
+			$.messager.alert("警告", "请选择补卡时间！");
+			return false;
+		}
+		return true;
+	}
+
+	var saveInsert = function(){
+		if(checkeInput()){
+			doSave('/checkin_record/insert');
+		}
+	};
+</script>
+	<form id="ff" class="easyui-form" data-options="novalidate:true" method="post" enctype="multipart/form-data">
+		<table style="border-collapse:separate; border-spacing:0px 20px;width:95%;">
+			<tr>
+				<td><input class="id" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>员工编号：</td>
+				<td>
+					<input id="empNo" class="easyui-textbox" name="empNo" style="width:100%;"
+						data-options="prompt:'请输入员工编号',required:true">
+				</td>
+			</tr>
+			<tr>
+				<td>补卡日期：</td>
+				<td><input id="checkinTime" class="easyui-datebox" name="checkinTime" style="width:100%;"
+						data-options="prompt:'请选择补卡日期',required:true"></td>
+			</tr>
+			<tr>
+				<td>补卡时间：</td>
+				<td>
+					<select id="timeInOut" class="easyui-combobox" name="timeInOut" style="width:100%;height:'auto';border:1px solid #ccc;" >
+						<option selected value="">请选择:</option>
+						<option value="timeIn">上班补卡</option>
+						<option value="timeOut">下班补卡</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>补卡事由：</td>
+				<td>
+					 <input id="textArea" name="comments" class="easyui-textbox" labelPosition="top" multiline="true" 
+					 	style="width:100%;height:180px;" data-options="prompt:'在此输入备注信息',required:true"/>
+				<!-- <div style="position: absolute;">
+					<textarea id="textArea" class="comments" name="comments" rows="6" style="width:100%;font-size:16px;position: absolute;" 
+						onfocus="document.getElementById('introTxt').style.display='none'"
+              			onblur="if(value=='')document.getElementById('introTxt').style.display='inline'"></textarea>
+					<div id="introTxt" onclick="focusTextarea()" style="color: darkgrey; position: fixed;">在此输入备注信息</div>
+				</div> -->
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</th:block>
+</html>

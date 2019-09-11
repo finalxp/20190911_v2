@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IJobDao">
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT id,job_rank,job_name,job_descri,create_by,create_time,update_by,update_time FROM t_job
+		ORDER BY job_rank
+	</select>
+	<select id="selectByInfo" resultMap="BaseResultMap" parameterType="hashmap">
+		SELECT 
+			id,job_rank,job_name,job_descri,create_by,create_time,update_by,update_time 
+		FROM 
+			t_job
+		<where>
+			<if test="rankFrom != null and rankFrom != ''">job_rank <![CDATA[>=]]> #{rankFrom}</if>
+			<choose>
+				<when test="rankFrom == null or rankFrom ==''">
+					<if test="rankTo != null and rankTo != ''"> job_rank <![CDATA[<=]]> #{rankTo}</if>
+				</when>
+				<otherwise>
+					<if test="rankTo != null and rankTo != ''"> AND job_rank <![CDATA[<=]]> #{rankTo}</if>
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="(rankFrom == null or rankFrom =='') and (rankTo == null and rankTo == '')">
+					<if test="jobName != null and jobName != ''"> job_name = #{jobName}</if>
+				</when>
+				<otherwise>
+					<if test="jobName != null and jobName != ''"> AND job_name = #{jobName}</if>
+				</otherwise>
+			</choose>
+			
+			
+			
+		</where>
+	</select>
+
+
+</mapper>

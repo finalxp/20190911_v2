@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	var addOrUpdate = "add";
+	var addurl="/employee/addEmployee";
+</script>
+	<form id="ff" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><input class="id" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>员工编号：</td>
+				<td>
+					<input class="empNo" name="empNo" type="text" onkeyup="verifyUser();" placeholder="请输入员工编号">
+				</td>
+			</tr>
+			<tr id="addFiled">
+				<td colspan="2" align="center">
+					<font id="ifExist" size="3" color="red"></font>
+				</td>
+			</tr>
+			<tr>
+				<td class="empPassword_text">初始密码：</td>
+				<td><input class="empPassword" name="empPassword" type="text" placeholder="请输入初始密码"/></td>
+			</tr>
+			<tr>
+				<td>员工姓名：</td>
+				<td><input class="empName" name="empName" type="text" placeholder="请输入员工姓名"></td>
+			</tr>
+			<tr>
+				<td>入职时间：</td>
+				<td><input class="hiredate" name="hiredate" type="date" style="width:175px; "></td>
+			</tr>
+			<tr>
+				<td>性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</td>
+				<td>
+					<select class="sex" name="sex" style="width:175px;height:25px;border:1px solid #ccc;" >
+						<option selected value="">请选择:</option>
+						<option value="M">男</option>
+						<option value="F">女</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话：</td>
+				<td><input class="phoneNo" name="phoneNo" type="text" placeholder="请输入员工电话"></td>
+			</tr>
+			<tr>
+				<td>生&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日：</td>
+				<td><input class="birthday" name="birthday" type="date" style="width:175px; "></td>
+			</tr>
+			<tr>
+				<td>昵&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp称：</td>
+				<td><input class="nickname" name="nickname" type="text" placeholder="请输入用户昵称"></td>
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>

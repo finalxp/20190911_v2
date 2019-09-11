@@ -1,0 +1,130 @@
+package cn.xs.erp.controller;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.CheckinRecordItem;
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.ICheckinRecordService;
+import cn.xs.erp.service.IEmployeeService;
+
+@Controller
+public class CheckinRecordController extends BaseController{
+
+	@Autowired
+	private ICheckinRecordService crService;
+	@Autowired
+	private IEmployeeService empService;
+	@RequestMapping("/checkin_record")
+	public String checkinRecordHome(Model model){
+		return "/checkin_record/index";
+	}
+	@RequestMapping("/manager_checkin")
+	public String managerCheckinRecord(Model model){
+		return "/checkin_record_manager/index";
+	}
+	
+	@RequestMapping("/checkin_record/add")
+	public String add(Model model){
+		return "/checkin_record/add";
+	}
+	
+	//查询登录员工考情记录
+	@RequestMapping(value="/checkin_record/list",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> listAll(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows) {
+		return crService.selectAllCheckinRecordByPage(page, rows,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	//查询下属所有员工当月申请补卡信息
+	@RequestMapping(value="/checkin_record_manager/list",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> managerList(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows) {
+		return crService.selectAllManagerCheckinByPage(page, rows,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	//根据选择申请查询日期间隔查询下属所有员工申请补卡信息
+	@RequestMapping(value="/checkin_record_manager/listByDate",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> managerListByDate(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows,
+			@RequestParam(value="startTime",required=false)String startTime,@RequestParam(value="endTime",required=false)String endTime) {
+		return crService.selectAllManagerCheckinByPageByDate(page, rows,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY),startTime,endTime);
+	}
+	
+	//同意补卡申请
+	@RequestMapping(value="/checkin_record_manager/approvalApplyCheckin",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String approvalApplyCheckin(@RequestParam("id") String id){
+		CheckinRecordItem crItem = crService.getCheckinRecordById(Integer.parseInt(id));
+		crItem.setIsEnable((short) 1);
+		crItem.setAuditBy((Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		crItem.setAuditTime(new Date());
+		int i =crService.updateCheckinRecord(crItem);
+		if (i>0) {
+			return "success";
+		}else {
+			return "unsuccess";
+		}
+	}
+	
+	@RequestMapping(value="/checkin_record/toolbarList",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> toolbarList(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows,
+			@RequestParam(value="startTime",required=false)String startTime,@RequestParam(value="endTime",required=false)String endTime) {
+		return crService.selectToolbarList(page,rows,startTime,endTime,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	//按用户选择日期查询申请的补卡记录
+	@RequestMapping(value="/checkin_record/toolbarApplyList",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<CheckinRecordItem> toolbarApplyList(@RequestParam(value = "page", required = false)Integer page, @RequestParam(value = "rows", required = false)Integer rows,
+			@RequestParam(value="startTime",required=false)String startTime,@RequestParam(value="endTime",required=false)String endTime) {
+		return crService.selectToolbarAppplyList(page,rows,startTime,endTime,(Integer)getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+	}
+	
+	//添加考勤
+	@RequestMapping(value="/checkin_record/addCheckinRecord",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String addCheckinRecord(CheckinRecordItem checkinRecordItem) {
+		Date d =checkinRecordItem.getCheckinTime();
+		String timeInOut =checkinRecordItem.getTimeInOut();
+		Calendar c = Calendar.getInstance();
+		if (timeInOut.equals("timeIn")) {
+			c.setTime(d);
+			c.set(Calendar.HOUR,8);
+			c.set(Calendar.MINUTE,30);
+		}else if (timeInOut.equals("timeOut")) {
+			c.setTime(d);
+			c.set(Calendar.HOUR_OF_DAY,17);
+			c.set(Calendar.MINUTE,30);
+		}
+		EmployeeItem eItem = empService.getEmployeeByNo(checkinRecordItem.getEmpNo());
+		checkinRecordItem.setEmpId(eItem.getId());
+		checkinRecordItem.setCheckinTime(c.getTime());
+		checkinRecordItem.setCheckinCategory((short) 2);
+		checkinRecordItem.setIsEnable((short)0);
+		checkinRecordItem.setCreateTime(new Date());
+		crService.addCheckinRecord(checkinRecordItem);
+		return "success";
+	}
+	
+	
+	// form表单提交 Date类型数据绑定
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
+		sFormat.setLenient(true);// 指定日期/时间解析是否宽松
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(sFormat, true));
+	}
+}

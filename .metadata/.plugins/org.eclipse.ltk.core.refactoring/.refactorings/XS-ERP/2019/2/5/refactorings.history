@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;XS-ERP&apos;&#x0D;&#x0A;- Original project: &apos;XS-ERP&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     DepartmentController.java.mine&#x0D;&#x0A;     DepartmentController.java.r78&#x0D;&#x0A;     DepartmentController.java.r86" description="Delete elements" element1="src/main/java/cn/xs/erp/controller/DepartmentController.java.r78" element2="src/main/java/cn/xs/erp/controller/DepartmentController.java.r86" element3="src/main/java/cn/xs/erp/controller/DepartmentController.java.mine" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1549003915685" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,73 @@
+package cn.xs.erp.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+
+import cn.xs.erp.dao.ICheckinRecordDao;
+import cn.xs.erp.model.CheckinRecordItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.ICheckinRecordService;
+@Service
+public class CheckinRecordService implements ICheckinRecordService {
+	@Autowired
+	private ICheckinRecordDao crDao;
+	@Override
+	public int addCheckinRecord(CheckinRecordItem checkinRecordItem) {
+		return crDao.insertSelective(checkinRecordItem);
+	}
+
+	@Override
+	public int deleteCheckinRecord(int id) {
+		return crDao.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<CheckinRecordItem> selectAllCheckinRecord(int loginUser) {
+		return crDao.selectLoginUser(loginUser);
+	}
+
+	@Override
+	public PageInfo<CheckinRecordItem> selectAllCheckinRecordByPage(Integer page, Integer rows,int loginUser) {
+		PageHelper.startPage(page, rows);
+		List<CheckinRecordItem> list = crDao.selectLoginUser(loginUser);
+		PageInfo<CheckinRecordItem> pageInfo = new PageInfo<CheckinRecordItem>(list);
+		return pageInfo;
+	}
+
+	@Override
+	public CheckinRecordItem getCheckinRecordById(int id) {
+		return crDao.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public PageInfo<CheckinRecordItem> selectToolbarList(Integer page, Integer rows, String startTime, String endTime,int id) {
+		PageHelper.startPage(page, rows);
+		Map<String, String> hasMap =new HashMap<String, String>();
+		hasMap.put("startTime", startTime);
+		hasMap.put("endTime", endTime);
+		String idString =id+"";
+		hasMap.put("id", idString);
+		List<CheckinRecordItem> list=crDao.selectCRToolbarList(hasMap);;
+		PageInfo<CheckinRecordItem> pageInfo =  new PageInfo<CheckinRecordItem>(list);
+		return pageInfo;
+	}
+	@Override
+	public PageInfo<CheckinRecordItem> selectToolbarAppplyList(Integer page, Integer rows, String startTime, String endTime,int id) {
+		PageHelper.startPage(page, rows);
+		Map<String, String> hasMap =new HashMap<String, String>();
+		hasMap.put("startTime", startTime);
+		hasMap.put("endTime", endTime);
+		String idString =id+"";
+		hasMap.put("id", idString);
+		List<CheckinRecordItem> list=crDao.selectToolbarAppplyList(hasMap);;
+		PageInfo<CheckinRecordItem> pageInfo =  new PageInfo<CheckinRecordItem>(list);
+		return pageInfo;
+	}
+
+}

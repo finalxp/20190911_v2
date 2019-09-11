@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xs.erp.dao.IDoorDao">
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		id,door_no,door_name,door_mac_addr,is_use_password,pwd_begin_time,pwd_end_time
+		from t_door
+	</select>
+	<select id="selectByDoorNoAndDoorName" resultMap="BaseResultMap" parameterType="hashmap">
+		select
+			id,door_no,door_name,door_mac_addr,is_use_password,pwd_begin_time,pwd_end_time
+		from 
+			t_door
+		<where>
+			<if test="doorNo != null and doorNo != ''">door_no=#{doorNo}</if>
+			<if test="doorName != null and doorName != ''">AND door_name=#{doorName}</if>
+		</where>
+	</select>
+</mapper>

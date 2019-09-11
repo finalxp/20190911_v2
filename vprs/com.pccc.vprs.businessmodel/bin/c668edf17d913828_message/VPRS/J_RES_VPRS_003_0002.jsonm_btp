@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="jsonmsg" create-date="2018-07-13 15:57:15" version="6.1.0">
+  <JsonTypeDefinition id="J_RES_VPRS_003_0002" message-encoding="UTF-8" name="J_RES_VPRS_003_0002" namespace="VPRS.J_RES_VPRS_003_0002">
+    <description></description>
+    <data-entity display-name="info" is-repeated="true" is-required="false" name="info" type="info" xpath="info">
+      <data-field dict-id="transDate" display-name="transDate" is-required="true" name="transDate" exist-style="" is-repeated="false" xpath="info.transDate">
+        <description>交易日期</description>
+      </data-field>
+      <data-field dict-id="transTime" display-name="transTime" is-required="true" name="transTime" exist-style="" is-repeated="false" xpath="info.transTime">
+        <description>交易时间</description>
+      </data-field>
+      <data-field dict-id="userName" display-name="userName" is-required="true" name="userName" exist-style="" is-repeated="false" xpath="info.userName">
+        <description>用户姓名</description>
+      </data-field>
+       <data-field dict-id="userType" display-name="userType" is-required="false" name="userType" exist-style="" is-repeated="false" xpath="root.data.userType">
+      	<description>用户类型</description>
+      </data-field>
+	    <data-field dict-id="phoneNo" display-name="phoneNo" is-required="false" name="phoneNo" exist-style="" is-repeated="false" xpath="root.data.phoneNo">
+	      <description>手机号码</description>
+	    </data-field>
+      <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="info.certType">
+        <description>证件类型</description>
+      </data-field>
+      <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="info.certNo">
+        <description>证件号码</description>
+      </data-field>
+      <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="info.userUniqueId">
+        <description>用户唯一标识</description>
+      </data-field>
+      <data-field dict-id="channel" display-name="channel" is-required="true" name="channel" exist-style="" is-repeated="false" xpath="info.channel">
+        <description>渠道号</description>
+      </data-field>
+      <data-field dict-id="businessType" display-name="businessType" is-required="true" name="businessType" exist-style="" is-repeated="false" xpath="info.businessType">
+        <description>业务场景</description>
+      </data-field>
+      <data-field dict-id="closeAudio" display-name="closeAudio" is-required="true" name="closeAudio" exist-style="" is-repeated="false" xpath="info.closeAudio">
+        <description>个人近期音频</description>
+      </data-field>
+      <data-field dict-id="closeAudioFormat" display-name="closeAudioFormat" is-required="true" name="closeAudioFormat" exist-style="" is-repeated="false" xpath="info.closeAudioFormat">
+        <description>声纹传递形式（path/str)</description>
+      </data-field>
+       <data-field dict-id="riskLevel" display-name="riskLevel" is-required="true" name="riskLevel" exist-style="" is-repeated="false" xpath="info.riskLevel">
+        <description>码率</description>
+      </data-field>
+      <data-field dict-id="audioDuration" display-name="audioDuration" is-required="true" name="audioDuration" exist-style="" is-repeated="false" xpath="info.audioDuration">
+        <description>音频时长</description>
+      </data-field>
+      <data-field dict-id="samplingRate" display-name="samplingRate" is-required="true" name="samplingRate" exist-style="" is-repeated="false" xpath="info.samplingRate">
+        <description>采样率</description>
+      </data-field>
+      <data-field dict-id="bitRate" display-name="bitRate" is-required="true" name="bitRate" exist-style="" is-repeated="false" xpath="info.bitRate">
+        <description>比特率</description>
+      </data-field>
+      <data-field dict-id="soundTrack" display-name="soundTrack" is-required="true" name="soundTrack" exist-style="" is-repeated="false" xpath="info.soundTrack">
+        <description>声道</description>
+      </data-field>
+      <data-field dict-id="codeRate" display-name="codeRate" is-required="true" name="codeRate" exist-style="" is-repeated="false" xpath="info.codeRate">
+        <description>码率</description>
+      </data-field>
+      <data-field dict-id="encodingFormat" display-name="encodingFormat" is-required="true" name="encodingFormat" exist-style="" is-repeated="false" xpath="info.encodingFormat">
+        <description>编码格式</description>
+      </data-field>
+      <data-field dict-id="extName" display-name="extName" is-required="false" name="extName" exist-style="" is-repeated="false" xpath="info.extName">
+        <description>文件扩展名</description>
+      </data-field>
+      <data-field dict-id="audioPath" display-name="audioPath" is-required="true" name="audioPath" exist-style="" is-repeated="false" xpath="info.audioPath">
+        <description>语音存储路径</description>
+      </data-field>
+      <data-field dict-id="audioId" display-name="audioId" is-required="true" name="audioId" exist-style="" is-repeated="false" xpath="info.audioId">
+        <description>语音id</description>
+      </data-field>
+    </data-entity>
+    <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="returnCode">
+      <description>返回码</description>
+    </data-field>
+    <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="returnMsg">
+      <description>返回信息</description>
+    </data-field>
+    <data-field dict-id="totalNum" display-name="totalNum" is-required="false" name="totalNum" exist-style="" is-repeated="false" xpath="totalNum">
+      <description>总条数</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+		
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<script type="text/javascript">
+
+
+			var fruit = {
+			name: 'apple',
+			price: '20'
+			};
+			var f = JSON.stringify(fruit); //转化成JSON字符串
+			window.localStorage.setItem('fruit', f); //存储到本地
+
+			var aa = window.localStorage.getItem('test'); //读存储的数据
+			var aaObj = JSON.parse(aa); //将JSON字符串转化成JSON对象方便读取
+			function aabbb(){
+				document.getElementById("pp").innerHTML= aaObj.name; 
+			}
+		</script>
+	</head>
+
+<body>
+
+
+	<h1 style="margin: 0px 0px 20px; padding: 0px 4px 0px 0px; outline: 0px; font-size: 14px; 
+		color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; 
+		white-space: normal; background-color: rgb(255, 255, 255); 
+		border-bottom: 2px solid rgb(204, 204, 204); text-align: center;">
+        <span style="margin: 0px; padding: 0px; outline: 0px; color: rgb(192, 80, 77); font-size: 20px;">
+        	深入理解Range
+        </span>
+    </h1>
+    <p
+        style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;">
+        <strong class=" " style="margin: 0px; padding: 0px; outline: 0px;">UEditor二次开发</strong>
+    </p>
+    <h3
+        style="margin: 0px; padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; white-space: normal; background-color: rgb(255, 255, 255);">
+        <span class=" " style="margin: 0px; padding: 0px; outline: 0px; font-family: 幼圆;">什么是Range</span>
+    </h3>
+    <p
+        style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;">
+        对于“插入”选项卡上的库，在设计时都充分考虑了其中的项与文档整体外观的协调性。
+    </p>
+    <p>
+        <br />
+    </p>
+    <h3
+        style="margin: 0px; padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; white-space: normal; background-color: rgb(255, 255, 255);">
+        <span class=" " style="margin: 0px; padding: 0px; outline: 0px; font-family: 幼圆;">Range能干什么</span>
+    </h3>
+    <p
+        style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;">
+        在“开始”选项卡上，通过从快速样式库中为所选文本选择一种外观，您可以方便地更改文档中所选文本的格式。
+    </p>
+    <p
+        style="padding: 0px; outline: 0px; font-size: 14px; color: rgb(100, 100, 100); font-family: sans-serif, 宋体, &quot;Arial Narrow&quot;, HELVETICA; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;">
+        在resources文件夹下建立public文件夹（或与resources并列的文件夹下建立public文件夹）,在public文件夹下
+        的html文件可以通过浏览器中输入localhost:8080+文件+后缀名的方式直接访问的（例如：localhost:8080/1.html ）.  
+        <br />
+    </p>
+    <p style="text-align: right;"><a href="/marketing">更多...</a><br></p>
+
+</body>
+</html>
+
+
+
+
+

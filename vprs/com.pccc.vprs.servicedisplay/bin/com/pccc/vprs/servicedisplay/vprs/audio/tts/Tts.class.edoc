@@ -1,0 +1,14 @@
+<map>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.tts.Tts.textToAudio(commonj.sdo.DataObject, commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.vprs.model.TtsInfo)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.tts.Tts.textToAudio(DataObject inMessage, DataObject outMessage, TtsInfo ttsInfo)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>com.pccc.vprs.servicedisplay.vprs.audio.tts.Tts.insertTtsInfo(commonj.sdo.DataObject, commonj.sdo.DataObject, com.pccc.vprs.servicedisplay.vprs.model.TtsInfo, com.primeton.btp.api.engine.context.IKernelServiceContext)</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;DataObject com.pccc.vprs.servicedisplay.vprs.audio.tts.Tts.insertTtsInfo(DataObject inMessage, DataObject outMessage, TtsInfo ttsInfo, IKernelServiceContext context)&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+  <entry>
+    <string>Tts [tts,将文本转化为语音]</string>
+    <string>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;b&gt;com.pccc.vprs.servicedisplay.vprs.audio.tts.Tts&lt;/b&gt;&lt;br/&gt;&lt;/font&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </entry>
+</map>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A174669" category="jsonmsg" create-date="2018-01-10 08:53:34" version="6.1.0">
+  <JsonTypeDefinition id="J_RES_VPRS_001_0002" message-encoding="UTF-8" name="J_RES_VPRS_001_0002" namespace="VPRS.J_RES_VPRS_001_0002">
+    <description></description>
+    <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="root.data.returnCode">
+      <description>后台返回码</description>
+    </data-field>
+    <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="root.data.returnMsg">
+      <description>返回信息</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="root.data.userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+    <data-field dict-id="registerStatus" display-name="registerStatus" is-required="false" name="registerStatus" exist-style="" is-repeated="false" xpath="root.data.registerStatus">
+      <description>交易执行阶段</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

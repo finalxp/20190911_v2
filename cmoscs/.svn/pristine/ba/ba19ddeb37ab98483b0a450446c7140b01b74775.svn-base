@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.cmos.zhongbao.dao.IEnrollModelDao">
+
+	<!-- 批量插入注册声纹模型 -->
+	<insert id="insertList" parameterType="java.util.List">
+		INSERT INTO t_enroll_model (agent_id,enrolled_model,model_type,create_by,create_date) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.agentId},
+				#{item.enrolledModel},
+				#{item.modelType},
+				#{item.createBy},
+				#{item.createDate}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 查询所有的声纹模型 -->
+	<select id="selectAllModel" resultMap="BaseResultMap">
+		select
+			id,agent_id,enrolled_model,model_type,create_by,create_date
+		FROM
+			t_enroll_model
+	</select>
+	
+	<!-- 查询要注册的agentId在数据库中是否存在，存在返回注册模型进行强化 -->
+	<select id="selectAllEnrolled" resultType="BaseResultMap">
+		select
+			id,agent_id,enrolled_model,model_type,create_by,create_date
+		FROM
+			t_enroll_model
+		WHERE
+			agent_id in
+		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+			#{item.agentId}
+		</foreach>
+	
+	
+	</select>
+	
+
+</mapper>

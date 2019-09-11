@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:A174669 -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <!--添加iat信息 -->
+  <!--  <insert id="insertIatInfo" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.IatInfo"> 
+  		
+    	INSERT INTO TBL_VPRS_USER_IAT 
+    	(
+    		CRT_TIME,
+   			<isNotEmpty property="userName">user_name,</isNotEmpty>
+    		<isNotEmpty property="certType">cert_type,</isNotEmpty>
+			<isNotEmpty property="certNo">cert_no,</isNotEmpty>
+			<isNotEmpty property="closeAudio">close_audio,</isNotEmpty>
+			<isNotEmpty property="audioFormat">audio_format,</isNotEmpty>
+			<isNotEmpty property="crtChannel">crt_channel,</isNotEmpty>
+			<isNotEmpty property="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+			<isNotEmpty property="scrLevel">SCR_LEVEL,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">reserve_coulumn1,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">reserve_coulumn2,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">reserve_coulumn3,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">reserve_coulumn4,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">reserve_coulumn5,</isNotEmpty>	
+			LST_UPD_TIME,
+			LST_UPD_DATE
+    	) VALUES 
+		(	current timestamp,
+   			<isNotEmpty property="userName">#userName#,</isNotEmpty>
+    		<isNotEmpty property="certType">#certType#,</isNotEmpty>
+			<isNotEmpty property="certNo">#certNo#,</isNotEmpty>
+			<isNotEmpty property="closeAudio">#closeAudio#,</isNotEmpty>
+			<isNotEmpty property="audioFormat">#audioFormat#,</isNotEmpty>
+			<isNotEmpty property="crtChannel">#crtChannel#,</isNotEmpty>
+			<isNotEmpty property="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+			<isNotEmpty property="scrLevel">#scrLevel#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">#reserve_coulumn1#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">#reserve_Coulumn2#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">#reserve_Coulumn3#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">#reserve_Coulumn4#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">#reserve_Coulumn5#,</isNotEmpty>
+			current timestamp,
+			current date
+		 )
+    </insert> -->
+    
+    <!--插入语音识别iat流水表 vprs-->
+	<insert id="insertIntoIatTable" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.IatInfo">
+		INSERT INTO tbl_vprs_iat_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">CLOSE_IMG,</isNotEmpty> 
+				<isNotEmpty property ="certImg">CERT_IMG,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">CERT_FACE_IMG,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">CERT_BACK_IMG,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">CERT_HEAD_IMG,</isNotEmpty>
+				<isNotEmpty property ="video">VIDEO,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="audioFormat">audioFormat,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">#closeImg#,</isNotEmpty>
+				<isNotEmpty property ="certImg">#certImg#,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">#certFaceImg#,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">#certBackImg#,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">#certHeadImg#,</isNotEmpty>
+				<isNotEmpty property ="video">#video#,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="audioFormat">#audioFormat#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+    
+    <!--添加tts信息 -->
+    <insert id="insertTtsInfo" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.TtsInfo"> 
+  		
+    	INSERT INTO TBL_VPRS_USER_IAT 
+    	(
+    		CRT_TIME,
+   			<isNotEmpty property="userName">user_name,</isNotEmpty>
+    		<isNotEmpty property="certType">cert_type,</isNotEmpty>
+			<isNotEmpty property="certNo">cert_no,</isNotEmpty>
+			<isNotEmpty property="closeAudio">close_audio,</isNotEmpty>
+			<isNotEmpty property="text">text,</isNotEmpty>
+			<isNotEmpty property="crtChannel">crt_channel,</isNotEmpty>
+			<isNotEmpty property="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+			<isNotEmpty property="scrLevel">SCR_LEVEL,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">reserve_coulumn1,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">reserve_coulumn2,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">reserve_coulumn3,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">reserve_coulumn4,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">reserve_coulumn5,</isNotEmpty>	
+			LST_UPD_TIME,
+			LST_UPD_DATE
+    	) VALUES 
+		(	current timestamp,
+   			<isNotEmpty property="userName">#userName#,</isNotEmpty>
+    		<isNotEmpty property="certType">#certType#,</isNotEmpty>
+			<isNotEmpty property="certNo">#certNo#,</isNotEmpty>
+			<isNotEmpty property="closeAudio">#closeAudio#,</isNotEmpty>
+			<isNotEmpty property="text">#text#,</isNotEmpty>
+			<isNotEmpty property="crtChannel">#crtChannel#,</isNotEmpty>
+			<isNotEmpty property="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+			<isNotEmpty property="scrLevel">#scrLevel#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn1">#reserve_coulumn1#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn2">#reserve_Coulumn2#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn3">#reserve_Coulumn3#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn4">#reserve_Coulumn4#,</isNotEmpty>
+			<isNotEmpty property="reserveCoulumn5">#reserve_Coulumn5#,</isNotEmpty>
+			current timestamp,
+			current date
+		 )
+    </insert>
+    
+     <!--插入语音识别tts流水表 vprs-->
+	<insert id="insertIntoTtsTable" parameterClass="com.pccc.vprs.servicedisplay.vprs.model.TtsInfo">
+		INSERT INTO tbl_vprs_tts_detail
+			(
+				JNL_SEQ_NO,
+				TRANS_DATE,
+				TRANS_TIME,
+				<isNotEmpty property ="channelSeqNo">CHANNEL_SEQ_NO,</isNotEmpty>
+				<isNotEmpty property ="channel">CHANNEL,</isNotEmpty>
+				<isNotEmpty property ="businessType">BUSINESS_TYPE,</isNotEmpty>
+				<isNotEmpty property ="transCode">TRANS_CODE,</isNotEmpty>
+				<isNotEmpty property ="transDesc">TRANS_DESC,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">USER_UNIQUE_ID,</isNotEmpty>
+				<isNotEmpty property ="certType">CERT_TYPE,</isNotEmpty>
+				<isNotEmpty property ="userName">USER_NAME,</isNotEmpty>
+				<isNotEmpty property ="certNo">CERT_NO,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">CLOSE_IMG,</isNotEmpty> 
+				<isNotEmpty property ="certImg">CERT_IMG,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">CERT_FACE_IMG,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">CERT_BACK_IMG,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">CERT_HEAD_IMG,</isNotEmpty>
+				<isNotEmpty property ="video">VIDEO,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">CLOSE_AUDIO,</isNotEmpty>
+				<isNotEmpty property ="text">text,</isNotEmpty>
+				<isNotEmpty property ="status">STATUS,</isNotEmpty>
+				<isNotEmpty property ="returnCode">RETURN_CODE,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">RETURN_MSG,</isNotEmpty>
+				<isNotEmpty property ="serverNode">SERVER_NODE,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">LST_UPD_USER,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">SCR_LEVEL,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">RESERVE_COULUMN1,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">RESERVE_COULUMN2,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">RESERVE_COULUMN3,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">RESERVE_COULUMN4,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">RESERVE_COULUMN5,</isNotEmpty>			    
+			    CRT_TIME,
+			    LST_UPD_TIME,
+			    LST_UPD_DATE		    
+			 )
+		VALUES
+			 (
+			    #jnlSeqNo#,
+				current date,
+				current timestamp,
+			    <isNotEmpty property ="channelSeqNo">#channelSeqNo#,</isNotEmpty>
+				<isNotEmpty property ="channel">#channel#,</isNotEmpty>
+				<isNotEmpty property ="businessType">#businessType#,</isNotEmpty>
+				<isNotEmpty property ="transCode">#transCode#,</isNotEmpty>
+				<isNotEmpty property ="transDesc">#transDesc#,</isNotEmpty>
+				<isNotEmpty property ="userUniqueId">#userUniqueId#,</isNotEmpty>
+				<isNotEmpty property ="certType">#certType#,</isNotEmpty>
+				<isNotEmpty property ="userName">#userName#,</isNotEmpty>
+				<isNotEmpty property ="certNo">#certNo#,</isNotEmpty>
+			<!--	<isNotEmpty property ="closeImg">#closeImg#,</isNotEmpty>
+				<isNotEmpty property ="certImg">#certImg#,</isNotEmpty>
+				<isNotEmpty property ="certFaceImg">#certFaceImg#,</isNotEmpty>
+				<isNotEmpty property ="certBackImg">#certBackImg#,</isNotEmpty>
+				<isNotEmpty property ="certHeadImg">#certHeadImg#,</isNotEmpty>
+				<isNotEmpty property ="video">#video#,</isNotEmpty> -->
+				<isNotEmpty property ="closeAudio">#closeAudio#,</isNotEmpty>
+				<isNotEmpty property ="text">#text#,</isNotEmpty>
+				<isNotEmpty property ="status">#status#,</isNotEmpty>
+				<isNotEmpty property ="returnCode">#returnCode#,</isNotEmpty>
+				<isNotEmpty property ="returnMsg">#returnMsg#,</isNotEmpty>
+				<isNotEmpty property ="serverNode">#serverNode#,</isNotEmpty>
+				<isNotEmpty property ="lstUpdUser">#lstUpdUser#,</isNotEmpty>
+				<isNotEmpty property ="scrLevel">#scrLevel#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn1">#reserveCoulumn1#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn2">#reserveCoulumn2#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn3">#reserveCoulumn3#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn4">#reserveCoulumn4#,</isNotEmpty>
+				<isNotEmpty property ="reserveCoulumn5">#reserveCoulumn5#,</isNotEmpty>	
+				current timestamp,
+				current timestamp,
+				current date				
+			 )
+	</insert>
+    
+</sqlMap>

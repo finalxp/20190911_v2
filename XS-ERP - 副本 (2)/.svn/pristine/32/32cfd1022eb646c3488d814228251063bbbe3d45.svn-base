@@ -1,0 +1,17 @@
+package cn.xs.erp.service;
+
+import cn.xs.erp.model.EmployeeItem;
+import cn.xs.erp.model.PageInfo;
+
+public interface IEmployeeService {
+
+	EmployeeItem getEmployeeById(int Id);
+
+	PageInfo<EmployeeItem> selectEmployeeByPage(int page,int pagesize);
+	
+	int AddEmployee(EmployeeItem employee);
+	//根据员工No查询员工信息
+	EmployeeItem getEmployeeByNo(String empNo);
+	
+	
+}

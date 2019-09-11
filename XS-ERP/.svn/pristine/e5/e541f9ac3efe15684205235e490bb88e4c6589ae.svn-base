@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/edit">
+<meta charset="UTF-8">
+<th:block layout:fragment="bodyAssets">
+<script type="text/javascript">
+	var checkWhat = "doorApply";
+	var url="/checkin_record/addCheckinRecord";
+	function focusTextarea() {
+        document.getElementById('introTxt').style.display = 'none';
+        var temp = document.getElementById('textArea');
+        temp.focus();
+    }
+</script>
+	<form id="ff" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><input class="id" type="hidden"></td>
+			</tr>
+			<tr>
+				<td>员工编号：</td>
+				<td>
+					<input class="empNo" name="empNo" type="text" style="width:175px;" placeholder="请输入员工编号">
+				</td>
+			</tr>
+			<tr>
+				<td>补卡时间：</td>
+				<td><input class="checkinTime" name="checkinTime" type="date" style="width:175px;"></td>
+			</tr>
+			<tr>
+				<td>补卡类型：</td>
+				<td>
+					<select class="timeInOut" name="timeInOut" style="width:175px;height:25px;border:1px solid #ccc;" >
+						<option selected value="">请选择:</option>
+						<option value="timeIn">上班补卡</option>
+						<option value="timeOut">下班补卡</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>补卡事由：</td>
+				<td>
+				<div style="position: absolute;">
+					<textarea id="textArea" class="comments" name="comments" rows="6" style="width:175px;font-size:16px;position: absolute;" 
+						onfocus="document.getElementById('introTxt').style.display='none'"
+              			onblur="if(value=='')document.getElementById('introTxt').style.display='inline'"></textarea>
+					<div id="introTxt" onclick="focusTextarea()" style="color: darkgrey; position: fixed;">在此输入备注信息</div>
+				</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</th:block>
+</html>

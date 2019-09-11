@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/datagrid">
+<th:block layout:fragment="bodyQuery">
+		开始时间：<input name="startdate" id="starttime" class="easyui-datebox"
+			value="1999/01/01" style="width: 110px;" /> 
+		结束时间：<input name="enddate" id="endtime" class="easyui-datebox"
+			value="2019/12/31" style="width: 110px;" /> 
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findCheckinRecord();">查询考勤</a> 
+		<a class="easyui-linkbutton" iconCls="icon-search" onclick="findApplynRecord();">查询补卡记录</a> 
+</th:block>
+<th:block layout:fragment="bodyAssets">
+	<script type="text/javascript" th:inline="none">
+	  var title = '考勤列表';
+	  var wWidth = 50;
+	  var wHeight = 90;
+	  var dataurl = '/checkin_record/list';
+	  var addurl = '/checkin_record/add';
+	  var editurl = '/checkin_record/edit';
+	  var deleteurl ='/checkin_record/delete';
+	  var columns = [[
+		            {field : "id",width : 100,hidden:"hidden"},
+		            {field : "empNo",width : 100,title : "员工编号",align:"center"},
+		            {field : "empName",width : 120,title : "员工姓名",align:"center"},
+		            {field : "time",width : 150,title : "考勤时间",formatter: formatDatebox,align:"center",
+		            	formatter:function(index,row){
+		            		var t =formatDatebox(row.timeIn);
+		            		var time =t.split(' ')[0];
+		            		return time;
+		            	}
+		            },
+		            {field : "timeIn",width : 120,title : "上班打卡时间",formatter: formatDatebox,align:"center",
+		            	formatter:function(index,row){
+		            		var tIn =formatDatebox(row.timeIn);
+		            		var timeIn =tIn.split(' ')[1];
+		            		if(row.timeOut==row.timeIn){
+		            			if(timeIn>'17:30')
+		            				return '';
+		            		}
+		            		return timeIn;
+		            	}
+		            },
+		            {field : "timeOut",width : 120,title : "下班打卡时间",formatter: formatDatebox,align:"center",
+		            	formatter:function(index,row){
+		            		var tOut =formatDatebox(row.timeOut);
+		            		var timeOut =tOut.split(' ')[1];
+		            		if(row.timeOut==row.timeIn){
+		            			if(timeOut<'17:30')
+		            			return '';
+		            		}
+		            		return tOut.split(' ')[1];
+		            	}
+		            },
+		            {field : "checkinCategory",width : 120,title : "考勤类别",align:"center",
+		            	formatter:function(index,row){
+		            		if(row.inCate==1 && row.outCate==1){
+		            			return '声纹打卡';
+		            		}else if(row.inCate==2 && row.outCate==1){
+		            			return '<span style="color:red;">上班补卡</span>';
+		            		}else if(row.inCate==1 && row.outCate==2){
+		            			return '<span style="color:red;">下班补卡</span>';
+		            		}else if(row.inCate==2 && row.outCate==2){
+		            			if(row.timeOut==row.timeIn){
+		            				return '<span style="color:red;">补卡、缺勤</span>';
+		            			}
+		            			return '<span style="color:red;">上、下班补卡</span>';
+		            		}else{
+		            			return '';
+		            		}
+		            	}
+		            },
+		            {field : "auditBy",width : 100,title : "审批人",align:"center"},
+		            {field : "auditTime",width : 200,title : "审批时间",formatter: formatDatebox,align:"center"},
+		            {field : "comments",width : 100,title : "备注",align:"center",
+		            	formatter:function(index,row){
+		            		var tIn =formatDatebox(row.timeIn);
+		            		var timeIn =tIn.split(' ')[1];
+		            		var tOut =formatDatebox(row.timeOut);
+		            		var timeOut =tOut.split(' ')[1];
+		            		var comments="";
+		            		var date = new Date();
+		            		var year = date.getFullYear();
+							var month = date.getMonth() + 1;
+							var day = date.getDate();
+							if (month < 10) {
+							    month = "0" + month;
+							}
+							if (day < 10) {
+							    day = "0" + day;
+							}
+		            		var currentTime=year + "-" + month + "-" + day;
+		            		if(tIn.split(' ')[0] !=currentTime){
+		            			if(row.timeIn==row.timeOut ){
+		            				return '<span style="color:red;">缺勤</span>';
+		            			}
+		            			if(row.inCate==2 || row.outCate==2){
+		            				if(row.inIsEnable==1 && row.outIsEnable==1){
+		            					var ss =row.auditBy;
+		            					comments="补卡";
+		            				}else{
+		            					comments="待审核";
+		            				}
+			            			return '<span style="color:red;">'+comments+'</span>';
+		            			}else{
+		            				if(timeIn>'8:30' && timeOut<'17:30'){
+			            			comments="迟到，早退";
+				            			return '<span style="color:red;">'+comments+'</span>';
+				            		}else if(timeIn>'8:30' && timeOut<'17:30'){
+				            			comments="迟到";
+				            			return '<span style="color:red;">'+comments+'</span>';
+				            		}else if(timeIn<'8:30' && timeOut<'17:30'){
+				            			comments="早退";
+				            			return '<span style="color:red;">'+comments+'</span>';
+				            		}else{
+				            			comments="";
+				            			return comments;
+				            		}
+		            			}
+		            		}else{
+		            			return '';
+		            		}
+		            	}
+		            }
+	  ]];
+	  var toolbar = [{
+            text:'申请补卡',
+            iconCls:'icon-add',
+            handler:onAdd
+        }];
+	  var rowStyler = function(index,row){
+//	  	if(row.id === 60){
+//	  		return 'color:#0099fe';
+//	  	}
+	  }
+	  
+	  function formatDatebox(value) {
+	  	if (value == null || value == '') {
+			return '';
+		}
+	    var dt;
+	    if (value instanceof Date) {
+	        dt = value;
+	    } else {
+	        dt = new Date(value);
+	    }
+	    return dt.format("yyyy-MM-dd hh:mm"); //扩展的Date的format方法
+	  }
+	  
+	  //根据开始、结束时间查询考勤
+	  function findCheckinRecord(){
+		var startTime =$("#starttime").val();
+		var endTime =$("#endtime").val();
+		refresh({
+			startTime:startTime,
+			endTime:endTime,
+			ifApply:''
+		});
+	  }
+	  //根据开始、结束时间查询补卡记录
+	  function findApplynRecord(){
+	  	var startTime =$("#starttime").val();
+	  	var endTime =$("#endtime").val();
+	  	refresh({
+			startTime:startTime,
+			endTime:endTime,
+			ifApply:'true'
+		});
+	  	
+	  }
+    </script>
+</th:block>
+</html>

@@ -1,0 +1,308 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+  
+  <!-- touda-app.log日志 -->
+  <appender name="applog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../apps_config/default/work_temp/logs/touda-app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../apps_config/default/work_temp/logs/touda-app.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+			<maxHistory>60</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+		<encoder>
+			<pattern><![CDATA[
+			%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%X{reqId}|%logger{10}|%msg%n
+			]]></pattern>
+		</encoder>
+	</appender>
+  
+  <!-- touda-proxy.log日志 -->
+   <appender name="proxylog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../apps_config/default/work_temp/logs/touda-proxy.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../apps_config/default/work_temp/logs/touda-proxy.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+			<maxHistory>60</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+		<encoder>
+			<pattern><![CDATA[
+			%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%X{reqId}|%logger{10}|%msg%n
+			]]></pattern>
+		</encoder>
+	</appender>
+	
+	<!-- touda-trace.log日志 -->
+	<appender name="tracelog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../apps_config/default/work_temp/logs/touda-trace.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../apps_config/default/work_temp/logs/touda-trace.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+			<maxHistory>60</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+		<encoder>
+		<pattern><![CDATA[
+			%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%level|%X{reqId}|%logger{10}|%msg%n
+			]]></pattern>
+		</encoder>
+	</appender>
+	
+	<!-- touda-system.log日志 -->
+    <appender name="syslog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <file>../apps_config/default/work_temp/logs/touda-system.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../apps_config/default/work_temp/logs/touda-system.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+			<maxHistory>60</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern><![CDATA[
+			%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%msg%n
+			]]></pattern>
+        </encoder>
+     </appender>
+	
+	<!-- touda-engine.log日志 -->
+	<appender name="enginelog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <file>../apps_config/default/work_temp/logs/touda-engine.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../apps_config/default/work_temp/logs/touda-engine.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+			<maxHistory>60</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern><![CDATA[
+			%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%msg%n
+			]]></pattern>
+        </encoder>
+     </appender>
+	 
+	 <!-- touda-deploy.log日志 -->
+	<appender name="deploylog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <file>../apps_config/default/work_temp/logs/touda-deploy.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>../apps_config/default/work_temp/logs/touda-deploy.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<maxFileSize>50MB</maxFileSize>
+			<totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern><![CDATA[
+			%date{yy-MM-dd HH:mm:ss.SSS}|%thread|%msg%n
+			]]></pattern>
+        </encoder>
+     </appender>
+	
+	<logger name="com.primeton.btp.impl.engine" level="INFO" additivity="false">
+        <appender-ref ref="deploylog"/>
+    </logger>
+	
+	 <!-- touda-proxy.log -->
+	<logger name="com.pccc.touda.proxy" level="INFO" additivity="false">
+        <appender-ref ref="proxylog"/>
+    </logger>
+	<logger name="com.pccc.touda.proxy.processor.ResponseProcessor" level="debug" additivity="false">
+        <appender-ref ref="proxylog"/>
+    </logger>
+	<logger name="com.pccc.touda.proxy.processor.RequestProcessor" level="debug" additivity="false">
+        <appender-ref ref="proxylog"/>
+    </logger>
+	<logger name="com.pccc.touda.proxy.protocol.HttpClient" level="debug" additivity="false">
+        <appender-ref ref="proxylog"/>
+    </logger>
+	
+	
+	<!-- touda-trace.log -->
+	<logger name="org.apache" level="ERROR" additivity="false">
+        <appender-ref ref="tracelog"/>
+    </logger>
+	<logger name="com.mchange" level="ERROR" additivity="false">
+        <appender-ref ref="tracelog"/>
+    </logger>
+	<logger name="org.eclipse" level="ERROR" additivity="false">
+        <appender-ref ref="tracelog"/>
+	
+	</logger>
+	   <logger name="com.pccc.touda" level="INFO" additivity="false">
+        <appender-ref ref="tracelog"/>
+		<appender-ref ref="stdout"/>
+    </logger>
+	<!--原trace.log日志内容，主要记录com.eos和com.primeton的日志信息 -begin -->
+	<logger additivity="false" name="com.eos.runtime" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.runtime" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.runtime" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.common" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.common" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.common" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.data" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.data" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.data" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.das" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.das" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.das" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.engine" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.engine" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.engine" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.sca" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.sca" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.sca" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.access" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.ext.access" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.primeton.access" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+	<logger additivity="false" name="com.primeton.btp" level="debug">
+        <appender-ref ref="tracelog"/>
+		<appender-ref ref="stdout"/>
+    </logger>
+	<logger additivity="false" name="com.eos" level="INFO">
+        <appender-ref ref="tracelog"/>
+		<appender-ref ref="stdout"/>
+    </logger>
+    <logger additivity="false" name="com.primeton" level="INFO">
+        <appender-ref ref="tracelog"/>
+    </logger>
+	<logger additivity="false" name="com.primeton.btp.manage.statistic" level="ERROR">
+        <appender-ref ref="tracelog"/>
+    </logger>
+    <logger additivity="false" name="com.eos.common.connection.DataSourceHelper" level="ERROR">
+         <appender-ref ref="tracelog"/>
+    </logger>
+	<!--原trace.log日志内容，主要记录com.eos和com.primeton的日志信息 -end -->
+	
+    <logger additivity="false" name="touda.syslog.transport" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+    <logger additivity="false" name="touda.syslog.transportservice" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+    <logger additivity="false" name="touda.syslog.transservice" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+    <logger additivity="false" name="touda.syslog.localprocess" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+    <logger additivity="false" name="touda.syslog.hosttrans" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+    <logger additivity="false" name="touda.syslog.logical" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+	<logger additivity="false" name="touda.syslog.endpoint" level="INFO">
+        <appender-ref ref="syslog"/>
+    </logger>
+	
+	
+	<!-- engine的配置 -->
+	<logger additivity="false" name="TRANSPORT" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="TRANSPORT_SERVICE" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="TRANS_SERVICE" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="PROCESS_FLOW" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="HOST_TRANS" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="ENDPOINT" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="EVENT" level="INFO">
+        <appender-ref ref="enginelog"/>
+   </logger>
+   <logger additivity="false" name="ROUTE" level="INFO">
+        <appender-ref ref="enginelog"/>	
+   </logger>
+   <!-- 增加的 engine -->
+	<logger additivity="false" name="engine_trace" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._bizlogic" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._handler" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._uploadFile" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._service" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._webservice" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._schedule" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._sql" level="DEBUG">
+        <appender-ref ref="enginelog"/>
+    </logger>
+    <logger additivity="false" name="engine_trace._spring" level="INFO">
+        <appender-ref ref="enginelog"/>
+    </logger>
+	
+  <root level="debug">
+ 	<!-- <appender-ref ref="system"/> -->
+	<appender-ref ref="applog"/>
+	<appender-ref ref="stdout"/>
+  </root>
+</configuration>

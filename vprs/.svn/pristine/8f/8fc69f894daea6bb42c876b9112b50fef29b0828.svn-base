@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.primeton.com/btp/cfg" xsi:schemaLocation="http://www.primeton.com/btp/cfg common.xsd" author="A144550" category="jsonmsg" create-date="2018-07-24 16:32:30" version="6.1.0">
+  <JsonTypeDefinition id="J_RES_VPRS_003_0005" message-encoding="UTF-8" name="J_RES_VPRS_003_0005" namespace="VPRS.J_RES_VPRS_003_0005">
+    <description></description>
+    <data-entity display-name="info" is-repeated="true" is-required="false" name="info" type="info" xpath="info">
+       <data-field dict-id="ID" display-name="ID" is-required="true" name="ID" exist-style="" is-repeated="false" xpath="info.ID">
+        <description>创建时间</description>
+      </data-field>
+      <data-field dict-id="crtTime" display-name="crtTime" is-required="true" name="crtTime" exist-style="" is-repeated="false" xpath="info.crtTime">
+        <description>创建时间</description>
+      </data-field>
+      <data-field dict-id="userName" display-name="userName" is-required="true" name="userName" exist-style="" is-repeated="false" xpath="info.userName">
+        <description>用户姓名</description>
+      </data-field>
+      <data-field dict-id="userType" display-name="userType" is-required="false" name="userType" exist-style="" is-repeated="false" xpath="root.data.userType">
+      	<description>用户类型</description>
+      </data-field>
+	    <data-field dict-id="phoneNo" display-name="phoneNo" is-required="false" name="phoneNo" exist-style="" is-repeated="false" xpath="root.data.phoneNo">
+	      <description>手机号码</description>
+	    </data-field>
+      <data-field dict-id="certType" display-name="certType" is-required="true" name="certType" exist-style="" is-repeated="false" xpath="info.certType">
+        <description>证件类型</description>
+      </data-field>
+      <data-field dict-id="certNo" display-name="certNo" is-required="true" name="certNo" exist-style="" is-repeated="false" xpath="info.certNo">
+        <description>证件号码</description>
+      </data-field>
+      <data-field dict-id="crtChannel" display-name="crtChannel" is-required="true" name="crtChannel" exist-style="" is-repeated="false" xpath="info.crtChannel">
+        <description>渠道号</description>
+      </data-field>
+      <data-field dict-id="lAudioDuration" display-name="lAudioDuration" is-required="false" name="lAudioDuration" exist-style="" is-repeated="false" xpath="info.lAudioDuration">
+        <description>低风险等级语音时长</description>
+      </data-field>
+      <data-field dict-id="mAudioDuration" display-name="mAudioDuration" is-required="false" name="mAudioDuration" exist-style="" is-repeated="false" xpath="info.mAudioDuration">
+        <description>中风险等级语音时长</description>
+      </data-field>
+      <data-field dict-id="hAudioDuration" display-name="hAudioDuration" is-required="false" name="hAudioDuration" exist-style="" is-repeated="false" xpath="info.hAudioDuration">
+        <description>高风险等级语音时长</description>
+      </data-field>
+      <data-field dict-id="shAudioDuration" display-name="shAudioDuration" is-required="false" name="shAudioDuration" exist-style="" is-repeated="false" xpath="info.shAudioDuration">
+        <description>超高风险等级语音时长</description>
+      </data-field>
+       <data-field dict-id="spAudioDuration" display-name="spAudioDuration" is-required="false" name="spAudioDuration" exist-style="" is-repeated="false" xpath="info.spAudioDuration">
+        <description>特殊风险语音时长</description>
+      </data-field>
+      <data-field dict-id="audioIds" display-name="audioIds" is-required="false" name="audioIds" exist-style="" is-repeated="false" xpath="info.audioIds">
+        <description>注册使用的音频ID</description>
+      </data-field>
+      <data-field dict-id="isFsRegistered" display-name="isFsRegistered" is-required="false" name="isFsRegistered" exist-style="" is-repeated="false" xpath="info.isFsRegistered">
+        <description>是否已经注册自由说声纹</description>
+      </data-field>
+      <data-field dict-id="crtDate" display-name="crtDate" is-required="false" name="crtDate" exist-style="" is-repeated="false" xpath="info.crtDate">
+        <description>创建日期</description>
+      </data-field>
+      <data-field dict-id="lstUpdTime" display-name="lstUpdTime" is-required="false" name="lstUpdTime" exist-style="" is-repeated="false" xpath="info.lstUpdTime">
+        <description>最后更新时间</description>
+      </data-field>
+      <data-field dict-id="lstUpdDate" display-name="lstUpdDate" is-required="false" name="lstUpdDate" exist-style="" is-repeated="false" xpath="info.lstUpdDate">
+        <description>最后更新日期</description>
+      </data-field>
+    </data-entity>
+    <data-field dict-id="returnCode" display-name="returnCode" is-required="false" name="returnCode" exist-style="" is-repeated="false" xpath="returnCode">
+      <description>返回码</description>
+    </data-field>
+    <data-field dict-id="returnMsg" display-name="returnMsg" is-required="false" name="returnMsg" exist-style="" is-repeated="false" xpath="returnMsg">
+      <description>返回信息</description>
+    </data-field>
+    <data-field dict-id="totalNum" display-name="totalNum" is-required="false" name="totalNum" exist-style="" is-repeated="false" xpath="totalNum">
+      <description>总条数</description>
+    </data-field>
+    <data-field dict-id="userUniqueId" display-name="userUniqueId" is-required="false" name="userUniqueId" exist-style="" is-repeated="false" xpath="userUniqueId">
+      <description>用户唯一标识</description>
+    </data-field>
+  </JsonTypeDefinition>
+</configuration>

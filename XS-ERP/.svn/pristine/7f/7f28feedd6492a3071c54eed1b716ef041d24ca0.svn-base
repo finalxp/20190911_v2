@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/color.css}">
+<script type="text/javascript" th:src="@{/js/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<style>
+	body{overflow：hidden}
+</style>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;">
+
+			<th:block layout:fragment="bodyAssets">
+
+			</th:block>
+		</div>
+		<div data-options="region:'south',border:false"
+			style="text-align: right; padding: 5px 0 0;">
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+				onclick="save()" style="width: 80px">保存</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+				href="javascript:void(0)" onclick="closeW()" style="width: 80px">关闭</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+        	var addurl,editurl,addOrUpdate;
+			function save(){
+				if(addOrUpdate=="add" & checkAddReturn()){
+					alert("123");
+     				$.ajax({
+	        			url:addurl,
+	        			type:"POST",
+	        			processData:false,
+					    contentType: false,
+	        			data: new FormData($('#ff')[0]),
+	        			success:function(data){
+	        				if (data == "success") {
+								closeW();
+							} else {
+								$.messager.alert("提示", "添加失败！");
+							}
+	        			},
+	        			error:function(){
+	        				$.messager.alert("提示", "请检查网络连接！");
+	        			}
+	        		});
+	        	}else if(addOrUpdate=="edit" & checkAddReturn()){
+	        		$.ajax({
+	        			url:editurl,
+	        			type:"POST",
+	        			processData:false,
+					    contentType: false,
+	        			data: new FormData($('#ff')[0]),
+	        			success:function(data){
+	        				if (data == "success") {
+								closeW();
+							} else {
+								alert(data);
+								$.messager.alert("提示", "修改失败！");
+							}
+	        			},
+	        			error:function(){
+	        				$.messager.alert("提示", "请检查网络连接！");
+	        			}
+	        		});
+	        	
+	        	}
+			
+        		
+        	}   
+        	function closeW(){
+        		parent.closeW();
+        	}
+        	
+        	var ifClick = false;// 判断是否点击取消
+			// 添加员工时，是否提交
+			function checkAddReturn() {
+				// var message = [[${addEMployee}]];
+				// console.log(message);
+				if (ifClick) {
+					return false;
+				} else if (clickAddHandler()) {
+					return true;
+				}
+				return false;
+			}
+			 // 添加员工时，检测填写内容
+			function clickAddHandler() {
+				var empNo = $(".empNo").val();
+				var empPassword = $(".empPassword").val();
+				var empName = $(".empName").val();
+				var sex = $(".sex option:selected").val();
+				var hiredate =$(".hiredate").val();
+				if (empNo == "") {
+					$.messager.alert("警告", "员工号不能为空！").window({ width: 280});
+					ifClick = false;
+					return false;
+				} else if (empPassword == "") {
+					$.messager.alert("警告", "员工密码不能为空！");
+					ifClick = false;
+					return false;
+				} else if (empName == "") {
+					$.messager.alert("警告", "员工姓名不能为空！");
+					ifClick = false;
+					return false;
+				} else if(hiredate == ""){
+					$.messager.alert("警告", "入职时间不能为空！");
+					ifClick = false;
+					return false;
+				}else if (sex == "") {
+					$.messager.alert("警告", "员工性别不能为空！");
+					ifClick = false;
+					return false;
+				}
+				return true;
+			}
+			// 判断新增用户是否存在
+			function verifyUser() {
+				$.ajax({
+					url : "/ifExistEmpNo",
+					type : "get",
+					data : {
+						empNo : $(".empNo").val()
+					},
+					success : function(data) {
+						if (data == "success") {
+							// alert("EmpNo不存在，可以使用！");
+							$("#ifExist").html("");
+						} else {
+							// alert("EmpNo存在，不可以使用！");
+							$("#ifExist").append("EmpNo存在，不可以使用！");
+						}
+					},
+					error : function() {
+						alert("配置信息有误！！");
+					}
+				});
+			
+			}
+			
+        </script>
+</body>
+</html>

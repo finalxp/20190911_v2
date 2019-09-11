@@ -1,0 +1,49 @@
+package cn.xs.erp.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.xs.erp.dao.IMenuDao;
+import cn.xs.erp.model.MenuItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IMenuService;
+
+import com.github.pagehelper.PageHelper;
+
+@Service
+public class MenuServiceImpl implements IMenuService {
+
+	@Autowired
+	private IMenuDao menuDao;
+
+	@Override
+	public MenuItem getMenuItemById(int Id) {
+		return menuDao.selectByPrimaryKey(Id);
+	}
+
+	@Override
+	public PageInfo<MenuItem> selectMenuByPage(int page, int pageSize) {
+		PageHelper.startPage(page, pageSize);
+		List<MenuItem> docs = menuDao.selectAll();
+		PageInfo<MenuItem> pageInfo = new PageInfo<>(docs);
+		return pageInfo;
+	}
+
+	@Override
+	public int AddMenu(MenuItem menuItem) {
+		return menuDao.insert(menuItem);
+	}
+
+	@Override
+	public List<MenuItem> getFirstLevelMenus() {
+		return menuDao.getFirstLevelMenus();
+	}
+
+	@Override
+	public List<MenuItem> getTreeMenus() {
+		return menuDao.getTreeMenus();
+	}
+
+}

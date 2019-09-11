@@ -1,0 +1,93 @@
+package cn.xs.erp.controller;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.xs.erp.config.Const;
+import cn.xs.erp.model.DoorItem;
+import cn.xs.erp.model.PageInfo;
+import cn.xs.erp.service.IDoorService;
+
+@Controller
+public class DoorController extends BaseController{
+	@Autowired
+	private IDoorService doorService;
+	
+	@RequestMapping("/door")
+	public String home(Model model){
+		return "/door/index";
+	}
+	@RequestMapping("/door/add")
+	public String add(Model model){
+		return "/door/add";
+	}
+	@RequestMapping("/door/edit")
+	public String edit(Model model,@RequestParam int id){
+		DoorItem doorItem = doorService.getDoorItemById(id);
+		model.addAttribute("doorItem", doorItem);
+		return "/door/edit";
+	}
+	
+	@RequestMapping(value="/door/addDoor",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String addDoor(DoorItem doorItem){
+		doorItem.setCreateBy((Integer) getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		doorItem.setCreateTime(new Date());
+		int i =doorService.addDoor(doorItem);
+		if (i>0) {
+			return "success";
+		}else {
+			return "unsuccess";
+		}
+	}
+	
+	@RequestMapping(value="/door/editDoor",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String editDoor(DoorItem doorItem){
+		doorItem.setUpdateBy((Integer) getSession().getAttribute(Const.LOGIN_SESSION_KEY));
+		doorItem.setUpdateTime(new Date());
+		int i = doorService.editDoor(doorItem);
+		if (i>0) {
+			return "success";
+		}else {
+			return "unsuccess";
+		}
+	}
+	
+	@RequestMapping(value="/door/deleteDoor",method=RequestMethod.DELETE,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String deleteDoor(@RequestParam int id){
+		int i = doorService.deleteDoor(id);
+		if (i>0) {
+			return "success";
+		}else {
+			return "unsuccess";
+		}
+	}	
+	
+	//查询所有门信息
+	@RequestMapping(value="/door/list", method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<DoorItem> list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows){
+		return doorService.selectDoorByPage(page, rows);
+	}
+	//根据条件筛选门信息
+	@RequestMapping(value="/door/toolbarList", method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public PageInfo<DoorItem> toolbarList(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows,
+			@RequestParam(value = "doorNo", required = false) String doorNo, @RequestParam(value = "doorName", required = false) String doorName){
+		return doorService.selectDoorByPage(page, rows,doorNo,doorName);
+	}
+	
+	
+	
+	
+	
+}

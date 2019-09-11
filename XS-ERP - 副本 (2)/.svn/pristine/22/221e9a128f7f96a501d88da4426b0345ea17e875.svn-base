@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/default/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/icon.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/themes/color.css}">
+<script type="text/javascript" th:src="@{/js/easyui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<style>
+	body{overflow：hidden}
+</style>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" style="padding:10px;">
+
+			<th:block layout:fragment="bodyAssets">
+
+			</th:block>
+		</div>
+		<div data-options="region:'south',border:false"
+			style="text-align: right; padding: 5px 0 0;">
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+				onclick="save()" style="width: 80px">保存</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+				href="javascript:void(0)" onclick="closeW()" style="width: 80px">关闭</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+        	var url,checkWhat;
+			function save(){
+				if(checkReturn()){
+     				$.ajax({
+	        			url:url,
+	        			type:"POST",
+	        			dataType:'text',
+	        			processData:false,
+					    contentType: false,
+	        			data: new FormData($('#ff')[0]),
+	        			success:function(data){
+	        				if (data == "success") {
+								closeW();
+							} else {
+								$.messager.alert("提示", "失败，请检查填写信息！");
+							}
+	        			},
+	        			error:function(XMLHttpRequest, textStatus, errorThrown) {
+							$.messager.alert("提示", "请检查网络连接！！");
+							alert(XMLHttpRequest.status);
+							alert(XMLHttpRequest.readyState);
+							alert(textStatus);
+	        			}
+	        		});
+	        	}
+        	}   
+        	function closeW(){
+        		parent.closeW();
+        	}
+        	
+        	function checkReturn(){
+        		if(checkWhat=="empAdd"){
+        			return checkAddReturn();
+        		}else if(checkWhat=="empEdit"){
+        			return checkEditReturn();
+        		}else if(checkWhat=="doorApplyAdd" || checkWhat=="doorApplyEdit"){
+        			return checkDoorApplyReturn();
+        		}
+        	}
+        	
+        	var ifClick = false;// 判断是否点击取消
+			// 添加员工时，是否提交
+			function checkAddReturn() {
+				if (ifClick) {
+					return false;
+				} else if (clickAddHandler()) {
+					return true;
+				}
+				return false;
+			}
+			 // 添加员工时，检测填写内容
+			function clickAddHandler() {
+				var empNo = $(".empNo").val();
+				var empPassword = $(".empPassword").val();
+				var empName = $(".empName").val();
+				var sex = $(".sex option:selected").val();
+				var hiredate =$(".hiredate").val();
+				var depID=$("#depID").val();
+				if (empNo == "") {
+					$.messager.alert("警告", "员工号不能为空！").window({ width: 280});
+					ifClick = false;
+					return false;
+				} else if (empPassword == "") {
+					$.messager.alert("警告", "员工密码不能为空！");
+					ifClick = false;
+					return false;
+				} else if (empName == "") {
+					$.messager.alert("警告", "员工姓名不能为空！");
+					ifClick = false;
+					return false;
+				} else if(hiredate == ""){
+					$.messager.alert("警告", "入职时间不能为空！");
+					ifClick = false;
+					return false;
+				}else if (sex == "") {
+					$.messager.alert("警告", "员工性别不能为空！");
+					ifClick = false;
+					return false;
+				}else if (depID==""){
+					$.messager.alert("警告", "部门不能为空！");
+					ifClick = false;
+					return false;
+				}
+				return true;
+			}
+			
+			// 修改员工时，是否提交
+			function checkEditReturn() {
+				if (ifClick) {
+					return false;
+				} else if (clickEditHandler()) {
+					return true;
+				}
+				return false;
+			}
+			// 修改员工时，检测填写内容
+			function clickEditHandler() {
+				var empNo = $("#empNo").val();
+				var empName = $("#empName").val();
+				var sex = $("#sex option:selected").val();
+				if (empNo == "") {
+					$.messager.alert("警告", "员工号不能为空！");
+					ifClick = false;
+					return false;
+				} else if (empName == "") {
+					$.messager.alert("警告", "员工名字不能为空！");
+					ifClick = false;
+					return false;
+				} else if (sex == "") {
+					$.messager.alert("警告", "员工性别不能为空！");
+					ifClick = false;
+					return false;
+				}
+				return true;
+			}
+			
+			//添加门时，检查填写内容
+			function checkDoorApplyReturn(){
+				var doorNo=$("#doorNo").val();
+				var doorName=$("#doorName").val();
+				var doorMacAddr=$("#doorMacAddr").val();
+				var usePassword=$("#usePassword option:selected").val();
+				var pwdBeginTime=$("#pwdBeginTime").val();
+				var pwdEndTime=$("#pwdEndTime").val();
+				if(doorNo==""){
+					$.messager.alert("警告", "门编号不能为空！");
+					return false;
+				}else if(doorName==""){
+					$.messager.alert("警告", "门名称不能为空！");
+					return false;
+				}else if(doorMacAddr==""){
+					$.messager.alert("警告", "门Mac地址不能为空！");
+					return false;
+				}else if(usePassword==""){
+					$.messager.alert("警告", "请选择是否启用密码开门！");
+					return false;
+				}
+				if(usePassword==1){
+					if(pwdBeginTime=="" || pwdEndTime==""){
+						$.messager.alert("警告","选择启用密码开门后，必须选择密码开门开始和结束时间！");
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			// 判断新增用户是否存在
+			function verifyUser() {
+				$.ajax({
+					url : "/ifExistEmpNo",
+					type : "get",
+					data : {
+						empNo : $(".empNo").val()
+					},
+					success : function(data) {
+						if (data == "success") {
+							// alert("EmpNo不存在，可以使用！");
+							$("#ifExist").html("");
+						} else {
+							// alert("EmpNo存在，不可以使用！");
+							$("#ifExist").append("EmpNo存在，不可以使用！");
+						}
+					},
+					error : function() {
+						alert("配置信息有误！！");
+					}
+				});
+			
+			}
+			
+			function verifyDoor(){
+				
+			}
+			
+        </script>
+</body>
+</html>

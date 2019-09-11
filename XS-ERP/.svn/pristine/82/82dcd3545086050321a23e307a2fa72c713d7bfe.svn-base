@@ -1,0 +1,19 @@
+package cn.xs.erp.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.xs.erp.dao.IEmployeeDepartmentDao;
+import cn.xs.erp.model.EmployeeDepartmentItem;
+import cn.xs.erp.service.IEmployeeDepartmentService;
+@Service
+public class EmployeeDepartmentService implements IEmployeeDepartmentService {
+
+	@Autowired
+	private IEmployeeDepartmentDao employeeDepartmentDao;
+	@Override
+	public int addEmployeeDepartment(EmployeeDepartmentItem employeeDepartmentItem) {
+		return employeeDepartmentDao.insertSelective(employeeDepartmentItem);
+	}
+
+}

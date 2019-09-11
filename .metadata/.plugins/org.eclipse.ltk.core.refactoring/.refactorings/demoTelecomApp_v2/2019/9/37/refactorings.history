@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.example.web.QueryDepartmentTree&apos; to &apos;QueryDepartmentTreeController&apos;&#x0D;&#x0A;- Original project: &apos;demoTelecomApp_v2&apos;&#x0D;&#x0A;- Original element: &apos;com.example.web.QueryDepartmentTree&apos;&#x0D;&#x0A;- Renamed element: &apos;com.example.web.QueryDepartmentTreeController&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;QueryDepartmentTree&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;com.example.web{QueryDepartmentTree.java[QueryDepartmentTree" matchStrategy="1" name="QueryDepartmentTreeController" qualified="false" references="true" similarDeclarations="false" stamp="1568014901896" textual="false" version="1.0"/>
+</session>

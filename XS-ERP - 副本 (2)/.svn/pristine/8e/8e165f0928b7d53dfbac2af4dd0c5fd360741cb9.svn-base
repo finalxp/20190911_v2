@@ -1,0 +1,12 @@
+package cn.xs.erp.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import cn.xs.erp.model.EmployeeItem;
+
+@Mapper
+public interface IEmployeeDao extends IBaseDao<EmployeeItem, Integer> {
+	List<EmployeeItem> selectAll();
+}

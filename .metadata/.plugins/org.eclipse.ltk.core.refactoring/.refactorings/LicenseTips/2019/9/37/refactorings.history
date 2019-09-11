@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;POIUtil.java&apos; to &apos;LicenseTips_javaProject/src/com.xiaosheng.utils&apos;&#x0D;&#x0A;- Original project: &apos;LicenseTips&apos;&#x0D;&#x0A;- Destination element: &apos;LicenseTips_javaProject/src/com.xiaosheng.utils&apos;&#x0D;&#x0A;- Original element: &apos;com.xskj.utils.POIUtil.java&apos;" description="Copy compilation unit" destination="=LicenseTips_javaProject/src&lt;com.xiaosheng.utils" element1="/src\/main\/java&lt;com.xskj.utils{POIUtil.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1568108937035" units="1" version="1.0"/>
+</session>
