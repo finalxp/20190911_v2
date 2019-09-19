@@ -88,6 +88,12 @@ public class QueryDepartmentTree implements IQueryDepartmentTree {
 		}
 		System.out.println("-------上级部门id是updateInputDep--：" + updateInputDep);
 		
+		//新增判断上级部门为null
+		if (updateInputDep==null) {
+			return null;
+		}
+		
+		
 		//判断上级部门id是否为0或者1.
 		if (updateInputDep.equals("0") || updateInputDep.equals("1")) {
 			System.out.println("第一次查询上级部门是0的fistID："+fistDepId);

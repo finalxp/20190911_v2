@@ -13,4 +13,6 @@ import com.example.model.User;
  */
 public interface IQueryFuzzyService {
 	public List<User> queryFuzzyService(String namePart);
+	//单位管理员调用
+	public List<User> queryFuzzyService(String namePart, String rootDep);
 }

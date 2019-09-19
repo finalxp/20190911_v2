@@ -78,4 +78,27 @@ public class UpdateUserPrivilegesCotroller {
 
 		return updateUserPrivilegesService.updateUserPrivilegesAs0(userId);
 	}
+	
+	
+	@RequestMapping(value = "updateUserPrivilegesAs2", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public ResponseTemplate updateUserPrivilegesAs2Cotroller(HttpServletRequest request) throws IOException {
+
+		// 读取请求内容
+		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		String line = null;
+		StringBuilder sb = new StringBuilder();
+		while ((line = br.readLine()) != null) {
+			sb.append(line);
+		}
+
+		// 将资料解码
+		String reqBody = sb.toString();
+		// 获取参数
+		Map<String, Object> map = JSONObject.fromObject(reqBody);
+		Object object = map.get("userId");
+		String userId = object.toString();
+
+		return updateUserPrivilegesService.updateUserPrivilegesAs2(userId);
+	}
 }

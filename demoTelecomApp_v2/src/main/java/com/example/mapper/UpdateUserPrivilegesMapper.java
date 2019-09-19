@@ -17,4 +17,7 @@ public interface UpdateUserPrivilegesMapper {
 	
 	@Update("UPDATE users_telecom SET administrator_privileges = '1' WHERE user_login_name =#{userId}")
 	int updateUserPrivilegesAs1(String userId);
+	
+	@Update("UPDATE users_telecom SET administrator_privileges = '2' WHERE user_login_name =#{userId}")
+	int updateUserPrivilegesAs2(String userId);
 }

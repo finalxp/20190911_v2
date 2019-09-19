@@ -39,6 +39,13 @@ public class UpdateUserPrivilegesService implements IUpdateUserPrivilegesService
 
 	}
 
-	
-
+	@Override
+	public ResponseTemplate updateUserPrivilegesAs2(String userId) {
+		int updateUserPrivilegesAs2 = updateUserPrivilegesMapper.updateUserPrivilegesAs2(userId);
+		if (updateUserPrivilegesAs2 == 0) {
+			return responseTemplate.error();
+		}else {			
+			return responseTemplate.ok();
+		}
+	}
 }
