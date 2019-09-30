@@ -1,5 +1,6 @@
 package com.xiaosheng.utils;
 
+import java.io.File;
 import java.io.FileNotFoundException;  
 import java.io.IOException;  
 import java.io.InputStream;  
@@ -8,7 +9,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;  
 import java.util.List;  
   
+
  
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
+import org.apache.pdfbox.text.PDFTextStripper;
+
 
 
 
@@ -18,11 +25,27 @@ import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.ss.usermodel.Sheet;  
 import org.apache.poi.ss.usermodel.Workbook;  
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  
 /** 
  * excel读写工具类 */  
 public class POIUtil {  
+	
+	
+	public static String pdf2String(File file) throws IOException{
+		PDDocument document=PDDocument.load(file);
+		PDFTextStripper stripper=new PDFTextStripper();
+		stripper.setSortByPosition(false);
+		String result=stripper.getText(document);
+		document.close();
+		return result;
+	}
+
+	
+	
+	
+	
+	
 	
 	// 得到单元格的字符串内容
     public static String getCellValue(Cell cell) {

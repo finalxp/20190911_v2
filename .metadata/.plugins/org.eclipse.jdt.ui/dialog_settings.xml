@@ -43,6 +43,7 @@
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+		<item value="true" key="RunnableJar.export.ipwarning"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.typehierarchy.QuickHierarchy">
 		<item value="true" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE"/>
@@ -71,10 +72,12 @@
 	<section name="FatJarPackageWizard">
 		<item value="C:\Projects\Java_Project" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
 		<item value="demo_tipsLicense - LicenseTips_javaProject" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="C:\Users\leoli\Desktop\ffddddd.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="W:\tool\tipsLicense\tipsLicense_v3.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="W:\tool\tipsLicense\tipsLicense_v3.jar"/>
+			<item value="C:\Users\leoli\Desktop\tipsLicense_v2.jar"/>
 			<item value="C:\Users\leoli\Desktop\ffddddd.jar"/>
 			<item value="C:\Users\leoli\Desktop\ffffffffffffffff.jar"/>
 			<item value="C:\Users\leoli\Desktop\telecomenrolappdemo2.jar"/>
@@ -99,7 +102,7 @@
 	<section name="SourceActionDialog.methods">
 		<item value="true" key="IgnoreDefault"/>
 		<item value="false" key="SynchronizedModifier"/>
-		<item value="false" key="Comments"/>
+		<item value="true" key="Comments"/>
 		<item value="1" key="VisibilityModifier"/>
 		<item value="0" key="StringStyle"/>
 		<item value="0" key="ToStringTemplateSelected"/>

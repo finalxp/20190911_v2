@@ -56,7 +56,7 @@ public class CheckinRecordService implements ICheckinRecordService {
 			}
 		}
 		if (timeIn==null && timeOut==null) {
-			return new RspResultDto(RspResultMessage.AddCheckinRecordFailedWithNoSelect);
+			//return new RspResultDto(RspResultMessage.AddCheckinRecordFailedWithNoSelect);
 		}
 		
 		return new RspResultDto(RspResultMessage.AddCheckinRecordSuccess);

@@ -5,6 +5,8 @@
 <aop-project name="cmoscs"/>
 <aop-project name="demoTelecomApp"/>
 <aop-project name="onevsmore"/>
+<aop-project name="telcomdispatch"/>
+<aop-project name="telcomenrol"/>
 <aop-project name="XS-ERP"/>
 <aop-project name="qrdemo20190819"/>
 <aop-project name="LicenseTips"/>

@@ -61,11 +61,12 @@ public class TechnologyDepartmentController extends BaseController{
 			byte[] bs = htmlTextEnd.getBytes();
 			outStream.write(bs);
 			outStream.close();
-			return new RspResultDto(RspResultMessage.AddHtmlPageSuccess);
+			//return new RspResultDto(RspResultMessage.AddHtmlPageSuccess);
 		} catch (IOException e) {
 			e.printStackTrace();
-			return new RspResultDto(RspResultMessage.AddHtmlPageFailed);
+			//return new RspResultDto(RspResultMessage.AddHtmlPageFailed);
 		}
+		return null;
 	}
 	
 	

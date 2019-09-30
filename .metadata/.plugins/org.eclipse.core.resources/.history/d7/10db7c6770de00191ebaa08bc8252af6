@@ -1,0 +1,6 @@
+package com.example.model;
+
+public class EmpDepList {
+	private String department
+	private String employee
+}

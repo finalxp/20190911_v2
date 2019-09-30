@@ -1,7 +1,9 @@
 package com.xiaosheng;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.HeadlessException;
+import java.awt.TextArea;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.text.DateFormat;
@@ -11,6 +13,7 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -24,6 +27,8 @@ import com.xiaosheng.utils.POIUtil;
 public class demo_tipsLicense {
 
 	public static void main(String[] args) {
+		
+		TextArea taArea = new TextArea();
 		
 		System.out.println("-------效生声纹引擎许可期限提示-------");
 
@@ -59,16 +64,11 @@ public class demo_tipsLicense {
 				Row row = sheet.getRow(r); // 获取单元格中指定的行对象
 				if (row != null) {
 					// int cells = row.getPhysicalNumberOfCells();// 获取一行中的单元格数
-
 					// int cells = row.getLastCellNum();// 获取一行中最后单元格的编号（从1开始）
+					cell = row.getCell((short) 0);//项目名称读取
+					cell2 = row.getCell((short) 2);//到期日期读取
 
-					cell = row.getCell((short) 0);
-					cell2 = row.getCell((short) 2);
-
-				}
-				// String[] str = value.split(",");
-				// System.out.println(sb.toString());
-
+				}				
 				Date date = new Date();
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				//System.out.println(dateFormat.format(date));
@@ -78,7 +78,7 @@ public class demo_tipsLicense {
 				Date d2 = df.parse(df.format(new Date()));
 				//System.out.println(d2);
 				long diff = d1.getTime() - d2.getTime();// 这样得到的差值是微秒级别
-				long days = diff / (1000 * 60 * 60 * 24);
+				long days = diff / (1000 * 60 * 60 * 24);//得到剩余天数
 
 				if (days == 60 || days == 59 || days == 61) {
 					System.out.println(POIUtil.getCellValue(cell)+"，剩余两个月");
@@ -94,54 +94,57 @@ public class demo_tipsLicense {
 				
 				//System.out.println(POIUtil.getCellValue(cell)+"，剩余天数：-->" + days);
 
-				/*if (days == 30 || days == 29 || days == 31) {
-					sb.append(cell).append(",许可期限剩余 一个月。");
-
-				}
+				
 				
 				if (days == 60 || days == 59 || days == 61) {
-					sb.append(cell).append(",许可期限剩余 两个月。");
-
+					//sb.append(cell).append(",许可期限剩余 两个月。");
+					taArea.append(cell.toString()+",许可期限剩余 两个月。"+ "\r\n");
 				}
-
-				if (days == 7 || days == 8 || days == 6) {
-					sb.append(cell).append(",许可期限剩余 一星期。");
+				
+				if (days == 30 || days == 29 || days == 31) {
+					//sb.append(cell).append(",许可期限剩余 一个月。");
+					taArea.append(cell.toString()+",许可期限剩余 一个月。"+ "\r\n");
 				}
 
 				if (days < 8 && days > 0) {
-					sb.append(cell).append(",许可期限剩余：").append(days + "天。");
+					//sb.append(cell).append(",许可期限剩余：").append(days + "天。");
+					taArea.append(cell.toString()+",许可期限剩余："+days+"天。"+ "\r\n");
 				}
-*/
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		/*try {
-			if (sb.length() != 0) {
+		try {
+			
 				JFrame jFrame = new JFrame();
 
-				JPanel jPanel = new JPanel();
-				String string = new String();
-				string = sb.toString();
-
-				JLabel jLabel = new JLabel(string);
-				jPanel.add(jLabel);
+				JPanel jPanel = new JPanel();	
+				
+				taArea.setBackground(Color.white);
+				taArea.setSize(90, 20);
+				taArea.setRows(17);
+				taArea.setColumns(68);
+				taArea.setEditable(false);
+				
+				jPanel.add(taArea);
 				jFrame.add(jPanel);
+				//jFrame.add(taArea);
 
 				jFrame.setLayout(new FlowLayout(1));
 				jFrame.setTitle("引擎许可期限提醒");
-				jFrame.setSize(550, 100);
+				jFrame.setSize(550, 360);
 				jFrame.setVisible(true);
 				jFrame.setDefaultCloseOperation(3);
 				jFrame.setLocationRelativeTo(null);
 
 				// System.out.println(sb);
-			}
+			
 		} catch (HeadlessException e) {
 
 			e.printStackTrace();
-		}*/
+		}
 
 	}
 
