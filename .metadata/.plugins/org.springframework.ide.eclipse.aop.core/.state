@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="demo20190719"/>
 <aop-project name="demoTelecomApp_v2"/>
-<aop-project name="cmoscs"/>
-<aop-project name="demoTelecomApp"/>
-<aop-project name="onevsmore"/>
-<aop-project name="telcomdispatch"/>
-<aop-project name="telcomenrol"/>
-<aop-project name="XS-ERP"/>
-<aop-project name="qrdemo20190819"/>
-<aop-project name="LicenseTips"/>
+<aop-project name="shtelcom"/>
 </aop-reference-model>

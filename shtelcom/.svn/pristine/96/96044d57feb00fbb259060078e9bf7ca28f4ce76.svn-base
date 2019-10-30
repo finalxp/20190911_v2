@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE generatorConfiguration
+          PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+           "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!--数据库链接URL，用户名、密码 -->
+	<context id="MySQL" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<!-- 格式化XML代码 -->
+		<property name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+		<!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"></plugin>
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.8.217:3306/telecom_app?useSSL=false&amp;nullCatalogMeansCurrent=true"
+			userId="root" password="Start123">
+		</jdbcConnection>
+
+		<!--是否启用java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="cn.productivetech.shtelcom.enrol.model"
+			targetProject="src/main/java/cn/productivetech/shtelcom/enrol/model">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="cn.productivetech.shtelcom.enrol.dao"
+			targetProject="src/main/resources/mybatis/mapper">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<table schema="telecom_app" tableName="users_telecom321321321" domainObjectName="UserBean"
+			mapperName="IUserDao" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		 
+			<!-- useActualColumnNames用于指定生成实体类时是否使用实际的列名作为实体类的属性名 
+			<property name="useActualColumnNames" value="true" />   -->
+		
+			<generatedKey column="Id" sqlStatement="mysql" identity="true" />
+		</table>
+	</context>
+</generatorConfiguration>

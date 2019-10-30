@@ -56,7 +56,14 @@ public class QueryFuzzy {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 * 
+	 * 添加部门集合类模糊查询
+	 */
 	@RequestMapping(value = "queryFuzzyByUnitAdmin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<User> queryFuzzyByUnitAdmin(HttpServletRequest request) throws Exception{
@@ -80,5 +87,29 @@ public class QueryFuzzy {
 		return queryFuzzyService.queryFuzzyService(namePart,rootDep);
 		
 	}
+
 	
+	@RequestMapping(value = "queryFuzzyDep", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<User> queryFuzzyDep(HttpServletRequest request) throws Exception{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		String line = null;
+		StringBuilder sb = new StringBuilder();
+		while ((line = br.readLine()) != null) {
+			sb.append(line);
+		}
+
+		// 将资料解码
+		String reqBody = sb.toString();
+		// 获取参数
+		Map<String, Object> map = JSONObject.fromObject(reqBody);
+		Object object = map.get("namePart");
+		String namePart = object.toString();
+		Object objectRootDep = map.get("rootDepId");
+		String rootDep = objectRootDep.toString();
+		
+		return queryFuzzyService.queryFuzzyService(namePart,rootDep);
+		
+	}
 }

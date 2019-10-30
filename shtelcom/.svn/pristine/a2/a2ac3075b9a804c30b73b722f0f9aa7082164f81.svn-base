@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.shtelcom.enrol.dao.IUserDao">
+  <resultMap id="BaseResultMap" type="cn.productivetech.shtelcom.enrol.model.UserBean">
+    <id column="user_id" jdbcType="SMALLINT" property="userId" />
+    <result column="user_login_name" jdbcType="VARCHAR" property="userLoginName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="text_number" jdbcType="VARCHAR" property="textNumber" />
+    <result column="administrator_privileges" jdbcType="INTEGER" property="administratorPrivileges" />
+    <result column="user_dep_id" jdbcType="VARCHAR" property="userDepId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="unitDep" jdbcType="VARCHAR" property="unitDep" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_login_name, name, text_number, administrator_privileges, user_dep_id, 
+    create_time, update_time, create_user, update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,getUnitDep(user_dep_id) as unitDep
+    from users_telecom
+    where user_id = #{userId,jdbcType=SMALLINT}
+  </select>
+  <select id="selectByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,getUnitDep(user_dep_id) as unitDep
+    from users_telecom
+    where user_login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from users_telecom
+    where user_id = #{userId,jdbcType=SMALLINT}
+  </delete>
+  
+  <insert id="insert" parameterType="cn.productivetech.shtelcom.enrol.model.UserBean">
+    insert into users_telecom (user_id, user_login_name, name, 
+      text_number, administrator_privileges, user_dep_id, 
+      create_time, update_time, create_user, 
+      update_user)
+    values (#{userId,jdbcType=SMALLINT}, #{userLoginName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{textNumber,jdbcType=VARCHAR}, #{administratorPrivileges,jdbcType=INTEGER}, #{userDepId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="cn.productivetech.shtelcom.enrol.model.UserBean">
+    insert into users_telecom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userLoginName != null">
+        user_login_name,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="textNumber != null">
+        text_number,
+      </if>
+      <if test="administratorPrivileges != null">
+        administrator_privileges,
+      </if>
+      <if test="userDepId != null">
+        user_dep_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=SMALLINT},
+      </if>
+      <if test="userLoginName != null">
+        #{userLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="textNumber != null">
+        #{textNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="administratorPrivileges != null">
+        #{administratorPrivileges,jdbcType=INTEGER},
+      </if>
+      <if test="userDepId != null">
+        #{userDepId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="cn.productivetech.shtelcom.enrol.model.UserBean">
+    update users_telecom
+    <set>
+      <if test="userLoginName != null">
+        user_login_name = #{userLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="textNumber != null">
+        text_number = #{textNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="administratorPrivileges != null">
+        administrator_privileges = #{administratorPrivileges,jdbcType=INTEGER},
+      </if>
+      <if test="userDepId != null">
+        user_dep_id = #{userDepId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=SMALLINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="cn.productivetech.shtelcom.enrol.model.UserBean">
+    update users_telecom
+    set user_login_name = #{userLoginName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      text_number = #{textNumber,jdbcType=VARCHAR},
+      administrator_privileges = #{administratorPrivileges,jdbcType=INTEGER},
+      user_dep_id = #{userDepId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=SMALLINT}
+  </update>
+  
+  <update id="updateTextNumber" parameterType="java.lang.Short">
+    update users_telecom
+    set text_number = '1,2,3'
+    where user_id = #{userId,jdbcType=SMALLINT}
+  </update>
+  
+  <update id="updatePrivilege">
+    update users_telecom
+    set administrator_privileges = #{privilege,jdbcType=INTEGER},
+    where user_id = #{userId,jdbcType=SMALLINT}
+  </update>
+  
+  <select id="selectDepAndUser" parameterType="java.lang.String" resultType="cn.productivetech.shtelcom.enrol.model.DepAndUserBean">
+  	SELECT department_id AS id , department_name AS name,1 AS type, -1 AS privilege, '' AS enrolFlag
+	FROM department_telecom
+	WHERE department_sup_id = #{depId,jdbcType=VARCHAR}
+	UNION ALL
+	SELECT user_login_name AS id,name, 2 AS type,administrator_privileges AS privilege,
+	CASE WHEN text_number = '1,2,3' THEN 'ENROL' ELSE '' END AS enrolFlag
+	FROM users_telecom
+	WHERE user_dep_id = #{depId,jdbcType=VARCHAR}
+	ORDER BY type ASC ,privilege DESC ,CONVERT(name USING gbk) ASC
+  </select>
+  
+  <select id="selectUnitDeps" parameterType="java.lang.String" resultType="cn.productivetech.shtelcom.enrol.model.DepAndUserBean">
+  	SELECT department_id AS id , department_name AS name,1 AS type, -1 AS privilege, '' AS enrolFlag
+	FROM department_telecom
+	WHERE department_id = getUnitDep(#{depId,jdbcType=VARCHAR})
+  </select>
+  
+  <select id="selectRootDeps" resultType="cn.productivetech.shtelcom.enrol.model.DepAndUserBean">
+  	SELECT distinct department_sup_id AS id , department_sup_name AS name,1 AS type, -1 AS privilege, '' AS enrolFlag
+	FROM department_telecom
+	WHERE department_sup_id IN('0','1')
+  </select>
+  
+  <select id="selectUnitAdminUsers" resultType="cn.productivetech.shtelcom.enrol.model.DepAndUserBean">
+	SELECT user_login_name AS id,name, 2 AS type,administrator_privileges AS privilege,
+	CASE WHEN text_number = '1,2,3' THEN 'ENROL' ELSE '' END AS enrolFlag
+	FROM users_telecom
+	WHERE administrator_privileges = 1
+	ORDER BY type ASC ,privilege DESC ,CONVERT(name USING gbk) ASC
+  </select>
+  
+  <select id="searchUserByAdmin" parameterType="java.lang.String" resultType="cn.productivetech.shtelcom.enrol.model.DepAndUserBean">
+	SELECT user_login_name AS id,name, 2 AS type,administrator_privileges AS privilege,
+	CASE WHEN text_number = '1,2,3' THEN 'ENROL' ELSE '' END AS enrolFlag
+	FROM users_telecom
+	WHERE name LIKE CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+	ORDER BY privilege DESC ,CONVERT(name USING gbk) ASC
+  </select>
+  
+  <select id="searchUserByUnitAdmin" parameterType="java.lang.String" resultType="cn.productivetech.shtelcom.enrol.model.DepAndUserBean">
+	SELECT user_login_name AS id,name, 2 AS type,administrator_privileges AS privilege,
+	CASE WHEN text_number = '1,2,3' THEN 'ENROL' ELSE '' END AS enrolFlag
+	FROM users_telecom
+	WHERE name LIKE CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+	AND FIND_IN_SET(user_dep_id,getChildDep(#{depId,jdbcType=VARCHAR})) > 0
+	ORDER BY privilege DESC ,CONVERT(name USING gbk) ASC
+  </select>
+</mapper>

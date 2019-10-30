@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.shtelcom.enrol.dao.IDepartmentDao">
+  <resultMap id="BaseResultMap" type="cn.productivetech.shtelcom.enrol.model.DepartmentBean">
+    <id column="id" jdbcType="SMALLINT" property="id" />
+    <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="department_type" jdbcType="VARCHAR" property="departmentType" />
+    <result column="department_sup_id" jdbcType="VARCHAR" property="departmentSupId" />
+    <result column="department_sup_name" jdbcType="VARCHAR" property="departmentSupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, department_id, department_name, department_type, department_sup_id, department_sup_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from department_telecom
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from department_telecom
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="cn.productivetech.shtelcom.enrol.model.DepartmentBean">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Short">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into department_telecom (department_id, department_name, department_type, 
+      department_sup_id, department_sup_name)
+    values (#{departmentId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, #{departmentType,jdbcType=VARCHAR}, 
+      #{departmentSupId,jdbcType=VARCHAR}, #{departmentSupName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.productivetech.shtelcom.enrol.model.DepartmentBean">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Short">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into department_telecom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="departmentName != null">
+        department_name,
+      </if>
+      <if test="departmentType != null">
+        department_type,
+      </if>
+      <if test="departmentSupId != null">
+        department_sup_id,
+      </if>
+      <if test="departmentSupName != null">
+        department_sup_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentType != null">
+        #{departmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentSupId != null">
+        #{departmentSupId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentSupName != null">
+        #{departmentSupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.productivetech.shtelcom.enrol.model.DepartmentBean">
+    update department_telecom
+    <set>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        department_name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentType != null">
+        department_type = #{departmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentSupId != null">
+        department_sup_id = #{departmentSupId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentSupName != null">
+        department_sup_name = #{departmentSupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.productivetech.shtelcom.enrol.model.DepartmentBean">
+    update department_telecom
+    set department_id = #{departmentId,jdbcType=VARCHAR},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      department_type = #{departmentType,jdbcType=VARCHAR},
+      department_sup_id = #{departmentSupId,jdbcType=VARCHAR},
+      department_sup_name = #{departmentSupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

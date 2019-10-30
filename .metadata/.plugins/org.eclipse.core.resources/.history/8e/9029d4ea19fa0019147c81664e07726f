@@ -1,0 +1,30 @@
+package validsoft.poc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import validsoft.utils.FileUtils;
+
+public class fileHandle {
+	
+
+	
+	public static void main(String[] args) {
+		
+		String path ="Z:\\test20191029\\info\\";
+		
+		List<String> files = FileUtils.getFiles(path,true);
+		
+		ArrayList<String> arrayList = new ArrayList<String>();
+		
+		for (String string : files) {
+			System.out.println(string);
+			string.indexOf("\\info\\")
+			
+			
+			
+		}
+		
+		//FileUtils.getFiles(path, includeSubPath)
+	}
+}

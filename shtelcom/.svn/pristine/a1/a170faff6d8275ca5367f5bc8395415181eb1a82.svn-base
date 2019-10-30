@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.productivetech.shtelcom.enrol.dao.ITextDao">
+  <resultMap id="BaseResultMap" type="cn.productivetech.shtelcom.enrol.model.TextBean">
+    <id column="id" jdbcType="SMALLINT" property="id" />
+    <result column="text_id" jdbcType="VARCHAR" property="textId" />
+    <result column="text_word" jdbcType="VARCHAR" property="textWord" />
+    <result column="text_status" jdbcType="INTEGER" property="textStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, text_id, text_word, text_status, create_time, update_time, create_user, update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from text_telecom
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="selectByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from text_telecom
+    where text_status = #{textStatus,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from text_telecom
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="cn.productivetech.shtelcom.enrol.model.TextBean">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Short">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into text_telecom (text_id, text_word, text_status, 
+      create_time, update_time, create_user, 
+      update_user)
+    values (#{textId,jdbcType=VARCHAR}, #{textWord,jdbcType=VARCHAR}, #{textStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.productivetech.shtelcom.enrol.model.TextBean">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Short">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into text_telecom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="textId != null">
+        text_id,
+      </if>
+      <if test="textWord != null">
+        text_word,
+      </if>
+      <if test="textStatus != null">
+        text_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="textId != null">
+        #{textId,jdbcType=VARCHAR},
+      </if>
+      <if test="textWord != null">
+        #{textWord,jdbcType=VARCHAR},
+      </if>
+      <if test="textStatus != null">
+        #{textStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.productivetech.shtelcom.enrol.model.TextBean">
+    update text_telecom
+    <set>
+      <if test="textId != null">
+        text_id = #{textId,jdbcType=VARCHAR},
+      </if>
+      <if test="textWord != null">
+        text_word = #{textWord,jdbcType=VARCHAR},
+      </if>
+      <if test="textStatus != null">
+        text_status = #{textStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.productivetech.shtelcom.enrol.model.TextBean">
+    update text_telecom
+    set text_id = #{textId,jdbcType=VARCHAR},
+      text_word = #{textWord,jdbcType=VARCHAR},
+      text_status = #{textStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

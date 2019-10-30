@@ -39,6 +39,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Projects\Java_Project\shtelcom"/>
 			<item value="D:\workspace\telcomenrol"/>
 			<item value="C:\Projects\Java_Project\qrdemo20190819"/>
 			<item value="W:\company\Telecom_上海电信_丁香路750号\xiaoniutest"/>
@@ -85,10 +86,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="validsoft.poc"/>
 		</list>
 		<list key="groupId">
+			<item value="validsoft"/>
 		</list>
 		<list key="artifactId">
+			<item value="poc"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="com.example.service.IQueryFuzzyService"/>
 <fullyQualifiedTypeName name="com.example.service.IUpdateUserPrivilegesService"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
@@ -44,7 +42,6 @@
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.Cell"/>
 <fullyQualifiedTypeName name="com.example.utils.GetRootDepId"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.example.model.Department"/>
 <fullyQualifiedTypeName name="javax.swing.JTextArea"/>
 <fullyQualifiedTypeName name="com.xiaosheng.utils.POIUtil"/>
@@ -58,6 +55,9 @@
 <fullyQualifiedTypeName name="com.example.service.IQueryDepAdminService"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.example.mapper.QueryDepAdminMapper"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.example.model.EmpDepList"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="validsoft.utils.FileUtils"/>
 </qualifiedTypeNameHistroy>
