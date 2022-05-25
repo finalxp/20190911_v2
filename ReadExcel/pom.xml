@@ -90,7 +90,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>3.2.4.RELEASE</version>
+            <version>5.2.22.RELEASE</version>
         </dependency>
         <!-- 提供在基础IOC功能上的扩展服务，此外还提供许多企业级服务的支持，有邮件服务、任务调度、JNDI定位，EJB集成、远程访问、缓存以及多种视图层框架的支持。 -->
         <dependency>
